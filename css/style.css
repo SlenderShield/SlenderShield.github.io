@@ -12,13 +12,81 @@ COLOR PALATE
 --platinum: #e0e1ddf;
 */
 /*-----------------  Global Style  --------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --charcoal: #2f4858ff;
+    --cornflower-blue: #648de5ff;
+    --international-orange-aerospace: #f05d23ff;
+    --tiffany-blue: #2ec4b6ff;
+    --maximum-blue-purple: #baa5fff;
+    --rich-black-fora-29: #0d1b2aff;
+    --oxford-blue: #1b263bff;
+    --dazzled-blue: #415a77ff;
+    --shadow-blue: #778da9ff;
+    --platinum: #e0e1ddf;
+    font-family: "Roboto Thin", sans-serif;
+}
 
+/*-----------------  Nav Bar  --------------------*/
+.header {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    position: sticky;
+    background-color: black;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+}
+
+.nav li {
+    margin: 0 10px;
+    text-align: center;
+}
+
+.nav a {
+    outline: white;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 5px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    background-color: rgba(100, 100, 100, 0.8);
+}
+
+.nav a:focus {
+    background-color: rgba(100, 100, 100, 0.8);
+}
 
 /*-----------------  Profile  --------------------*/
 
+.profile {
+    background-image: url(../images/sharon-mccutcheon-unsplash.jpg);
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
 /*-----------------  Projects  --------------------*/
-
+.projects{
+    top: -120px;
+    min-height: 100vh;
+}
 
 /*-----------------  Experience  --------------------*/
 
