@@ -49,6 +49,10 @@ COLOR PALATE
     justify-content: space-evenly;
     border: 2px solid black;
     height: 50px;
+    width: auto;
+    flex-flow: wrap;
+    row-gap: 12px;
+
 }
 
 small a {
@@ -57,7 +61,7 @@ small a {
 
 .social {
     display: flex;
-    column-gap: 25px;
+    column-gap: 15px;
 }
 
 .icon {
