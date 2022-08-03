@@ -113,6 +113,10 @@ span {
 	padding-top: 100px;
 }
 
+.heading-wrapper .heading {
+	text-transform: uppercase;
+}
+
 .animate-bar {
 	width: 5rem;
 	height: 4px;
@@ -135,7 +139,7 @@ span {
 
 @keyframes animate {
 	from {
-		left: 0%;
+		left: 0;
 	}
 	to {
 		left: 100%;
@@ -426,7 +430,192 @@ span {
 }
 
 /* <================= Resume =================> */
+
+#resume {
+	padding-bottom: 100px;
+	background-color: var(--bg-color-1);
+}
+
+#resume .container {
+	gap: 2rem;
+}
+
+#resume .animate-bar::before {
+	border-color: var(--bg-color-1);
+}
+
+#resume .title {
+	margin-bottom: 10px;
+}
+
+.resume-list:last-child {
+	border-bottom: none;
+}
+
+.resume-list .item-arrow {
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	left: 0;
+	top: 2.5rem;
+	background-color: var(--main-color);
+}
+
+.resume-list .item-arrow::after {
+	content: "";
+	position: absolute;
+	border: 8px solid transparent;
+	left: 16px;
+	border-left-color: var(--main-color);
+}
+
+.resume-list {
+	width: 35rem;
+	padding: 32px 40px;
+	background-color: #191a20;
+	border-left: 2px solid var(--main-color);
+	position: relative;
+	border-bottom: 1px solid #313131;
+}
+
+#skills {
+	min-height: 100vh;
+	/*padding-bottom: 100px;*/
+}
+
+#skills .heading-wrapper {
+	padding-top: 50px;
+}
+
+.progress-items .progress-bar {
+	width: 35rem;
+	height: 8px;
+	background-color: var(--bg-color-2);
+}
+
+.progress-items .progress-bar .progress-line {
+	height: 100%;
+	background-color: var(--main-color);
+	position: relative;
+}
+
+.progress-items .progress-bar .progress-line::after {
+	position: absolute;
+	color: white;
+	font-size: 17px;
+	top: -30px;
+	right: -15px;
+}
+
+.progress-bar .progress-line.html {
+	content: "80";
+	width: 80%;
+}
+
+.progress-bar .progress-line.css {
+	width: 60%;
+}
+
+.progress-bar .progress-line.js {
+	width: 60%;
+}
+
+.progress-bar .progress-line.react {
+	width: 50%;
+}
+
+.progress-bar .progress-line.node {
+	width: 50%;
+}
+
+.progress-bar .progress-line.py {
+	width: 90%;
+}
+
+.progress-bar .progress-line.django {
+	width: 50%;
+}
+
+.progress-bar .progress-line.java {
+	width: 50%;
+}
+
+.progress-bar .progress-line.mongo {
+	width: 60%;
+}
+
+.progress-bar .progress-line.git {
+	width: 60%;
+}
+
+.progress-bar .progress-line.html::after {
+	content: "80%";
+}
+
+.progress-bar .progress-line.css::after {
+	content: "60%";
+}
+
+.progress-bar .progress-line.js::after {
+	content: "60%";
+}
+
+.progress-bar .progress-line.react::after {
+	content: "50%";
+}
+
+.progress-bar .progress-line.node::after {
+	content: "50%";
+}
+
+.progress-bar .progress-line.py::after {
+	content: "90%";
+}
+
+.progress-bar .progress-line.django::after {
+	content: "50%";
+}
+
+.progress-bar .progress-line.java::after {
+	content: "50%";
+}
+
+.progress-bar .progress-line.mongo::after {
+	content: "60%";
+}
+
+.progress-bar .progress-line.git::after {
+	content: "60%";
+}
+
 /* <================= Portfolio =================> */
+
+#portfolio {
+	min-height: 100vh;
+	background-color: var(--bg-color-1);
+}
+
+#portfolio .animate-bar::before {
+	border-color: var(--bg-color-1);
+}
+
+.gallery-wrapper {
+	max-width: 1170px;
+	margin: auto;
+}
+
+.gallery-wrapper .gallery-nav {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.gallery-wrapper .gallery-nav .gallery-filter {
+	padding: 0 15px;
+	margin: 40px 0;
+	text-align: center;
+	width: 100%;
+}
+
 /* <================= Reviews =================> */
 /* <================= Blog =================> */
 /* <================= Contact =================> */
