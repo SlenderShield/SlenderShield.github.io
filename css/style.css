@@ -431,60 +431,23 @@ span {
 
 /* <================= Resume =================> */
 
-#resume {
-	padding-bottom: 100px;
-	background-color: var(--bg-color-1);
-}
-
-#resume .container {
-	gap: 2rem;
-}
-
-#resume .animate-bar::before {
-	border-color: var(--bg-color-1);
-}
-
-#resume .title {
-	margin-bottom: 10px;
-}
-
-.resume-list:last-child {
-	border-bottom: none;
-}
-
-.resume-list .item-arrow {
-	position: absolute;
-	height: 16px;
-	width: 16px;
-	left: 0;
-	top: 2.5rem;
-	background-color: var(--main-color);
-}
-
-.resume-list .item-arrow::after {
-	content: "";
-	position: absolute;
-	border: 8px solid transparent;
-	left: 16px;
-	border-left-color: var(--main-color);
-}
-
-.resume-list {
-	width: 35rem;
-	padding: 32px 40px;
-	background-color: #191a20;
-	border-left: 2px solid var(--main-color);
-	position: relative;
-	border-bottom: 1px solid #313131;
-}
-
 #skills {
 	min-height: 100vh;
-	/*padding-bottom: 100px;*/
+	padding-top: 50px;
+	background-color: var(--bg-color-2);
 }
-
+#skills .animate-bar::before {
+	border-color: var(--bg-color-2);
+}
 #skills .heading-wrapper {
 	padding-top: 50px;
+}
+#skills .sub-heading {
+	text-transform: uppercase;
+}
+
+#skills .container .progress-items {
+	padding: 20px;
 }
 
 .progress-items .progress-bar {
@@ -591,7 +554,6 @@ span {
 /* <================= Portfolio =================> */
 
 #portfolio {
-	min-height: 100vh;
 	background-color: var(--bg-color-1);
 }
 
@@ -604,7 +566,7 @@ span {
 	margin: auto;
 }
 
-.gallery-wrapper .gallery-nav {
+/* .gallery-wrapper .gallery-nav {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -616,6 +578,104 @@ span {
 	width: 100%;
 }
 
+.gallery-wrapper .gallery-filter .filter-item {
+	color: white;
+	font-size: 17px;
+	display: inline-block;
+	cursor: pointer;
+	margin: 8px 20px 8px 20px;
+	line-height: 1.2;
+	position: relative;
+}
+
+.gallery-wrapper .gallery-filter .filter-item::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	bottom: -10px;
+	left: 50%;
+	height: 2px;
+	display: block;
+	background-color: var(--main-color);
+	transition: all 0.3s ease;
+	transform-origin: center;
+}
+
+.gallery-wrapper .gallery-filter .filter-item.active::after {
+	width: 100%;
+	left: 0;
+} */
+
+.content-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 50vh;
+	margin-top: 1rem;
+}
+
+.gallery-item {
+	width: calc(100% / 3);
+	padding: 15px;
+}
+
+.gallery-item.show {
+	animation: fade-in 0.5s ease;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.gallery-item.hide {
+	display: none;
+}
+
+.gallery-item .gallery-item-inner {
+	cursor: pointer;
+	position: relative;
+}
+
+.gallery-item .gallery-item-inner:hover .overlay {
+	opacity: 1;
+}
+
+.gallery-item .gallery-item-inner img {
+	width: 100%;
+	box-shadow: -2px 3px 15px black;
+	vertical-align: middle;
+}
+
+.gallery-item .gallery-item-inner .overlay {
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.6);
+	transition: opacity 0.3s ease-in;
+}
+
+.gallery-item .gallery-item-inner .overlay p {
+	color: var(--main-color);
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.warning {
+	font-size: 40px;
+	text-align: center;
+	text-decoration: underline;
+}
 /* <================= Reviews =================> */
 /* <================= Blog =================> */
 /* <================= Contact =================> */
