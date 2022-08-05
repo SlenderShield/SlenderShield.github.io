@@ -24,3 +24,20 @@ var typed = new Typed(".type", {
 // Portfolio Gallery
 
 // Review Carousel
+let owlCarousel = $(".owl-carousel").owlCarousel({
+	loop: true,
+	margin: 10,
+	items: 1,
+	// nav:true,
+	responsive: {
+		0: {
+			items: 1,
+		},
+		600: {
+			items: 1,
+		},
+		1200: {
+			items: 2,
+		},
+	},
+});
