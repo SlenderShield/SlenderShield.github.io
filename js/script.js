@@ -27,8 +27,7 @@ var typed = new Typed(".type", {
 let owlCarousel = $(".owl-carousel").owlCarousel({
 	loop: true,
 	margin: 10,
-	items: 1,
-	// nav:true,
+	items: 1, // nav:true,
 	responsive: {
 		0: {
 			items: 1,
