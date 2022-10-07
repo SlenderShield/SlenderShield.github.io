@@ -2,9 +2,17 @@
 <html lang="en">
 
 	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-8X3XLGVB5E"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'G-8X3XLGVB5E');
+		</script>
 		<meta charset="UTF-8">
-		<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-			name="viewport">
+		<meta content="width=device-width, initial-scale=0.9" name="viewport">
 		<meta content="ie=edge" http-equiv="X-UA-Compatible">
 		<title>Muralidhara Bhat KS</title>
 		<!-------------- Local Stylesheet Link -------------->
@@ -329,23 +337,25 @@
 			</div>
 
 			<div class="container">
-				<form action="#" data-aos="fade-right" data-aos-duration="1200">
+				<form action="https://getform.io/f/fa9940a7-995d-4420-af76-91a25485f19b" data-aos="fade-right"
+					data-aos-duration="1200">
 					<div class="title">
 						<h4>Contact Me</h4>
 					</div>
 					<div class="forms-row">
 						<div class="input-data">
-							<input placeholder="Name" required type="text">
+							<input placeholder="Name" required type="text" name="name">
 						</div>
 						<div class="input-data">
-							<input placeholder="Email" required type="email">
+							<input placeholder="Email" required type="email" name="email">
 						</div>
 					</div>
 					<div class="input-data">
-						<input name="subject" placeholder="Subject" type="text">
+						<input name="subject" placeholder="Subject" type="text" name="subject">
 					</div>
 					<div class="input-data">
-						<textarea cols="30" name="message" placeholder="Write your message" rows="10"></textarea>
+						<textarea cols="30" name="message" placeholder="Write your message" rows="10"
+							name="message"></textarea>
 					</div>
 					<div class="form-row">
 						<input class="btn" type="submit" value="Send Your Message">
