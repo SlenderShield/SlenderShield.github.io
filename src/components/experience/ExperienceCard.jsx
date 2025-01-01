@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import SvgTool from "@/lib/SVGTool";
-import { getDomain, getMonthYear, getToolDetails } from "@/lib/utils";
+import { getDomain, getToolDetails } from "@/lib/utils";
 import {
     HiLink,
     HiOutlineCalendarDays,
@@ -11,7 +11,6 @@ import {
     HiOutlinePauseCircle,
     HiOutlineQuestionMarkCircle,
 } from "react-icons/hi2";
-import { Separator } from "../ui/Separator";
 
 const STATUS = {
     completed: {
@@ -94,11 +93,11 @@ const ExpericenceCard = ({ exp }) => {
             <div className=" flex flex-col gap-5">
                 <div className="min-h-52 grow flex flex-col justify-around gap-2">
                     <div className="flex flex-col space-y-2">
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col md:flex-row justify-between items-center">
                             <h3 className="text-2xl font-bold w-fit flex items-center">
                                 {<Link
                                     href={companyURL}
-                                    className="px-2 hover:text-primary transition-colors"
+                                    className="px-2 hover:text-primary transition-colors uppercase"
                                 >
                                     {company}
                                 </Link>}
@@ -109,7 +108,7 @@ const ExpericenceCard = ({ exp }) => {
                             </span>
                         </div>
                         <div className="flex items-center flex-w space-x-4 text-sm px-1">
-                            <StatusIcon status={status} />
+                            {/* <StatusIcon status={status} /> */}
 
                             {companyURL && (
                                 <CardLink href={companyURL}>
@@ -126,9 +125,9 @@ const ExpericenceCard = ({ exp }) => {
                         </div>
                     </div>
                     <div className="mt-5 rounded-lg border p-5">
-                        <div className="flex justify-between items-center ">
+                        <div className="flex flex-col md:flex-row justify-between items-center ">
                             <span className="uppercase font-semibold">{role}</span>
-                            <span className="bg-black p-2 rounded-lg text-white dark:bg-white dark:text-black">{type}</span>
+                            <span className="hidden md:block bg-black p-2 rounded-lg text-white dark:bg-white dark:text-black">{type}</span>
                         </div>
                         <div className="grow my-2">
                             <ol>
@@ -137,7 +136,7 @@ const ExpericenceCard = ({ exp }) => {
                                 )}
                             </ol>
                         </div>
-                        <div className="flex items-center gap-4 py-2 px-4 ">
+                        <div className="flex items-center gap-4 py-2 px-4 flex-wrap">
                             <TechRow tech={techStack} />
                         </div>
                     </div>

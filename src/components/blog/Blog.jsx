@@ -5,7 +5,7 @@ import { HiOutlineCalendarDays, HiOutlineClock } from 'react-icons/hi2'
 import { getMonthYear } from '@/lib/utils'
 
 export const TechRow = ({ tech }) => (
-    <div className='text-sm flex flex-row flex-wrap gap-1'>
+    <div className='text-left text-sm flex  flex-wrap gap-3'>
         {tech.map((name) => (
             <span key={name}>#{name}</span>
         ))}
@@ -15,7 +15,7 @@ export const TechRow = ({ tech }) => (
 const Blog = ({ blog, featured }) => {
     const { title, date, slug, tags, excerpt, readTime, image } = blog
     return (
-        <div className=" max-w-md rounded-lg border p-5">
+        <div className="w-full rounded-lg border p-5">
             <div className=" flex flex-col gap-5">
                 {featured && (
                     <img
@@ -49,7 +49,7 @@ const Blog = ({ blog, featured }) => {
                         </Link>
                     </h3>
                     <div className="grow my-2">
-                        <p className="text-left text-sm p-2 text-balance">{excerpt}</p>
+                        <p className="text-left text-sm p-2 ">{excerpt}</p>
                     </div>
 
                     <div className="flex items-center gap-4 py-2 px-4 border-y border-border">

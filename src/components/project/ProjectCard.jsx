@@ -88,7 +88,7 @@ const ProjectCard = ({ project, featured = false }) => {
     date,
   } = project;
   return (
-    <div className=" max-w-md rounded-lg border p-5">
+    <div className="w-full rounded-lg border p-5">
       <div className=" flex flex-col gap-5">
         {featured && (
           <img
@@ -135,7 +135,7 @@ const ProjectCard = ({ project, featured = false }) => {
           </div>
 
           <div className="grow my-2">
-            <p className="text-left text-sm p-2 text-balance">{description}</p>
+            <p className="text-left text-sm p-2">{description}</p>
           </div>
 
           <div className="flex items-center gap-4 py-2 px-4 border-y border-border">

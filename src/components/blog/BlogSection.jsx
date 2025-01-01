@@ -39,7 +39,6 @@ const blogs = [
     readTime: "5 min read",
   }
 ];
-
 const BlogSection = () => {
   return (
     <MajorSection
@@ -49,7 +48,7 @@ const BlogSection = () => {
       linkCTA="/blogs"
       subtitle="recent blogs from the normal swe"
     >
-      <div className="grid grid-cols-2 gap-1">
+      <div className=" grid grid-cols-1 lg:grid-cols-2 gap-8">
         {blogs.map((blog) => (
           <Blog key={blog.id} blog={blog} featured={true} />
         ))}

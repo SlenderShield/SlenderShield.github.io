@@ -43,7 +43,7 @@ const ProjectSection = () => {
         subtitle="A curated selection of standout projects, demonstrating innovative
           solutions and creative excellence."
       >
-        <div className="inline-grid gap-8 grid-cols-1 lg:grid-cols-2 ">
+        <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 ">
           {projects.map((project) => (
             <ProjectCard
               project={project}

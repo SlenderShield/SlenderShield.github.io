@@ -44,7 +44,7 @@ const ExpericenceSection = () => {
             title="Expericence"
             subtitle="A curated selection of standout projects, demonstrating innovative
                     solutions and creative excellence.">
-            <div >
+            <div>
                 {experience.map((exp) =>
                     <ExpericenceCard key={exp.id} exp={exp} />
                 )}
