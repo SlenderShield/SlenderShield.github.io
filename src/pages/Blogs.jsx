@@ -1,6 +1,8 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+import { ChevronsRight } from "lucide-react";
 
-const Blogs = ({ link }) => {
+const Blogs = ({ link, date, title }) => {
   return (
     <Link to={link} className="flex flex-col w-3/4 gap-4 mx-auto">
       <div className="overflow-hidden w-full aspect-[4/3] relative rounded-lg flex items-center justify-center group">
