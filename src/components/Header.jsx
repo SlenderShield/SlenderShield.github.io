@@ -19,7 +19,7 @@ import { ChevronDown, X } from "lucide-react";
 function MobileNavItem({ href, children }) {
     return (
         <li>
-            <PopoverButton as={Link} to={href} className="block py-2">
+            <PopoverButton as={Link} to={href} className="block py-3">
                 {children}
             </PopoverButton>
         </li>
@@ -54,7 +54,7 @@ function NavLink({ href, children }) {
 const DesktopNavbar = (props) => {
     return (
         <nav {...props}>
-            <ul className="flex rounded-full  px-3 text-sm font-medium shadow-lg shadow-slate-800/5 ring-1 ring-slate-900/5 backdrop-blu dark:ring-white/10">
+            <ul className="flex rounded-full  px-3 text-base font-medium shadow-lg shadow-slate-800/5 ring-1 ring-slate-900/5 backdrop-blu dark:ring-white/10">
                 <NavLink href="/projects">Projects</NavLink>
                 <NavLink href="/blogs">Blogs</NavLink>
                 <NavLink href="/about">About</NavLink>
@@ -67,7 +67,7 @@ const DesktopNavbar = (props) => {
 const MobileNavbar = (props) => {
     return (
         <Popover {...props}>
-            <PopoverButton className="group flex items-center rounded-full px-4 py-2 text-sm font-medium  shadow-lg shadow-slate-800/5 ring-1 ring-slate-900/5 backdrop-blur  dark:ring-white/10 dark:hover:ring-white/20">
+            <PopoverButton className="group flex items-center rounded-full px-6 py-3 text-base font-medium  shadow-lg shadow-slate-800/5 ring-1 ring-slate-900/5 backdrop-blur  dark:ring-white/10 dark:hover:ring-white/20">
                 Menu
                 <ChevronDown className="ml-3 h-auto w-2 stroke-slate-500 group-hover:stroke-slate-700 dark:group-hover:stroke-slate-400" />
             </PopoverButton>
@@ -123,9 +123,9 @@ const MobileNavbar = (props) => {
 
 const Header = () => {
     return (
-        <header className="flex justify-around md:justify-between items-center md:px-28 py-3 z-50">
+        <header className="flex justify-around md:justify-between items-center md:px-28 py-6 z-50">
             <Link to="/">
-                <Avatar className="w-12 h-12">
+                <Avatar className="w-16 h-16">
                     <AvatarImage src="https://github.com/slendershield.png" />
                     <AvatarFallback>MDB</AvatarFallback>
                 </Avatar>
