@@ -88,22 +88,20 @@ const ProjectCard = ({ project, featured = false }) => {
     date,
   } = project;
   return (
-    <div className="w-full rounded-lg border p-5">
-      <div className=" flex flex-col gap-5">
+    <div className="w-full rounded-lg border p-4"> {/* Reduced padding */}
+      <div className="flex flex-col gap-4"> {/* Reduced gap between elements */}
         {featured && (
           <img
             src={mainImage}
             alt={title}
             title={title}
-            width={500}
-            height={500}
-            className=" object-cover rounded-lg"
+            className="object-cover rounded-lg h-96 w-full"
           />
         )}
-        <div className="min-h-52 grow flex flex-col justify-around ">
+        <div className="flex flex-col justify-between min-h-40">
           <div className="flex flex-col space-y-2">
             <div className="flex justify-between items-center">
-              <h3 className="text-2xl font-bold w-fit flex items-center">
+              <h3 className="text-xl font-semibold w-fit flex items-center">
                 <Link
                   href={`/projects/${slug.current}`}
                   className="px-2 hover:text-primary transition-colors"
@@ -116,7 +114,7 @@ const ProjectCard = ({ project, featured = false }) => {
                 <span>{getMonthYear(date)}</span>
               </span>
             </div>
-            <div className="flex items-center flex-w space-x-4 text-sm px-1">
+            <div className="flex items-center flex-wrap space-x-4 text-sm px-1">
               <StatusIcon status={status} />
 
               {href && (
@@ -134,11 +132,11 @@ const ProjectCard = ({ project, featured = false }) => {
             </div>
           </div>
 
-          <div className="grow my-2">
+          <div className="grow my-2 text-wrap">
             <p className="text-left text-sm p-2">{description}</p>
           </div>
 
-          <div className="flex items-center gap-4 py-2 px-4 border-y border-border">
+          <div className="flex items-center gap-3 py-2 px-3 border-y border-border"> {/* Reduced padding */}
             <TechRow tech={tech} />
           </div>
         </div>

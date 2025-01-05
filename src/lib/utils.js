@@ -28,3 +28,7 @@ export const getMonthYear = (StringDate) => {
     .toLocaleString(undefined, { month: 'short', year: 'numeric' })
     .replace(' ', ', ');
 };
+
+export const sortByDate = (blogs) => {
+  return blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+};
