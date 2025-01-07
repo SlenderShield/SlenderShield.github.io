@@ -23,8 +23,8 @@ function App() {
   }, [location.pathname]);
 
   return (
-    // <div className="xl:border-x-2 xl:w-2/3 mx-auto min-h-screen">
-    <>
+    <div className="xl:border-x-2 xl:w-2/3 mx-auto min-h-screen">
+
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,8 +38,8 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
-      {/* // </div > */}
-    </>
+    </div >
+
   );
 }
 
