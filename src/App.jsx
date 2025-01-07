@@ -1,4 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "preline/preline"
 
 import Header from "@/components/Header";
 import Home from "@/pages/Home";
@@ -13,25 +16,33 @@ import Footer from "@/components/Footer";
 import PageNotFound from "@/components/NotFound";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.HSStaticMethods.autoInit();
+  }, [location.pathname]);
+
   return (
-    <div className="xl:border-x-2 xl:w-2/3 mx-auto min-h-screen">
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:id" element={<Project />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/:id" element={<Blog />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </div>
+    // <div className="xl:border-x-2 xl:w-2/3 mx-auto min-h-screen">
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:id" element={<Project />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:id" element={<Blog />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <Footer />
+      {/* // </div > */}
+    </>
   );
 }
 
 export default App;
+
+
