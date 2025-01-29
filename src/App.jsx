@@ -24,7 +24,6 @@ function App() {
 
   return (
     <div className="xl:border-x-2 xl:w-2/3 mx-auto min-h-screen">
-
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

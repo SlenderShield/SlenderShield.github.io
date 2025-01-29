@@ -35,15 +35,15 @@ function NavLink({ href, children }) {
                 className={clsx(
                     "relative block px-3 py-2 transition",
                     isActive
-                        ? "text-amber-950 dark:text-amber-400"
-                        : "hover:text-amber-400 dark:hover:text-amber-400"
+                        ? "text-gray-900 dark:text-gray-100"
+                        : "hover:text-gray-600 dark:hover:text-gray-300"
                 )}
             >
                 {children}
                 {isActive && (
                     <>
-                        <span className="absolute inset-x-1 -top-px h-px bg-gradient-to-r from-amber-700/0 via-amber-700/40 to-amber-700/0 dark:from-amber-400/0 dark:via-amber-400/40 dark:to-amber-400/0" />
-                        <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-amber-700/0 via-amber-700/40 to-amber-700/0 dark:from-amber-400/0 dark:via-amber-400/40 dark:to-amber-400/0" />
+                        <span className="absolute inset-x-1 -top-px h-px bg-gradient-to-r from-gray-900/0 via-gray-900/40 to-gray-900/0 dark:from-gray-100/0 dark:via-gray-100/40 dark:to-gray-100/0" />
+                        <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-gray-900/0 via-gray-900/40 to-gray-900/0 dark:from-gray-100/0 dark:via-gray-100/40 dark:to-gray-100/0" />
                     </>
                 )}
             </Link>

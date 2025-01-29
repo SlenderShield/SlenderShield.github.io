@@ -1,9 +1,7 @@
 
-import MinorSection from '../MinorSection'
-
 const AboutSection = () => {
     return (
-        <MinorSection></MinorSection>
+        <hi>About</hi>
     )
 }
 

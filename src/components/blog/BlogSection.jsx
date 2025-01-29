@@ -1,6 +1,6 @@
 import Blog from "./Blog";
-import MajorSection from "../MajorSection";
 import { ImBlog } from "react-icons/im";
+import HomeSection from "../HomeSection";
 
 const blogs = [
   {
@@ -42,20 +42,18 @@ const blogs = [
 
 const BlogSection = () => {
   return (
-    <MajorSection
+    <HomeSection
       icon={<ImBlog />}
       title="Recent Blogs"
-      sectionCTA="See All blogs"
-      linkCTA="/blogs"
+      ctaText="Read More"
+      ctaLink="/blogs"
       subtitle="recent blogs from the normal swe"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} featured={true} />
-        ))}
-      </div>
-    </MajorSection>
-  );
-};
+      {blogs.map((blog) => (
+        <Blog key={blog.id} blog={blog} featured={true} />
+      ))}
+    </HomeSection>
+  )
+}
 
 export default BlogSection;

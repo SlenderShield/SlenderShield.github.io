@@ -16,47 +16,34 @@ const Blog = ({ blog, featured }) => {
     const { title, date, slug, tags, excerpt, readTime, image } = blog
     console.log(image)
     return (
-        <div className="w-full rounded-lg border p-5">
-            <div className=" flex flex-col gap-5">
-                {featured && (
-                    <img
-                        src={image}
-                        alt={title}
-                        title={title}
-                        className="items-center object-cover rounded-lg w-full h-96"
-                    />
-                )}
-                <div className="min-h-56 grow flex flex-col justify-around ">
-                    <div className="flex flex-col space-y-6">
-                        <div className="flex justify-between items-center">
-                            <span className="opacity-70 flex items-center space-x-1 text-sm">
-                                <HiOutlineClock />
-                                <span>{readTime}</span>
-                            </span>
-                            <span className="opacity-70 flex items-center space-x-1 text-sm">
-                                <HiOutlineCalendarDays />
-                                <span>{getMonthYear(date)}</span>
-                            </span>
-                        </div>
-                    </div>
-                    <h3 className="text-xl font-bold w-fit p-2">
-                        <Link
-                            href={`/projects/${slug.current}`}
-                            className="text-center hover:text-primary transition-colors"
-                        >
-                            {title}
-                        </Link>
-                    </h3>
-                    <div className="grow my-2">
-                        <p className="text-left text-sm p-2 ">{excerpt}</p>
-                    </div>
-
-                    <div className=" flex items-center gap-4 py-2 px-4 border-y border-border">
-                        <Tags tech={tags} className />
-                    </div>
+        <Link to={`/blogs/${slug.current}`} className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg focus:outline-none focus:border-transparent focus:shadow-lg transition duration-300 rounded-xl p-5 dark:border-neutral-700 dark:hover:border-transparent dark:hover:shadow-black/40 dark:focus:border-transparent dark:focus:shadow-black/40">
+            <div className="aspect-w-16 aspect-h-11">
+                <img className="w-full object-cover rounded-xl" src="https://images.unsplash.com/photo-1521321205814-9d673c65c167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80" alt="Blog Image" />
+            </div>
+            <div className="flex flex-col mt-4">
+                <div className="flex justify-between items-center">
+                    <span className="opacity-70 flex items-center space-x-1 text-sm">
+                        <HiOutlineClock />
+                        <span>{readTime}</span>
+                    </span>
+                    <span className="opacity-70 flex items-center space-x-1 text-sm">
+                        <HiOutlineCalendarDays />
+                        <span>{getMonthYear(date)}</span>
+                    </span>
                 </div>
             </div>
-        </div>
+            <div className="my-4">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-neutral-300 dark:group-hover:text-white">
+                    {title}
+                </h3>
+                <p className="mt-5 text-gray-600 dark:text-neutral-400">
+                    {excerpt}
+                </p>
+            </div>
+            <div className="flex items-center gap-4 py-2 px-4 border-y border-border rounded-md">
+                <Tags tech={tags} className />
+            </div>
+        </Link>
     )
 }
 

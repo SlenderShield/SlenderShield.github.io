@@ -1,6 +1,5 @@
-import MajorSection from "@/components/MajorSection";
+import HomeSection from "@/components/HomeSection";
 import { HiOutlineStar } from "react-icons/hi2";
-import { Separator } from "../ui/Separator";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
@@ -35,25 +34,22 @@ const projects = [
 const ProjectSection = () => {
   return (
     <>
-      <MajorSection
+      <HomeSection
         icon={<HiOutlineStar />}
         title="Featured Projects"
-        sectionCTA="See all projects"
-        linkCTA="/projects"
+        ctaText="See all projects"
+        ctaLink="/projects"
         subtitle="A curated selection of standout projects, demonstrating innovative
           solutions and creative excellence."
       >
-        <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 ">
-          {projects.map((project) => (
-            <ProjectCard
-              project={project}
-              key={project.index}
-              featured={project.featured}
-            />
-          ))}
-        </div>
-      </MajorSection>
-      <Separator className="my-24" />
+        {projects.map((project) => (
+          <ProjectCard
+            project={project}
+            key={project.index}
+            featured={project.featured}
+          />
+        ))}
+      </HomeSection>
     </>
   );
 };

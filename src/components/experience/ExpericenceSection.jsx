@@ -1,4 +1,3 @@
-import MinorSection from "../MinorSection"
 import { HiOutlineBriefcase } from "react-icons/hi2"
 import ExpericenceCard from "./ExperienceCard"
 
@@ -39,17 +38,22 @@ const experience = [
 
 const ExpericenceSection = () => {
     return (
-        <MinorSection
-            icon={<HiOutlineBriefcase />}
-            title="Expericence"
-            subtitle="A curated selection of standout projects, demonstrating innovative
-                    solutions and creative excellence.">
+        <section className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+            <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+                <h2 className="flex flex-row items-end gap-5 justify-center text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
+                    <HiOutlineBriefcase />
+                    Expericence
+                </h2>
+                <p className="mt-2 text-gray-600 dark:text-neutral-400">
+                    A curated selection of standout projects, demonstrating innovative
+                    solutions and creative excellence.</p>
+            </div>
             <div>
                 {experience.map((exp) =>
                     <ExpericenceCard key={exp.id} exp={exp} />
                 )}
             </div>
-        </MinorSection>
+        </section>
     )
 }
 

@@ -6,6 +6,7 @@ import BlogSection from "@/components/blog/BlogSection";
 import { Button } from "@/components/ui/Button";
 
 import ExpericenceSection from "@/components/experience/ExpericenceSection";
+
 const Home = () => {
   return (
     <div className="mt-24  sm:mt-32">
@@ -33,7 +34,9 @@ const Home = () => {
 
         <Separator className="my-24" />
         <ProjectSection />
+        <Separator className="my-10" />
         <ExpericenceSection />
+        <Separator className="my-8" />
         <BlogSection />
       </div>
     </div>

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import MinorSection from "@/components/MinorSection";
 import { ImBlog } from "react-icons/im";
 import Blog from "@/components/blog/Blog";
 import { sortByDate } from "@/lib/utils";
 import { HiOutlineArchiveBox, HiOutlineStar } from "react-icons/hi2";
+import HomeSection from "@/components/HomeSection";
 // import Pagination from "@/components/Pagination";
 
 const blogs = [
@@ -89,7 +89,7 @@ const blogs = [
 const Blogs = () => {
   return (
     <>
-      <MinorSection
+      <HomeSection
         icon={<ImBlog />}
         title="Recent Blogs"
         sectionCTA="See All blogs"
@@ -103,7 +103,7 @@ const Blogs = () => {
           ))}
         </div>
 
-      </MinorSection>
+      </HomeSection>
       {/* <Pagination /> */}
     </>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { HiOutlineStar } from "react-icons/hi2";
-import MinorSection from "@/components/MinorSection";
+import HomeSection from "@/components/HomeSection";
 import ProjectCard from "@/components/project/ProjectCard";
 // import Pagination from "@/components/Pagination";
 
@@ -167,7 +167,7 @@ let projects = [
 
 const Projects = () => {
   return (
-    <MinorSection
+    <HomeSection
       icon={<HiOutlineStar />}
       title="Featured Projects"
       sectionCTA="See all projects"
@@ -175,17 +175,15 @@ const Projects = () => {
       subtitle="A curated selection of standout projects, demonstrating innovative
               solutions and creative excellence.">
 
-      <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 auto-cols-min">
-        {projects.map((project) => (
-          <ProjectCard
-            project={project}
-            key={project.index}
-            featured={project.featured}
-          />
-        ))}
-      </div>
+      {projects.map((project) => (
+        <ProjectCard
+          project={project}
+          key={project.index}
+          featured={project.featured}
+        />
+      ))}
       {/* <Pagination /> */}
-    </MinorSection>
+    </HomeSection>
   );
 };
 
