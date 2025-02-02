@@ -2,6 +2,7 @@
 import { HiOutlineStar } from "react-icons/hi2";
 import HomeSection from "@/components/HomeSection";
 import ProjectCard from "@/components/project/ProjectCard";
+import Check from "@/components/Check";
 // import Pagination from "@/components/Pagination";
 
 let projects = [
@@ -170,19 +171,17 @@ const Projects = () => {
     <HomeSection
       icon={<HiOutlineStar />}
       title="Featured Projects"
-      sectionCTA="See all projects"
-      linkCTA="/projects"
       subtitle="A curated selection of standout projects, demonstrating innovative
               solutions and creative excellence.">
 
-      {projects.map((project) => (
+      {/* {projects.map((project) => (
         <ProjectCard
           project={project}
           key={project.index}
           featured={project.featured}
         />
-      ))}
-      {/* <Pagination /> */}
+      ))} */}
+      <Check />
     </HomeSection>
   );
 };

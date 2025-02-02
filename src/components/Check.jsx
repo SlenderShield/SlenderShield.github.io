@@ -1,27 +1,68 @@
 /* eslint-disable react/prop-types */
-import { ImBlog } from "react-icons/im";
+import {
+    Mail, MapPin, Book, Code,
+    Globe, Palette, Brain,
+    Terminal, Database,
+    Figma, PenTool, Users
+} from 'lucide-react';
 
-import CTAButton from "./CTAButton";
+const skills = [
+    {
+        category: "Programming",
+        icon: <Terminal size={24} />,
+        items: [
+            { name: "JavaScript", icon: <Code size={16} /> },
+            { name: "Python", icon: <Terminal size={16} /> },
+            { name: "React", icon: <Code size={16} /> },
+            { name: "Node.js", icon: <Database size={16} /> },
+            { name: "JavaScript", icon: <Code size={16} /> },
+            { name: "Python", icon: <Terminal size={16} /> },
+            { name: "React", icon: <Code size={16} /> },
+            { name: "Node.js", icon: <Database size={16} /> }
+        ]
+    },
+    {
+        category: "Design",
+        icon: <Palette size={24} />,
+        items: [
+            { name: "UI/UX", icon: <PenTool size={16} /> },
+            { name: "Figma", icon: <Figma size={16} /> },
+            { name: "Adobe XD", icon: <PenTool size={16} /> }
+        ]
+    },
+    {
+        category: "Other",
+        icon: <Brain size={24} />,
+        items: [
+            { name: "Project Management", icon: <Users size={16} /> },
+            { name: "Team Leadership", icon: <Users size={16} /> },
+            { name: "Agile Methodologies", icon: <Globe size={16} /> }
+        ]
+    }
+];
 
-const BlogSection = () => {
+const Check = () => {
     return (
-        <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-
-            <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-                <h2 className="flex flex-row items-end gap-5 justify-center text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
-                    <ImBlog />
-                    The Blog
-                </h2>
-                <p className="mt-1 text-gray-600 dark:text-neutral-400">See how game-changing companies are making the most of every engagement with Preline.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            </div>
-            <div className="mt-12 text-center">
-                <CTAButton to="/blogs" ctaText="Read More" />
-            </div>
+        <div className="space-y-3">
+            {skills.map(skill => (
+                <dl className="flex flex-col sm:flex-row gap-1" key={skill.category}>
+                    <dt className="min-w-40">
+                        <span className="block text-base text-gray-500 dark:text-neutral-500">{skill.category}:</span>
+                    </dt>
+                    <dd>
+                        <ul>
+                            {skill.items.map(item => (
+                                <li className="me-1 after:content-[','] inline-flex items-center text-sm text-gray-800 dark:text-neutral-200" key={item.name}>
+                                    {item.icon}
+                                    {item.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </dd>
+                </dl>
+            ))}
         </div>
     )
 }
 
-export default BlogSection
+export default Check

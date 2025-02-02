@@ -26,6 +26,7 @@ const STATUS = {
     text: "Paused",
   },
 };
+
 export const StatusIcon = ({ status }) => {
   const { icon, text } = STATUS[status];
   return (
