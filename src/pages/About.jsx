@@ -4,53 +4,65 @@ import {
   Terminal, Database,
   Figma, PenTool, Users,
   Brush, Layout, Package, Cloud, Repeat,
-  BarChart, Network
+  BarChart, Network,Server,
 } from 'lucide-react';
 const skills = [
   {
-    category: "Programming",
+    category: "Languages",
     icon: <Terminal size={24} />,
     items: [
       { name: "C++", icon: <Code size={16} /> },
       { name: "Java", icon: <Code size={16} /> },
-      { name: "Spring Boot", icon: <Database size={16} /> },
       { name: "JavaScript", icon: <Code size={16} /> },
       { name: "TypeScript", icon: <Code size={16} /> },
+      { name: "Python", icon: <Terminal size={16} /> }
+    ]
+  },
+  {
+    category: "Frameworks & Libraries",
+    icon: <Layers size={24} />,
+    items: [
+      { name: "Spring Boot", icon: <Server size={16} /> },
       { name: "React.js", icon: <Code size={16} /> },
       { name: "Next.js", icon: <Code size={16} /> },
       { name: "Node.js", icon: <Database size={16} /> },
       { name: "Express.js", icon: <Code size={16} /> },
+      { name: "GraphQL", icon: <Globe size={16} /> }
+    ]
+  },
+  {
+    category: "Databases",
+    icon: <Database size={24} />,
+    items: [
       { name: "MongoDB", icon: <Database size={16} /> },
       { name: "PostgreSQL", icon: <Database size={16} /> },
-      { name: "GraphQL", icon: <Globe size={16} /> },
-      { name: "Docker", icon: <Package size={16} /> },
-      { name: "Kubernetes", icon: <Package size={16} /> },
+      { name: "MySQL", icon: <Database size={16} /> },
+      { name: "Redis", icon: <Database size={16} /> }
     ]
   },
   {
-    category: "Design & Frontend",
-    icon: <Palette size={24} />,
-    items: [
-      { name: "UI/UX Design", icon: <PenTool size={16} /> },
-      { name: "Figma", icon: <Figma size={16} /> },
-      { name: "Adobe XD", icon: <PenTool size={16} /> },
-      { name: "Tailwind CSS", icon: <Brush size={16} /> },
-      { name: "Material UI", icon: <Layout size={16} /> }
-    ]
-  },
-  {
-    category: "DevOps & Cloud",
+    category: "Cloud & DevOps",
     icon: <Cloud size={24} />,
     items: [
       { name: "Docker", icon: <Package size={16} /> },
       { name: "Kubernetes", icon: <Package size={16} /> },
       { name: "AWS", icon: <Cloud size={16} /> },
       { name: "Google Cloud", icon: <Cloud size={16} /> },
-      { name: "CI/CD", icon: <Repeat size={16} /> },
+      { name: "CI/CD", icon: <Repeat size={16} /> }
     ]
   },
   {
-    category: "Other",
+    category: "Frontend & UI/UX",
+    icon: <Palette size={24} />,
+    items: [
+      { name: "Tailwind CSS", icon: <Brush size={16} /> },
+      { name: "Material UI", icon: <Layout size={16} /> },
+      { name: "Figma", icon: <Figma size={16} /> },
+      { name: "Adobe XD", icon: <PenTool size={16} /> }
+    ]
+  },
+  {
+    category: "Other Skills",
     icon: <Brain size={24} />,
     items: [
       { name: "System Design", icon: <Globe size={16} /> },
@@ -58,10 +70,11 @@ const skills = [
       { name: "Microservices Architecture", icon: <Network size={16} /> },
       { name: "Project Management", icon: <Users size={16} /> },
       { name: "Team Leadership", icon: <Users size={16} /> },
-      { name: "Agile Methodologies", icon: <Globe size={16} /> },
+      { name: "Agile Methodologies", icon: <Globe size={16} /> }
     ]
   }
 ];
+
 
 
 
