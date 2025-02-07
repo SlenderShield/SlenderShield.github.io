@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { HiOutlineStar } from "react-icons/hi2";
-import HomeSection from "@/components/HomeSection";
+import Section from "@/components/Section";
 import ProjectCard from "@/components/project/ProjectCard";
 import Check from "@/components/Check";
 // import Pagination from "@/components/Pagination";
@@ -168,8 +168,8 @@ let projects = [
 
 const Projects = () => {
   return (
-    <HomeSection
-      icon={<HiOutlineStar />}
+    <Section
+      Icon={HiOutlineStar}
       title="Featured Projects"
       subtitle="Experience the power of innovation through these carefully selected projects, showcasing the commitment to excellence.">
       {projects.map((project) => (
@@ -180,7 +180,7 @@ const Projects = () => {
         />
       ))}
       <Check />
-    </HomeSection>
+    </Section>
   );
 };
 

@@ -20,7 +20,7 @@ const Blog = ({ blog }) => {
     return (
         <Link to={`/blogs/${slug.current}`} className="group flex flex-col h-full  border border-gray-200 hover:border-transparent hover:shadow-lg focus:outline-none focus:border-transparent focus:shadow-lg transition duration-300 rounded-xl p-5 dark:border-neutral-700 dark:hover:border-transparent dark:hover:shadow-black/40 dark:focus:border-transparent dark:focus:shadow-black/40">
             {image && (
-                <div className="aspect-w-16 aspect-h-9 md:aspect-h-11 overflow-hidden rounded-md">
+                <div className=" aspect-w-16 aspect-h-9 md:aspect-h-11 overflow-hidden rounded-md">
                     <img
                         className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         src={image}
@@ -40,7 +40,7 @@ const Blog = ({ blog }) => {
                         <span>{getMonthYear(date)}</span>
                     </div>
                 </div>
-                <h3 className="text-xl font-semibold  line-clamp-2">
+                <h3 className="text-xl font-semibold  line-clamp-2 relative inline-block before:absolute before:-bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-gray-200 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100">
                     {title}
                 </h3>
                 <p className="mt-2 line-clamp-4 flex-grow py-2">

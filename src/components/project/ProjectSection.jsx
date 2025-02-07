@@ -1,4 +1,4 @@
-import HomeSection from "@/components/HomeSection";
+import Section from "@/components/Section";
 import { HiOutlineStar } from "react-icons/hi2";
 import ProjectCard from "./ProjectCard";
 
@@ -33,8 +33,8 @@ const projects = [
 
 const ProjectSection = () => {
   return (
-    <HomeSection
-      icon={<HiOutlineStar />}
+    <Section
+      Icon={HiOutlineStar}
       title="Featured Projects"
       ctaText="See all projects"
       ctaLink="/projects"
@@ -47,7 +47,7 @@ const ProjectSection = () => {
           featured={project.featured}
         />
       ))}
-    </HomeSection>
+    </Section>
   );
 };
 

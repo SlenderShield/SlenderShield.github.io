@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
-import { ImBlog } from "react-icons/im";
+import { FaLightbulb } from "react-icons/fa";
 import Blog from "@/components/blog/Blog";
-import { sortByDate } from "@/lib/utils";
-import { HiOutlineArchiveBox, HiOutlineStar } from "react-icons/hi2";
-import HomeSection from "@/components/HomeSection";
-// import Pagination from "@/components/Pagination";
+import Section from "@/components/Section";
 
-const blogs = [
+const blogList = [
   {
     id: "portfolio-blog001",
     title: "Building My First Real Estate Application with the MERN Stack",
@@ -83,29 +80,18 @@ const blogs = [
   }
 ];
 
-// const featuredBlogs = sortByDate(blogs.filter(blog => blog.featured))
-// const nonFeatured = sortByDate(blogs.filter(blog => !blog.featured))
-
-const Blogs = () => {
+const Blogs = ({ len }) => {
+  const blogs = blogList.slice(0, len)
   return (
-    <>
-      <HomeSection
-        icon={<ImBlog />}
-        title="Recent Blogs"
-        sectionCTA="See All blogs"
-        linkCTA="/blogs"
-        subtitle="recent blogs from the normal swe"
-      >
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 auto-cols-auto">
-          {blogs.map((blog) => (
-            <Blog key={blog.id} blog={blog} featured={blog.featured} />
-          ))}
-        </div>
-
-      </HomeSection>
-      {/* <Pagination /> */}
-    </>
+    <Section
+      Icon={FaLightbulb}
+      title="Blogs"
+      subtitle="Fresh Perspectives from The Normal SWE"
+    >
+      {blogs.map((blog) => (
+        <Blog key={blog.id} blog={blog} featured={blog.featured} />
+      ))}
+    </Section >
   );
 };
 

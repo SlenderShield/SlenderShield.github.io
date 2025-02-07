@@ -6,15 +6,22 @@ import ProjectSection from "@/components/project/ProjectSection";
 import BlogSection from "@/components/blog/BlogSection";
 import { Button } from "@/components/ui/Button";
 import ExpericenceSection from "@/components/experience/ExpericenceSection";
+import BlurText from "@/components/ui/BlurText";
 
 const Home = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col animate-fade-in">
       <main className="flex-1 flex items-center">
         <div className="w-full max-w-6xl mx-auto px-4">
           <div className="flex flex-col items-center justify-center gap-8 py-16 md:py-24">
-            <h1 className="text-3xl md:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 animate-gradient">
-              Hey I&apos;m Muralidhara Bhat!
+            <h1 className="font-bold text-center text-3xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 animate-gradient">
+              <BlurText
+                text="Hey I&apos;m Muralidhara Bhat!"
+                delay={50}
+                animateBy="words"
+                direction="top"
+              />
+
             </h1>
             <h2 className="flex flex-col gap-2 text-xl md:text-4xl font-bold text-center">
               <span>Exploring Tech, One Project at a Time.</span><br />

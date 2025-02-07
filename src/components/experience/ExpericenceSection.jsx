@@ -1,5 +1,6 @@
 import { HiOutlineBriefcase } from "react-icons/hi2"
 import ExperienceCard from "./ExperienceCard"
+import Section from "../Section";
 
 const experience = [
     {
@@ -38,24 +39,18 @@ const experience = [
 
 const ExperienceSection = () => {
     return (
-        <section className="w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-            <div className="max-w-3xl mx-auto text-center mb-10 lg:mb-14">
-                <div className="flex items-center justify-center gap-4">
-                    <HiOutlineBriefcase className="text-3xl md:text-4xl text-primary dark:text-white" />
-                    <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
-                        Experience
-                    </h2>
-                </div>
-                <p className="mt-4 text-lg text-gray-600 dark:text-neutral-400 leading-relaxed">
-                    A showcase of my professional journey, highlighting key achievements and impactful contributions.
-                </p>
-            </div>
+        <Section
+            Icon={HiOutlineBriefcase}
+            title="Experience"
+            subtitle="A showcase of my professional journey, highlighting key achievements and impactful contributions."
+            columns={1}
+        >
             <div className="w-full gap-6">
                 {experience.map((exp) => (
                     <ExperienceCard key={exp.id} exp={exp} />
                 ))}
             </div>
-        </section>
+        </Section>
     );
 };
 
