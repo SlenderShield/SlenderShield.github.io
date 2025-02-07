@@ -64,7 +64,7 @@ export const TechRow = ({ tech }) => {
                 title={name}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl opacity-70 hover:opacity-100 hover:text-primary transition-all"
+                className="text-xl opacity-100 hover:opacity-80 hover:text-primary transition-all"
             >
                 {isImage ? (
                     <SvgTool name={name} className="w-5 h-5" fill="currentColor" />
@@ -84,9 +84,7 @@ const ExpericenceCard = ({ exp }) => {
         duration,
         location,
         responsibilities,
-        techStack,
-        status,
-        type
+        techStack
     } = exp;
     return (
         <div className="rounded-lg border p-5 mb-5">
@@ -102,14 +100,12 @@ const ExpericenceCard = ({ exp }) => {
                                     {company}
                                 </Link>}
                             </h3>
-                            <span className="opacity-70 flex items-center space-x-1 text-sm">
+                            <span className="opacity-100 flex items-center space-x-1 text-sm">
                                 <HiOutlineCalendarDays />
                                 <span>{duration}</span>
                             </span>
                         </div>
                         <div className="flex items-center flex-w space-x-4 text-sm px-1">
-                            {/* <StatusIcon status={status} /> */}
-
                             {companyURL && (
                                 <CardLink href={companyURL}>
                                     <HiLink />
@@ -117,26 +113,25 @@ const ExpericenceCard = ({ exp }) => {
                                 </CardLink>
                             )}
                             {location && (
-                                <CardLink >
+                                <div className="opacity-100 flex items-center space-x-1">
                                     <HiOutlineMapPin />
                                     <span>{location}</span>
-                                </CardLink>
+                                </div>
                             )}
                         </div>
                     </div>
                     <div className="mt-5 rounded-lg border p-5">
                         <div className="flex flex-col md:flex-row justify-between items-center ">
-                            <span className="uppercase font-semibold">{role}</span>
-                            <span className="hidden md:block bg-black p-2 rounded-lg text-white dark:bg-white dark:text-black">{type}</span>
+                            <span className="text-lg uppercase font-semibold">{role}</span>
                         </div>
                         <div className="grow my-2">
                             <ol>
                                 {responsibilities.map((res, idx) =>
-                                    <li className="text-left text-sm p-2 text-balance list-decimal ml-5" key={idx}>{res}</li>
+                                    <li className="text-left text-base p-2 text-balance list-decimal ml-5" key={idx}>{res}</li>
                                 )}
                             </ol>
                         </div>
-                        <div className="flex items-center gap-4 py-2 px-4 flex-wrap">
+                        <div className="flex items-center gap-4 py-2 px-4 flex-wrap border-y-2 ">
                             <TechRow tech={techStack} />
                         </div>
                     </div>

@@ -171,16 +171,14 @@ const Projects = () => {
     <HomeSection
       icon={<HiOutlineStar />}
       title="Featured Projects"
-      subtitle="A curated selection of standout projects, demonstrating innovative
-              solutions and creative excellence.">
-
-      {/* {projects.map((project) => (
+      subtitle="Experience the power of innovation through these carefully selected projects, showcasing the commitment to excellence.">
+      {projects.map((project) => (
         <ProjectCard
           project={project}
           key={project.index}
           featured={project.featured}
         />
-      ))} */}
+      ))}
       <Check />
     </HomeSection>
   );

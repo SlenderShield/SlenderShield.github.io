@@ -1,44 +1,47 @@
 /* eslint-disable react/prop-types */
 import SocialLinks from "@/components/SocialLinks";
+import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/Separator";
 import ProjectSection from "@/components/project/ProjectSection";
 import BlogSection from "@/components/blog/BlogSection";
 import { Button } from "@/components/ui/Button";
-
 import ExpericenceSection from "@/components/experience/ExpericenceSection";
 
 const Home = () => {
   return (
-    <div className="mt-24  sm:mt-32">
-      <div className="text-center text-lg p-4 animate-fade-in ">
-        <div className="flex flex-col items-center justify-center gap-8 mb-52">
-          <h1 className="text-2xl font-bold md:text-6xl">
-            Hey I&apos;m Muralidhara Bhat!
-          </h1>
-          <h2 className="text-1xl font-bold md:text-4xl">
-            Welcome to my slice of the web
-          </h2>
-
-          <p className="text-paragraph max-w-2xl leading-relaxed text-sm sm:text-base ">
-            I&apos;m a senior frontend developer and blogger based in Guatemala,
-            aiming to leave a lasting impression and drive innovation in the
-            ever-evolving world of software development.
-          </p>
-
-          <SocialLinks />
-          <div className="flex flex-col md:flex-row justify-center items-center gap-5">
-            <Button className="w-60" variant="default">Projects</Button>
-            <Button className="w-60" variant="outline">Get In Touch</Button>
+    <div className="min-h-screen flex flex-col">
+      <main className="flex-1 flex items-center">
+        <div className="w-full max-w-6xl mx-auto px-4">
+          <div className="flex flex-col items-center justify-center gap-8 py-16 md:py-24">
+            <h1 className="text-3xl md:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 animate-gradient">
+              Hey I&apos;m Muralidhara Bhat!
+            </h1>
+            <h2 className="flex flex-col gap-2 text-xl md:text-4xl font-bold text-center">
+              <span>Exploring Tech, One Project at a Time.</span><br />
+              <span>Code. Create. Innovate.</span>
+            </h2>
+            <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">
+              I&apos;m a Software Developer crafting innovative solutions in India&apos;s Silicon Valley.
+              Through code and innovation, I explore the ever-evolving tech landscape while building impactful digital experiences.
+            </p>
+            <SocialLinks />
+            <div className="flex flex-col md:flex-row gap-4">
+              <Button size="lg" className="min-w-48">
+                <Link to='/projects'>Projects</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="min-w-48">
+                <Link to="/contact">Get In Touch</Link>
+              </Button>
+            </div>
           </div>
         </div>
-
-        <Separator className="my-24" />
-        <ProjectSection />
-        <Separator className="my-10" />
-        <ExpericenceSection />
-        <Separator className="my-8" />
-        <BlogSection />
-      </div>
+      </main>
+      <Separator className="my-24" />
+      <ProjectSection />
+      <Separator className="my-10" />
+      <ExpericenceSection />
+      <Separator className="my-8" />
+      <BlogSection />
     </div>
   );
 };

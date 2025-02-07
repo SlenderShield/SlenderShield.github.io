@@ -33,24 +33,21 @@ const projects = [
 
 const ProjectSection = () => {
   return (
-    <>
-      <HomeSection
-        icon={<HiOutlineStar />}
-        title="Featured Projects"
-        ctaText="See all projects"
-        ctaLink="/projects"
-        subtitle="A curated selection of standout projects, demonstrating innovative
-          solutions and creative excellence."
-      >
-        {projects.map((project) => (
-          <ProjectCard
-            project={project}
-            key={project.index}
-            featured={project.featured}
-          />
-        ))}
-      </HomeSection>
-    </>
+    <HomeSection
+      icon={<HiOutlineStar />}
+      title="Featured Projects"
+      ctaText="See all projects"
+      ctaLink="/projects"
+      subtitle="Experience the power of innovation through these carefully selected projects, showcasing our commitment to excellence."
+    >
+      {projects.map((project) => (
+        <ProjectCard
+          project={project}
+          key={project.index}
+          featured={project.featured}
+        />
+      ))}
+    </HomeSection>
   );
 };
 

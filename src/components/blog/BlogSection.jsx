@@ -1,5 +1,5 @@
 import Blog from "./Blog";
-import { ImBlog } from "react-icons/im";
+import { FaLightbulb } from "react-icons/fa";
 import HomeSection from "../HomeSection";
 
 const blogs = [
@@ -43,11 +43,11 @@ const blogs = [
 const BlogSection = () => {
   return (
     <HomeSection
-      icon={<ImBlog />}
-      title="Recent Blogs"
+      icon={<FaLightbulb />}
+      title="Recent Blog Posts"  // Focuses on recency
       ctaText="Read More"
       ctaLink="/blogs"
-      subtitle="recent blogs from the normal swe"
+      subtitle="Fresh Perspectives from The Normal SWE" // Adds a bit of flavor
     >
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} featured={true} />

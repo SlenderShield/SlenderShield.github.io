@@ -4,8 +4,9 @@ import {
   Terminal, Database,
   Figma, PenTool, Users,
   Brush, Layout, Package, Cloud, Repeat,
-  BarChart, Network,Server,
+  BarChart, Network, Server, Layers
 } from 'lucide-react';
+
 const skills = [
   {
     category: "Languages",
@@ -168,7 +169,8 @@ const About = () => {
             {skills.map(skill => (
               <dl className="flex flex-col sm:flex-row gap-4" key={skill.category}>
                 <dt className="min-w-40">
-                  <span className="p-2 block text-base text-gray-600 dark:text-neutral-200 underline underline-offset-2">{skill.category}:</span>
+                  <span className="p-2 block text-base text-gray-600 dark:text-neutral-200 underline underline-offset-2">
+                    {skill.category}:</span>
                 </dt>
                 <dd>
                   <ul>
