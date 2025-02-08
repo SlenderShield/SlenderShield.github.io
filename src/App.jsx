@@ -14,7 +14,6 @@ import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
 import Footer from "@/components/Footer";
 import PageNotFound from "@/components/NotFound";
-
 function App() {
   const location = useLocation();
 
@@ -32,7 +31,9 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:id" element={<Blog />} />
         <Route path="/about" element={<About />} />
+
         <Route path="/contact" element={<Contact />} />
+
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
