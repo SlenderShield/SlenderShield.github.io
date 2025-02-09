@@ -7,6 +7,7 @@ import {
   BarChart, Network, Server, Layers, Lightbulb
 } from 'lucide-react';
 import Section from '@/components/Section';
+import { Link } from 'react-router-dom';
 
 const skills = [
   {
@@ -113,55 +114,64 @@ const About = () => {
     >
       <div className="p-8 mb-8">
         <div className="flex flex-col md:flex-row items-start gap-12">
-          <div className="md:w-1/3 shrink-0"> {/* Image container takes 1/3 width on medium screens and doesn't shrink */}
-            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105"> {/* Maintain aspect ratio and add hover effect */}
+          <div className="md:w-1/3 shrink-0">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-110">
               <img
-                src="https://github.com/slendershield.png" // Replace with actual image URL
+                src="https://github.com/slendershield.png"
                 alt="Profile"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div> {/* Dark overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
             </div>
           </div>
 
-          <div className="md:w-2/3 flex-1 space-y-6"> {/* Content takes 2/3 width */}
+          <div className="md:w-2/3 flex-1 space-y-6">
             <div>
-              <h1 className="text-4xl font-bold mb-2">John Doe</h1> {/* Replace with actual name */}
-              <h2 className="text-xl font-medium">Senior Software Engineer</h2> {/* Replace with actual title */}
+              <h1 className="text-4xl font-bold mb-2">Muralidhara Bhat KS</h1>
+              <h2 className="text-xl font-medium">Software Engineer</h2>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <MapPin size={18} className="w-8 h-8 rounded-lg p-1 bg-gray-100 dark:bg-gray-800" />
-                <span>San Francisco, CA</span> {/* Replace with actual location */}
+                <span>Bengaluru, In</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="w-8 h-8 rounded-lg p-1 bg-gray-100 dark:bg-gray-800" />
-                <span>john.doe@example.com</span> {/* Replace with actual email */}
+                <Link to="ksmuralidhara0@gmail.com">ksmuralidhara0@gmail.com</Link>
               </div>
             </div>
 
             <p className="text-lg leading-relaxed">
-              Passionate software engineer with 5+ years of experience in building scalable web applications.
+              Passionate software engineer with 2+ years of experience in building scalable web applications.
               Focused on creating efficient, maintainable, and user-friendly solutions that drive business growth
-              and enhance user experience. I have a strong background in full-stack development, with expertise in both front-end and back-end technologies.  I'm particularly interested in [mention specific areas like cloud computing, AI/ML, etc.].  In my free time, I enjoy [mention hobbies or interests].  I'm always eager to learn new technologies and contribute to challenging projects.  {/* Expanded description */}
+              and enhance user experience. I have a strong background in full-stack development, with expertise in both front-end and back-end technologies.  I&apos;m particularly interested in Spring Boot and area like innovative thinking.  In my free time, I enjoy playing video games, binge on movies and watch tech reviews on youtube.  I&apos;m always eager to learn new technologies and contribute to challenging projects.
             </p>
 
-            {/* Add more info sections as needed */}
+
             <div className="space-y-3">
               <h3 className="text-2xl font-semibold">My Expertise</h3>
               <ul className="list-disc pl-6 space-y-2">
+                <li>Software Development</li>
                 <li>Full-stack web development</li>
                 <li>Cloud computing (AWS, GCP)</li>
-                <li>Microservices architecture</li>
-                {/* Add more expertise points */}
               </ul>
             </div>
 
             <div className="space-y-3">
               <h3 className="text-2xl font-semibold">Open to</h3>
               <p>New opportunities, collaborations, and learning experiences.</p>
+            </div>
+
+            <div className="space-y-3">
+              <button
+                type="button"
+
+                className="w-1/3 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800"
+              >
+                My Resume
+              </button>
             </div>
 
           </div>

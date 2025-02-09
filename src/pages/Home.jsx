@@ -33,7 +33,7 @@ const Home = () => {
             </p>
             <SocialLinks />
             <div className="flex flex-col md:flex-row gap-4">
-              <Button size="lg" className="min-w-48">
+              <Button size="lg" className="min-w-48 bg-blue-600 hover:bg-blue-700 text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800 font-bold">
                 <Link to='/projects'>Projects</Link>
               </Button>
               <Button size="lg" variant="outline" className="min-w-48">

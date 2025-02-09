@@ -57,7 +57,7 @@ const Contact = () => {
       columns={1}
     >
       <div className="grid lg:grid-cols-2 gap-12 items-start">
-        {/* Contact Information */}
+
         <div className="space-y-8 p-8 bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
