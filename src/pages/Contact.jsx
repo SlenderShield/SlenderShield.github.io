@@ -1,10 +1,12 @@
-import { Mail, MapPin, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import Section from '@/components/Section';
-import { BookUser } from 'lucide-react';
-import { useState } from 'react';
+
+import { Mail, MapPin, ArrowRight, BookUser } from 'lucide-react';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
+
+import Section from '@/components/Section';
+
 const Contact = () => {
   const toastConfig = {
     position: "top-center",
@@ -52,12 +54,11 @@ const Contact = () => {
   return (
     <Section
       Icon={BookUser}
-      title="Get in touch with me."
-      subtitle=" Would love to talk about how i can help you."
+      title="Let's Connect"
+      subtitle="Please feel free to contact me to discuss potential collaborations."
       columns={1}
     >
       <div className="grid lg:grid-cols-2 gap-12 items-start">
-
         <div className="space-y-8 p-8 bg-neutral-50 dark:bg-neutral-800/50 rounded-2xl">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -85,13 +86,13 @@ const Contact = () => {
           </div>
 
           <div className="mt-8 p-6 bg-blue-600 dark:bg-blue-500 rounded-xl text-white">
-            <h4 className="font-semibold mb-2">View My Projects</h4>
-            <p className="mb-4 text-blue-100">Check out my portfolio of work and past projects</p>
+            <h4 className="font-semibold mb-2">Take a Look at My Projects</h4>
+            <p className="mb-4 text-blue-100">See a selection of projects I&apos;ve built.</p>
             <Link
               to="/projects"
               className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
             >
-              View Projects <ArrowRight className="h-4 w-4" />
+              See What I&apos;ve Built <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -152,7 +153,7 @@ const Contact = () => {
           </button>
 
           <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
-            I typically respond within 1-2 days
+            I typically respond within 2-3 days
           </p>
         </form>
       </div>

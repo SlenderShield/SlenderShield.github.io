@@ -12,6 +12,7 @@ const ProjectSection = () => {
       ctaText="View Full Portfolio"
       ctaLink="/projects"
       subtitle="A curated selection showcasing my expertise and dedication to crafting high-quality projects."
+      columns={2}
     >
       {PROJECTS.map((project) => (
         <ProjectCard

@@ -91,7 +91,7 @@ const ExpericenceCard = ({ exp }) => {
             <div className=" flex flex-col gap-5">
                 <div className="min-h-52 grow flex flex-col justify-around gap-2">
                     <div className="flex flex-col space-y-2">
-                        <div className="flex flex-col md:flex-row justify-between items-center">
+                        <div className="flex flex-col md:flex-row justify-start items-start md:justify-between md:items-center">
                             <h3 className="text-2xl font-bold w-fit flex items-center">
                                 {<Link
                                     href={companyURL}

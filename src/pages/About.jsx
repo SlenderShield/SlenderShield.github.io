@@ -1,197 +1,219 @@
-import {
-  Mail, MapPin, Book, Code,
-  Globe, Palette, Brain,
-  Terminal, Database,
-  Figma, PenTool, Users,
-  Brush, Layout, Package, Cloud, Repeat,
-  BarChart, Network, Server, Layers, Lightbulb
-} from 'lucide-react';
-import Section from '@/components/Section';
 import { Link } from 'react-router-dom';
+import { MapPin, Mail, Code, Book, Briefcase, Download, ExternalLink, MessageSquareCode } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+import SocialLinks from '@/components/SocialLinks';
 
-const skills = [
-  {
-    category: "Languages",
-    icon: <Terminal size={24} />,
-    items: [
-      { name: "C++", icon: <Code size={16} /> },
-      { name: "Java", icon: <Code size={16} /> },
-      { name: "JavaScript", icon: <Code size={16} /> },
-      { name: "TypeScript", icon: <Code size={16} /> },
-      { name: "Python", icon: <Terminal size={16} /> }
-    ]
-  },
-  {
-    category: "Frameworks & Libraries",
-    icon: <Layers size={24} />,
-    items: [
-      { name: "Spring Boot", icon: <Server size={16} /> },
-      { name: "React.js", icon: <Code size={16} /> },
-      { name: "Next.js", icon: <Code size={16} /> },
-      { name: "Node.js", icon: <Database size={16} /> },
-      { name: "Express.js", icon: <Code size={16} /> },
-      { name: "GraphQL", icon: <Globe size={16} /> }
-    ]
-  },
-  {
-    category: "Databases",
-    icon: <Database size={24} />,
-    items: [
-      { name: "MongoDB", icon: <Database size={16} /> },
-      { name: "PostgreSQL", icon: <Database size={16} /> },
-      { name: "MySQL", icon: <Database size={16} /> },
-      { name: "Redis", icon: <Database size={16} /> }
-    ]
-  },
-  {
-    category: "Cloud & DevOps",
-    icon: <Cloud size={24} />,
-    items: [
-      { name: "Docker", icon: <Package size={16} /> },
-      { name: "Kubernetes", icon: <Package size={16} /> },
-      { name: "AWS", icon: <Cloud size={16} /> },
-      { name: "Google Cloud", icon: <Cloud size={16} /> },
-      { name: "CI/CD", icon: <Repeat size={16} /> }
-    ]
-  },
-  {
-    category: "Frontend & UI/UX",
-    icon: <Palette size={24} />,
-    items: [
-      { name: "Tailwind CSS", icon: <Brush size={16} /> },
-      { name: "Material UI", icon: <Layout size={16} /> },
-      { name: "Figma", icon: <Figma size={16} /> },
-      { name: "Adobe XD", icon: <PenTool size={16} /> }
-    ]
-  },
-  {
-    category: "Other Skills",
-    icon: <Brain size={24} />,
-    items: [
-      { name: "System Design", icon: <Globe size={16} /> },
-      { name: "Data Structures & Algorithms", icon: <BarChart size={16} /> },
-      { name: "Microservices Architecture", icon: <Network size={16} /> },
-      { name: "Project Management", icon: <Users size={16} /> },
-      { name: "Team Leadership", icon: <Users size={16} /> },
-      { name: "Agile Methodologies", icon: <Globe size={16} /> }
-    ]
-  }
-];
+const AboutMe = () => {
+  // Skills data with improved categorization and more detailed items
+  const skills = [
+    {
+      category: "Languages",
+      icon: <Code size={20} className="text-blue-500" />,
+      items: [
+        { name: "JavaScript", icon: <div className="w-3 h-3 rounded-full bg-yellow-500" /> },
+        { name: "TypeScript", icon: <div className="w-3 h-3 rounded-full bg-blue-700" /> },
+        { name: "Java", icon: <div className="w-3 h-3 rounded-full bg-red-500" /> },
+        { name: "C++", icon: <div className="w-3 h-3 rounded-full bg-blue-900" /> },
+        { name: "SQL", icon: <div className="w-3 h-3 rounded-full bg-blue-800" /> },
+      ],
+    },
+    {
+      category: "Frontend",
+      icon: <Code size={20} className="text-green-500" />,
+      items: [
+        { name: "React", icon: <div className="w-3 h-3 rounded-full bg-blue-500" /> },
+        { name: "HTML/CSS", icon: <div className="w-3 h-3 rounded-full bg-orange-500" /> },
+        { name: "Tailwind", icon: <div className="w-3 h-3 rounded-full bg-teal-500" /> },
+        { name: "Redux", icon: <div className="w-3 h-3 rounded-full bg-purple-500" /> },
+      ],
+    },
+    {
+      category: "Backend",
+      icon: <Code size={20} className="text-purple-500" />,
+      items: [
+        { name: "Spring", icon: <div className="w-3 h-3 rounded-full bg-green-600" /> },
+        { name: "Spring Boot", icon: <div className="w-3 h-3 rounded-full bg-green-600" /> },
+        { name: "Node.js", icon: <div className="w-3 h-3 rounded-full bg-green-500" /> },
+        { name: "Express.js", icon: <div className="w-3 h-3 rounded-full bg-gray-800" /> },
+        { name: "REST APIs", icon: <div className="w-3 h-3 rounded-full bg-blue-400" /> },
+      ],
+    },
+    {
+      category: "Databases",
+      icon: <Code size={20} className="text-yellow-500" />,
+      items: [
+        { name: "PostgreSQL", icon: <div className="w-3 h-3 rounded-full bg-blue-900" /> },
+        { name: "MySQL", icon: <div className="w-3 h-3 rounded-full bg-orange-700" /> },
+        { name: "MongoDB", icon: <div className="w-3 h-3 rounded-full bg-green-700" /> },
+        { name: "Redis", icon: <div className="w-3 h-3 rounded-full bg-red-700" /> },
+        { name: "NoSQL", icon: <div className="w-3 h-3 rounded-full bg-purple-700" /> },
+      ],
+    },
+    {
+      category: "DevOps & Cloud",
+      icon: <Code size={20} className="text-orange-500" />,
+      items: [
+        { name: "AWS", icon: <div className="w-3 h-3 rounded-full bg-orange-400" /> },
+        { name: "GCP", icon: <div className="w-3 h-3 rounded-full bg-blue-500" /> },
+        { name: "Docker", icon: <div className="w-3 h-3 rounded-full bg-blue-600" /> },
+        { name: "CI/CD", icon: <div className="w-3 h-3 rounded-full bg-gray-600" /> },
+        { name: "Git", icon: <div className="w-3 h-3 rounded-full bg-orange-600" /> },
+        { name: "Kubernetes", icon: <div className="w-3 h-3 rounded-full bg-blue-500" /> },
+      ],
+    },
+    {
+      category: "PlusOne",
+      icon: <Code size={20} className="text-gray-500" />,
+      items: [
+        { name: "Agile Methodologies", icon: <div className="w-3 h-3 rounded-full bg-purple-400" /> },
+        { name: "Problem Solving", icon: <div className="w-3 h-3 rounded-full bg-indigo-400" /> },
+        { name: "Software Architecture", icon: <div className="w-3 h-3 rounded-full bg-lime-600" /> },
+        { name: "Testing (Unit, Integration)", icon: <div className="w-3 h-3 rounded-full bg-teal-700" /> },
+        { name: "Data Structures & Algorithms", icon: <div className="w-3 h-3 rounded-full bg-rose-600" /> },
+        { name: "Version Control (Git)", icon: <div className="w-3 h-3 rounded-full bg-orange-600" /> },
+      ]
+    }
+  ];
 
-const education = [
-  {
-    degree: "Master of Science in Computer Science",
-    school: "Stanford University",
-    year: "2020-2022",
-    description: "Specialized in Artificial Intelligence and Machine Learning. Thesis on Neural Networks.",
-    points: [
-      "Specialized in Artificial Intelligence and Machine Learning.",
-      "Completed a thesis on Neural Networks.",
-      "Studied at Stanford University, a top-tier institution.",
-      "Gained expertise in cutting-edge AI technologies."
-    ]
-  },
-  {
-    degree: "Bachelor of Engineering",
-    school: "MIT",
-    year: "2016-2020",
-    description: "Major in Computer Science with minor in Mathematics. Dean's List all semesters.",
-    points: [
-      "Major in Computer Science with a minor in Mathematics.",
-      "Achieved Dean’s List every semester, demonstrating academic excellence.",
-      "Studied at MIT, one of the world's leading tech institutions.",
-      "Built a strong foundation in algorithms, data structures, and mathematics."
-    ]
-  }
-];
-const About = () => {
+  // Education data
+  const education = [
+    {
+      degree: "Bachelor of Engineering in Computer Science",
+      school: "VTU University",
+      year: "2018 - 2022",
+      description: "Graduated while focusing on software engineering and cloud computing.",
+      points: [
+        "Lead a team of 4 in a hackathon.",
+        "Led the college's developer club organizing various tech events",
+        "Completed capstone project on scalable microservices architecture"
+      ]
+    }
+  ];
+
+  // Testimonials
+  const testimonials = [
+    {
+      text: "Muralidhara is an exceptional problem solver with remarkable technical skills. His ability to tackle complex challenges with innovative solutions makes him a valuable asset to any team.",
+      author: "Mantri Vineet",
+      position: "Project Manager at BGSW"
+    },
+    {
+      text: "Working with Muralidhara was a great experience. His attention to detail and commitment to quality code are impressive. He consistently delivers beyond expectations.",
+      author: "Nethaji Sathyanandha",
+      position: "System Archietect at BGSW"
+    }
+  ];
+
   return (
-    <Section
-      Icon={Lightbulb}
-      title="A bit about myself"
-      subtitle="Not a person who lost himself but hey, need to showcase for better opportunities."
-      columns={1}
-    >
-      <div className="p-8 mb-8">
+    <div className="max-w-5xl mx-auto">
+      {/* Hero Section */}
+      <div className="p-8 mb-8  rounded-3xl">
         <div className="flex flex-col md:flex-row items-start gap-12">
           <div className="md:w-1/3 shrink-0">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-110">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105 group">
               <img
                 src="https://github.com/slendershield.png"
                 alt="Profile"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
+            </div>
+            <div className="flex justify-center mt-4 space-x-4">
+              <SocialLinks />
             </div>
           </div>
 
           <div className="md:w-2/3 flex-1 space-y-6">
             <div>
               <h1 className="text-4xl font-bold mb-2">Muralidhara Bhat KS</h1>
-              <h2 className="text-xl font-medium">Software Engineer</h2>
+              <h2 className="text-xl font-medium text-blue-600 dark:text-blue-400">Software Engineer</h2>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <MapPin size={18} className="w-8 h-8 rounded-lg p-1 bg-gray-100 dark:bg-gray-800" />
-                <span>Bengaluru, In</span>
+                <MapPin size={18} className="w-8 h-8 rounded-lg p-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400" />
+                <span>Bengaluru, India</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail size={18} className="w-8 h-8 rounded-lg p-1 bg-gray-100 dark:bg-gray-800" />
-                <Link to="ksmuralidhara0@gmail.com">ksmuralidhara0@gmail.com</Link>
+                <Mail size={18} className="w-8 h-8 rounded-lg p-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400" />
+                <a href="mailto:ksmuralidhara0@gmail.com" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ksmuralidhara0@gmail.com</a>
               </div>
             </div>
 
-            <p className="text-lg leading-relaxed">
-              Passionate software engineer with 2+ years of experience in building scalable web applications.
-              Focused on creating efficient, maintainable, and user-friendly solutions that drive business growth
-              and enhance user experience. I have a strong background in full-stack development, with expertise in both front-end and back-end technologies.  I&apos;m particularly interested in Spring Boot and area like innovative thinking.  In my free time, I enjoy playing video games, binge on movies and watch tech reviews on youtube.  I&apos;m always eager to learn new technologies and contribute to challenging projects.
-            </p>
+            <div className="space-y-4">
+              <p className="text-lg leading-relaxed">
+                Passionate software engineer with 2+ years of experience in building scalable web applications.
+                Focused on creating efficient, maintainable, and user-friendly solutions that drive business growth
+                and enhance user experience.
+              </p>
 
+              <p className="text-lg leading-relaxed">
+                I have a strong background in full-stack development, with expertise in both front-end and back-end technologies.
+                I&apos;m particularly interested in Spring Boot and innovative thinking in software architecture.
+              </p>
+
+              <p className="text-lg leading-relaxed">
+                In my free time, I enjoy playing video games, binge on movies and watch tech reviews on YouTube.
+                I&apos;m always eager to learn new technologies and contribute to challenging projects.
+              </p>
+            </div>
 
             <div className="space-y-3">
-              <h3 className="text-2xl font-semibold">My Expertise</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Software Development</li>
-                <li>Full-stack web development</li>
-                <li>Cloud computing (AWS, GCP)</li>
+              <h3 className="text-2xl font-semibold text-blue-600 dark:text-blue-400">My Expertise</h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                  Software Development
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                  Full-stack Web Development
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                  Cloud Computing (AWS, GCP)
+                </li>
               </ul>
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-2xl font-semibold">Open to</h3>
-              <p>New opportunities, collaborations, and learning experiences.</p>
+              <h3 className="text-2xl font-semibold text-blue-600 dark:text-blue-400">Open to</h3>
+              <p>New opportunities, collaborations, mentorship, and continuous learning experiences.</p>
             </div>
 
-            <div className="space-y-3">
-              <button
-                type="button"
-
-                className="w-1/3 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800"
-              >
-                My Resume
-              </button>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Link>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800">
+                  <Download size={18} />
+                  Download Resume
+                </Button>
+              </Link>
+              <Link>
+                <Button className="border-blue-600 text-blue-600 bg-transparent border hover:bg-blue-50 dark:hover:bg-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800">
+                  <ExternalLink size={18} />
+                  View Projects
+                </Button>
+              </Link>
             </div>
-
           </div>
         </div>
       </div>
 
-
+      {/* Skills Section */}
       <div className="p-8 mb-8">
-        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-blue-600 dark:text-blue-400">
           <Code size={32} />
-          Skills
+          Technical Skills
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skills.map(skill => (
-            <div key={skill.category} className="border rounded-lg p-4">
-              <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+            <div key={skill.category} className="border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-md dark:hover:bg-gray-700/50 transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 {skill.icon}
                 {skill.category}
               </h3>
-              <ul className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+              <ul className="grid grid-cols-2 gap-3">
                 {skill.items.map(item => (
                   <li key={item.name} className="flex items-center gap-2 text-sm">
                     {item.icon}
@@ -204,24 +226,28 @@ const About = () => {
         </div>
       </div>
 
-      <div className="p-8">
-        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+      {/* Education Section */}
+      <div className="p-8 mb-8">
+        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-blue-600 dark:text-blue-400">
           <Book size={32} />
           Education
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-8">
           {education.map((edu, index) => (
-            <div key={index} className="relative pl-8 pb-8 rounded-xl bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-              <div className="absolute left-0 top-0 h-full w-px bg-gray-200 dark:bg-gray-700">
+            <div key={index} className="relative pl-8 pb-8">
+              <div className="absolute left-0 top-0 h-full w-px bg-blue-200 dark:bg-blue-700">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-2 border-white dark:border-gray-800"></div>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{edu.degree}</h3>
-                <div className="font-medium mb-2">{edu.school}</div>
-                <div className="mb-3">{edu.year}</div>
-                <p>{edu.description}</p>
-                <ul className="list-disc pl-6 space-y-2 mt-2">
+              <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl hover:shadow-md transition-all duration-300">
+                <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">{edu.degree}</h3>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3">
+                  <div className="font-medium">{edu.school}</div>
+                  <div className="text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full mt-1 sm:mt-0">{edu.year}</div>
+                </div>
+                <p className="mb-3">{edu.description}</p>
+                <h4 className="font-medium mb-2">Highlights:</h4>
+                <ul className="list-disc pl-6 space-y-2">
                   {edu.points.map(point => (
                     <li key={point}>{point}</li>
                   ))}
@@ -231,8 +257,51 @@ const About = () => {
           ))}
         </div>
       </div>
-    </Section>
+
+      {/* Testimonials Section */}
+      <div className="p-8 mb-8">
+        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-blue-600 dark:text-blue-400">
+          <MessageSquareCode size={32} />
+          Testimonials
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="bg-gray-50 dark:bg-gray-900 p-6 rounded-xl border-l-4 border-blue-500 hover:shadow-md transition-all duration-300">
+              <p className="text-lg italic mb-4">{testimonial.text}</p>
+              <div>
+                <div className="font-semibold">{testimonial.author}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{testimonial.position}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Contact CTA Section */}
+      <div className="p-8 mb-8 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-3xl shadow-lg">
+        <div className="text-center space-y-6 py-6">
+          <h2 className="text-3xl font-bold">Let&apos;s Work Together</h2>
+          <p className="text-lg max-w-2xl mx-auto">
+            I&apos;m always interested in hearing about new projects and opportunities.
+            Whether you have a question or just want to say hi, feel free to reach out!
+          </p>
+          <div className="flex justify-center space-x-4 pt-4">
+            <Link to="mailto:ksmuralidhara0@gmail.com">
+              <Button className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-colors">
+                Send Email
+              </Button>
+            </Link>
+            <Link to="https://linkedin.com/in/muralidhara-bhat-ks" target='_blank' rel='noopener noreferrer'>
+              <Button className="text-white bg-transparent border border-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-colors">
+                <ExternalLink size={18} />
+                Connect on LinkedIn
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div >
   );
 };
 
-export default About;
+export default AboutMe;

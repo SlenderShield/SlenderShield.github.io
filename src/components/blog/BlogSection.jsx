@@ -12,6 +12,7 @@ const BlogSection = () => {
       ctaText="Explore the Blogs"
       ctaLink="/blogs"
       subtitle="Perspectives and fresh ideas from The Normal SWE." // Adds a bit of flavor
+      columns={2}
     >
       {BLOGS.map((blog) => (
         <Blog key={blog.id} blog={blog} featured={true} />

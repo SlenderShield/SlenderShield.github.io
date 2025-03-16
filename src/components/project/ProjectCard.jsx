@@ -133,7 +133,7 @@ const ProjectCard = ({ project, featured = false }) => {
             </div>
           </div>
 
-          <div className="grow my-2 text-wrap">
+          <div className="grow my-2 text-balance">
             <p className="text-left text-sm p-2">{description}</p>
           </div>
 

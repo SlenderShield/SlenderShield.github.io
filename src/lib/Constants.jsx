@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   HiOutlineGlobeAlt,
   HiOutlineDevicePhoneMobile,
@@ -439,9 +440,10 @@ export const BLOGS = [
     title: "Building My First Real Estate Application with the MERN Stack",
     author: "Muralidhara Bhat KS",
     date: "2025-01-01",
-    content: `
-      <p>Creating a real estate application using the MERN stack has been one of the most fulfilling projects in my journey as a software engineer. Here's a behind-the-scenes look at how it all came together.</p>
-    `,
+    content: [
+      "Creating a real estate application using the MERN stack has been one of the most fulfilling projects in my journey as a software engineer.",
+      "Here's a behind-the-scenes look at how it all came together."
+    ],
     tags: ["Portfolio", "MERN Stack", "Real Estate App", "Full-Stack Development"],
     slug: "real-estate-app-mern",
     image: "https://github.com/slenderShield.png",
@@ -453,9 +455,10 @@ export const BLOGS = [
     title: "Mastering Spring Boot for Scalable Backends",
     author: "Muralidhara Bhat KS",
     date: "2024-12-15",
-    content: `
-      <p>Learning Spring Boot opened new doors for me in backend development. Here's my experience creating scalable APIs and integrating them with microservices.</p>
-    `,
+    content: [
+      "Learning Spring Boot opened new doors for me in backend development.",
+      "Here's my experience creating scalable APIs and integrating them with microservices."
+    ],
     tags: ["Portfolio", "Spring Boot", "Backend Development"],
     slug: "mastering-spring-boot",
     image: "https://github.com/slenderShield.png",
@@ -468,9 +471,10 @@ export const BLOGS = [
     title: "Exploring Kafka: Building a Messaging System",
     author: "Muralidhara Bhat KS",
     date: "2024-11-30",
-    content: `
-      <p>Building a messaging system with Kafka was both challenging and rewarding. Here's a summary of what I learned about distributed systems and stream processing.</p>
-    `,
+    content: [
+      "Building a messaging system with Kafka was both challenging and rewarding.",
+      "Here's a summary of what I learned about distributed systems and stream processing."
+    ],
     tags: ["Portfolio", "Kafka", "Distributed Systems", "Messaging"],
     slug: "exploring-kafka",
     image: "https://github.com/slenderShield.png",
