@@ -384,3 +384,98 @@ export const FORMS = {
     },
   },
 };
+
+export const PROJECTS = [
+  {
+    index: 1,
+    mainImage: "https://github.com/slendershield.png",
+    title: "MediConnect",
+    status: "completed",
+    href: null,
+    source: "GitHub_link",
+    description: "A microservices-based healthcare system enabling patients to manage appointments and medical records.",
+    tech: ["React.js", "Java", "Spring Boot", "Kafka", "Docker", "Kubernetes"],
+    slug: "mediconnect",
+    date: "2024-01-17",
+    featured: true,
+  },
+  {
+    index: 2,
+    mainImage: "https://github.com/slendershield.png",
+    title: "Akre Real Estate",
+    status: "ongoing",
+    href: null,
+    source: "GitHub_link",
+    description: "A responsive real estate web application with interactive map functionalities and property search.",
+    tech: ["React.js", "Redux", "Tailwind CSS"],
+    slug: "akre-real-estate",
+    date: "2024-08-20",
+    featured: true,
+  },
+];
+
+export const EXPERIENCE = [
+  {
+    id: 1,
+    "role": "Software Engineer",
+    "company": "Bosch Global Software Technologies",
+    "duration": "Jan 2023 - Present",
+    "location": "Bangalore, India",
+    status: "ongoing",
+    type: "MNC14",
+    "responsibilities": [
+      "Designed and developed scalable web applications.",
+      "Implemented microservices architecture to optimize backend performance.",
+      "Collaborated with cross-functional teams to define, design, and ship new features.",
+      "Conducted code reviews and implemented best coding practices."
+    ],
+    "techStack": ["JavaScript", "React", "Node.js", "MongoDB", "cpp", "Java", "Spring Boot", "Docker", "Kubernetes"]
+  },
+]
+
+export const BLOGS = [
+  {
+    id: "portfolio-blog001",
+    title: "Building My First Real Estate Application with the MERN Stack",
+    author: "Muralidhara Bhat KS",
+    date: "2025-01-01",
+    content: `
+      <p>Creating a real estate application using the MERN stack has been one of the most fulfilling projects in my journey as a software engineer. Here's a behind-the-scenes look at how it all came together.</p>
+    `,
+    tags: ["Portfolio", "MERN Stack", "Real Estate App", "Full-Stack Development"],
+    slug: "real-estate-app-mern",
+    image: "https://github.com/slenderShield.png",
+    excerpt: "A deep dive into how I built a real estate application using the MERN stack—challenges, solutions, and key takeaways.",
+    readTime: "6 min read"
+  },
+  {
+    id: "portfolio-blog002",
+    title: "Mastering Spring Boot for Scalable Backends",
+    author: "Muralidhara Bhat KS",
+    date: "2024-12-15",
+    content: `
+      <p>Learning Spring Boot opened new doors for me in backend development. Here's my experience creating scalable APIs and integrating them with microservices.</p>
+    `,
+    tags: ["Portfolio", "Spring Boot", "Backend Development"],
+    slug: "mastering-spring-boot",
+    image: "https://github.com/slenderShield.png",
+    excerpt: "My journey of mastering Spring Boot to build scalable backends with microservices architecture.",
+    readTime: "5 min read",
+    featured: true
+  },
+  {
+    id: "portfolio-blog003",
+    title: "Exploring Kafka: Building a Messaging System",
+    author: "Muralidhara Bhat KS",
+    date: "2024-11-30",
+    content: `
+      <p>Building a messaging system with Kafka was both challenging and rewarding. Here's a summary of what I learned about distributed systems and stream processing.</p>
+    `,
+    tags: ["Portfolio", "Kafka", "Distributed Systems", "Messaging"],
+    slug: "exploring-kafka",
+    image: "https://github.com/slenderShield.png",
+    excerpt: "An exploration of building a messaging system using Kafka, focusing on distributed systems and stream processing.",
+    readTime: "7 min read",
+    featured: true
+  },
+];

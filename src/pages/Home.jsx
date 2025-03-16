@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
-import SocialLinks from "@/components/SocialLinks";
 import { Link } from "react-router-dom";
-import { Separator } from "@/components/ui/Separator";
+
 import ProjectSection from "@/components/project/ProjectSection";
 import BlogSection from "@/components/blog/BlogSection";
-import { Button } from "@/components/ui/Button";
 import ExpericenceSection from "@/components/experience/ExpericenceSection";
+import SocialLinks from "@/components/SocialLinks";
+
 import BlurText from "@/components/ui/BlurText";
+import { Button } from "@/components/ui/Button";
+import { Separator } from "@/components/ui/Separator";
+
 
 const Home = () => {
   return (
@@ -23,21 +26,36 @@ const Home = () => {
               />
             </h1>
             <h2 className="flex flex-col gap-2 text-xl md:text-4xl font-bold text-center">
-              <span>Exploring Tech, One Project at a Time.</span><br />
-              <span>Code. Create. Innovate.</span>
+              <span className="text-base">Exploring Tech, One Project at a Time.</span>
+              <div className="flex justify-center items-center gap-3">
+                <span className="text-blue-400">Code.</span>
+                <span className="text-purple-400">Create.</span>
+                <span className="text-pink-400">Innovate.</span>
+              </div>
             </h2>
-            <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">
-              I&apos;m a Software Developer crafting innovative solutions in India&apos;s Silicon Valley.
-              Through code and innovation, I explore the ever-evolving tech landscape while building impactful digital experiences.
-            </p>
-            <SocialLinks />
+            <div className="text-left">
+              <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">
+                I&apos;m a skilled Software Engineer from India with over two years of experience in software and web development.
+                Proficient in Java and C++, I have a strong interest in system design and building scalable applications.</p>
+              <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">Passionate about innovation and problem-solving, I continuously explore new technologies to enhance my expertise in the field.
+              </p>
+            </div>
+            <div className="p-3 px-6 rounded-full  dark:bg-gray-800/40 backdrop-blur-sm border dark:border-gray-700">
+              <SocialLinks />
+            </div>
+
+            {/* <SocialLinks /> */}
             <div className="flex flex-col md:flex-row gap-4">
-              <Button size="lg" className="min-w-48 bg-blue-600 hover:bg-blue-700 text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800 font-bold">
-                <Link to='/projects'>Projects</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="min-w-48">
-                <Link to="/contact">Get In Touch</Link>
-              </Button>
+              <Link to='/projects'>
+                <Button size="lg" className="min-w-48 bg-blue-600 hover:bg-blue-700 text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800 font-bold">
+                  Projects
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="min-w-48">
+                  Get In Touch
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

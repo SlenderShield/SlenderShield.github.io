@@ -108,7 +108,7 @@ const ExpericenceCard = ({ exp }) => {
                         <div className="flex items-center flex-w space-x-4 text-sm px-1">
                             {companyURL && (
                                 <CardLink href={companyURL}>
-                                    <HiLink />
+                                    <HiLink size={16} />
                                     <span>{getDomain(companyURL)}</span>
                                 </CardLink>
                             )}

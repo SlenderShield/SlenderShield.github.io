@@ -1,46 +1,19 @@
-import Section from "@/components/Section";
-import { HiOutlineStar } from "react-icons/hi2";
-import ProjectCard from "./ProjectCard";
+import { Presentation } from "lucide-react";
 
-const projects = [
-  {
-    index: 1,
-    mainImage: "https://github.com/slendershield.png",
-    title: "Project Alpha",
-    status: "completed",
-    href: "https://example.com/project-alpha",
-    source: "GitHub",
-    description: "A web application for managing tasks effectively.",
-    tech: ["React", "Node.js", "MongoDB"],
-    slug: "project-alpha",
-    date: "2025-01-01",
-    featured: true,
-  },
-  {
-    index: 2,
-    mainImage: "https://github.com/slendershield.png",
-    title: "Project Beta",
-    status: "completed",
-    href: "https://example.com/project-beta",
-    source: "GitHub",
-    description: "A real-time chat application with end-to-end encryption.",
-    tech: ["Next.js", "Socket.io", "PostgreSQL"],
-    slug: "project-beta",
-    date: "2024-12-20",
-    featured: true,
-  },
-];
+import ProjectCard from "@/components/project/ProjectCard";
+import Section from "@/components/Section";
+import { PROJECTS } from "@/lib/Constants"
 
 const ProjectSection = () => {
   return (
     <Section
-      Icon={HiOutlineStar}
+      Icon={Presentation}
       title="Featured Projects"
-      ctaText="See all projects"
+      ctaText="View Full Portfolio"
       ctaLink="/projects"
-      subtitle="Experience the power of innovation through these carefully selected projects, showcasing our commitment to excellence."
+      subtitle="A curated selection showcasing my expertise and dedication to crafting high-quality projects."
     >
-      {projects.map((project) => (
+      {PROJECTS.map((project) => (
         <ProjectCard
           project={project}
           key={project.index}
