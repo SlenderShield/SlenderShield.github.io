@@ -14,14 +14,13 @@ const Home = () => {
       <main className="flex-1 flex items-center">
         <div className="w-full max-w-6xl mx-auto px-4">
           <div className="flex flex-col items-center justify-center gap-8 py-16 md:py-24">
-            <h1 className="font-bold text-center text-3xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 animate-gradient">
+            <h1 className="font-bold text-center text-3xl md:text-6xl animate-gradient">
               <BlurText
                 text="Hey I&apos;m Muralidhara Bhat!"
                 delay={50}
                 animateBy="words"
                 direction="top"
               />
-
             </h1>
             <h2 className="flex flex-col gap-2 text-xl md:text-4xl font-bold text-center">
               <span>Exploring Tech, One Project at a Time.</span><br />

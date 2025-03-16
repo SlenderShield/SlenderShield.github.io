@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { FaLightbulb } from "react-icons/fa";
+import { Rss } from "lucide-react";
 import Blog from "@/components/blog/Blog";
 import Section from "@/components/Section";
 
@@ -84,7 +84,7 @@ const Blogs = ({ len }) => {
   const blogs = blogList.slice(0, len)
   return (
     <Section
-      Icon={FaLightbulb}
+      Icon={Rss}
       title="Blogs"
       subtitle="Fresh Perspectives from The Normal SWE"
     >

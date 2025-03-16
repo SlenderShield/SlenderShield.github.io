@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { HiOutlineStar } from "react-icons/hi2";
+import { Presentation } from "lucide-react";
 import Section from "@/components/Section";
 import ProjectCard from "@/components/project/ProjectCard";
 import Check from "@/components/Check";
@@ -169,7 +169,7 @@ let projects = [
 const Projects = () => {
   return (
     <Section
-      Icon={HiOutlineStar}
+      Icon={Presentation}
       title="Featured Projects"
       subtitle="Experience the power of innovation through these carefully selected projects, showcasing the commitment to excellence.">
       {projects.map((project) => (

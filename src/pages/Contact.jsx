@@ -2,7 +2,7 @@ import { Mail, MapPin, ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Section from '@/components/Section';
-import { FaAddressBook } from 'react-icons/fa';
+import { BookUser } from 'lucide-react';
 import { useState } from 'react';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 const Contact = () => {
@@ -51,7 +51,7 @@ const Contact = () => {
 
   return (
     <Section
-      Icon={FaAddressBook}
+      Icon={BookUser}
       title="Get in touch with me."
       subtitle=" Would love to talk about how i can help you."
       columns={1}

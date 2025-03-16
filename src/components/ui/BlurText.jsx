@@ -72,12 +72,12 @@ const BlurText = ({
     );
 
     return (
-        <p ref={ref} className={`blur-text ${className} flex flex-wrap`}>
+        <p ref={ref} className={`blur-text ${className} flex flex-wrap `}>
             {springs.map((props, index) => (
                 <animated.span
                     key={index}
                     style={props}
-                    className="inline-block transition-transform will-change-[transform,filter,opacity]"
+                    className="inline-block transition-transform will-change-[transform,filter,opacity] bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 "
                 >
                     {elements[index] === ' ' ? '\u00A0' : elements[index]}
                     {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
