@@ -183,15 +183,14 @@ const AboutMe = () => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-2">
-              <Link>
+              <Link to="https://raw.githubusercontent.com/SlenderShield/SlenderShield/912d62f010958c3219111b4e3989ddd88d3fbfa6/Muralidhara_Java.pdf" target='_blank'>
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800">
                   <Download size={18} />
                   Download Resume
                 </Button>
               </Link>
-              <Link>
+              <Link to="/projects">
                 <Button className="border-blue-600 text-blue-600 bg-transparent border hover:bg-blue-50 dark:hover:bg-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800">
-                  <ExternalLink size={18} />
                   View Projects
                 </Button>
               </Link>
@@ -291,7 +290,7 @@ const AboutMe = () => {
                 Send Email
               </Button>
             </Link>
-            <Link to="https://linkedin.com/in/muralidhara-bhat-ks" target='_blank' rel='noopener noreferrer'>
+            <Link to="https://linkedin.com/in/ksmuralidhara0" target='_blank' rel='noopener noreferrer'>
               <Button className="text-white bg-transparent border border-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-colors">
                 <ExternalLink size={18} />
                 Connect on LinkedIn
