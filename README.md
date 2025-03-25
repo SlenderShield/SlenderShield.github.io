@@ -6,7 +6,7 @@ Welcome to my personal portfolio repository! This portfolio showcases my skills,
 
 Hi, I'm Muralidhara! I'm a software engineer with a passion for building user-friendly applications, solving complex problems. I specialize in Java, JavaScript, React and enjoy working on projects that motivates me to learn more, push technical boundaries.
 
-- **Location**: [Bengaluru/India]
+- **Location**: Bengaluru/India
 - **Email**: [ksmuralidhara0@gmail.com](mailto:ksmuralidhara0@gmail.com)
 - **Website**: [muralidharabhat.in](https://muralidharabhat.in/)
 - **LinkedIn**: [linkedin.com/in/ksmuralidhara0](https://www.linkedin.com/in/ksmuralidhara0/)
