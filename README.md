@@ -31,4 +31,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Have questions or want to collaborate? Reach out to me at [ksmuralidhara0@gmail.com] or connect with me on [Twitter/X @myself_mdb].
+Have questions or want to collaborate? Reach out to me at [ksmuralidhara0@gmail.com](mailto:ksmuralidhara0@gmail.com) or connect with me on Twitter/X:  [@myself_mdb](https://x.com/myself_MDB).
