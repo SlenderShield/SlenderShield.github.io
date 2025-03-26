@@ -1,4 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
+import SpringBoot from '@/assests/spring_boot.webp'
+import MERN from '@/assests/mern.webp'
+import TS from '@/assests/ts.webp'
+import STRANGLER_FIG from '@/assests/strangler_fig.webp'
 import {
   HiOutlineGlobeAlt,
   HiOutlineDevicePhoneMobile,
@@ -91,6 +95,7 @@ export const SOCIAL_LINKS = [
     Icon: SiLinkedin,
   },
 ];
+
 export const TOOLS = new Map([
   // JavaScript ecosystem
   [
@@ -294,29 +299,6 @@ export const SERVICES = [
   },
 ];
 
-export const BENEFITS = [
-  "Speed Delivery",
-  "Custom Solutions",
-  "Continuous Improvement",
-  "Exceptional Quality",
-  "Strategic Planning",
-  "Security",
-  "24/7 Support",
-  "Cost-Effective Solutions",
-  "Timely Communication",
-  "User-Centric Design",
-  "Scalability",
-  "Flexibility",
-  "Innovation",
-  "Collaboration",
-  "Agile Development",
-  "Performance Optimization",
-  "Cross-Platform Compatibility",
-  "Accessibility",
-  "Data Privacy",
-  "Technical Expertise",
-];
-
 export const PROJECT_STATUS = ["completed", "ongoing", "paused"];
 
 export const TOAST_STATUS = {
@@ -389,7 +371,7 @@ export const FORMS = {
 export const PROJECTS = [
   {
     index: 1,
-    mainImage: "https://github.com/slendershield.png",
+    mainImage: SpringBoot,
     title: "MediConnect",
     status: "completed",
     href: null,
@@ -402,7 +384,7 @@ export const PROJECTS = [
   },
   {
     index: 2,
-    mainImage: "https://github.com/slendershield.png",
+    mainImage: MERN,
     title: "Akre Real Estate",
     status: "ongoing",
     href: null,
@@ -423,7 +405,7 @@ export const EXPERIENCE = [
     "duration": "Jan 2023 - Present",
     "location": "Bangalore, India",
     status: "ongoing",
-    type: "MNC14",
+    type: "MNC",
     "responsibilities": [
       "Designed and developed scalable web applications.",
       "Implemented microservices architecture to optimize backend performance.",
@@ -436,50 +418,130 @@ export const EXPERIENCE = [
 
 export const BLOGS = [
   {
-    id: "portfolio-blog001",
-    title: "Building My First Real Estate Application with the MERN Stack",
+    id: 1,
+    title:
+      "The Strangler Fig Pattern: A Step-by-Step Guide to Migrating from Monolith to Microservices",
     author: "Muralidhara Bhat KS",
     date: "2025-01-01",
     content: [
-      "Creating a real estate application using the MERN stack has been one of the most fulfilling projects in my journey as a software engineer.",
-      "Here's a behind-the-scenes look at how it all came together."
+      "### Introduction",
+      "Legacy monolithic applications often become bottlenecks—difficult to scale, costly to maintain, and resistant to change. A complete rewrite is risky, expensive, and time-consuming. The Strangler Fig Pattern offers a safe, incremental approach to modernizing applications by gradually replacing monolith components with microservices. Instead of a 'big bang' rewrite, this method enables zero-downtime migration, reducing risk while ensuring business continuity.",
+      "",
+      "### 1. What Is the Strangler Fig Pattern?",
+      "**Inspired by Nature**: Just like the strangler fig tree grows around a host tree and eventually replaces it, new microservices are introduced alongside the monolith and gradually take over its functionality.",
+      "",
+      "#### Diagram: Before vs. After Migration",
+      "```mermaid",
+      "graph TD",
+      "    A[Monolith\\n(User Auth, Payments, Inventory)] --> B[Database]",
+      "    C[API Gateway] --> D[User Auth Microservice]",
+      "    C --> E[Payments Microservice]",
+      "    C --> F[Legacy Monolith\\n(Remaining Features)]",
+      "    D --> G[Auth DB]",
+      "    E --> H[Payments DB]",
+      "    F --> B",
+      "```",
+      "",
+      "### 2. How It Works: Step-by-Step Migration",
+      "**Phase 1: Identify Extractable Modules**",
+      "Start with loosely coupled features (e.g., user authentication) and avoid migrating core business logic initially to minimize risk.",
+      "",
+      "| Module          | Complexity | Risk  | Priority |",
+      "|-----------------|------------|-------|----------|",
+      "| User Auth       | Low        | Low   | High     |",
+      "| Payment Gateway | Medium     | Medium| Medium   |",
+      "| Order History   | High       | High  | Low      |",
+      "",
+      "**Phase 2: Implement API Gateway for Traffic Routing**",
+      "Set up an API Gateway (e.g., Kong, AWS API Gateway, Traefik, or Nginx) to manage dynamic routing between the monolith and new microservices.",
+      "",
+      "```yaml",
+      "# Example Kong API Gateway configuration",
+      "- name: auth-route",
+      "  paths: ['/auth']",
+      "  service: auth-service",
+      "- name: legacy-route",
+      "  paths: ['/']",
+      "  service: legacy-monolith",
+      "```",
+      "",
+      "**Phase 3: Extract & Deploy Microservices**",
+      "For example, extract the 'User Authentication' feature:",
+      "",
+      "**Before Migration (Monolith):**",
+      "```http",
+      "POST /auth/login",
+      "Host: monolith.example.com",
+      "```",
+      "",
+      "**After Migration (Microservice-Based):**",
+      "```http",
+      "POST /auth/login",
+      "Host: auth-service.example.com",
+      "```",
+      "",
+      "#### Updated Architecture",
+      "```mermaid",
+      "graph TD",
+      "    A[Client] --> B[API Gateway]",
+      "    B --> C[Auth Microservice]",
+      "    B --> D[Legacy Monolith]",
+      "    C --> E[Auth Database]",
+      "    D --> F[Monolith DB]",
+      "```",
+      "",
+      "**Phase 4: Gradually Shift Traffic & Monitor**",
+      "Adopt strategies like canary deployments, feature flags, or blue-green deployments to safely transition traffic. For instance:",
+      "",
+      "| Phase | % Requests to Microservice | Monitoring Focus |",
+      "|-------|----------------------------|------------------|",
+      "| 1     | 10%                        | Latency, Errors  |",
+      "| 2     | 50%                        | Performance      |",
+      "| 3     | 100%                       | Full Cutover     |",
+      "",
+      "Use tools like Prometheus, Grafana, and Jaeger for effective monitoring.",
+      "",
+      "**Phase 5: Repeat Until Monolith Is Decommissioned**",
+      "Continue extracting services (Payments, Inventory, etc.) until the legacy monolith can be safely retired.",
+      "",
+      "### 3. Real-World Examples",
+      "**Amazon** started with a monolithic shopping cart and migrated functionalities like recommendations, checkout, and payments to microservices, eventually operating at hyper-scale with thousands of services.",
+      "",
+      "**Netflix** transitioned from a data center monolith to AWS-based microservices, leveraging the Strangler Fig Pattern for zero-downtime migration.",
+      "",
+      "### 4. Common Challenges & Solutions",
+      "| Challenge               | Solution                          |",
+      "|-------------------------|-----------------------------------|",
+      "| Data Consistency        | Event Sourcing (e.g., Kafka)      |",
+      "| Dependency Hell         | API Contracts (e.g., OpenAPI)     |",
+      "| Performance Issues      | Caching & Load Balancing          |",
+      "| Testing Complexity      | Contract Testing (e.g., Pact)     |",
+      "",
+      "### 5. Conclusion",
+      "The Strangler Fig Pattern is a proven, incremental approach to modernizing legacy systems. By replacing one module at a time, you can minimize risk and ensure business continuity while moving toward a microservices-based architecture.",
+      "",
+      "**Next Steps:**",
+      "- Identify a low-risk module for extraction.",
+      "- Set up an API Gateway for dynamic routing.",
+      "- Start small, monitor results, and iterate.",
+      "",
+      "🚀 **Need help?** Consider tools like Kong, Istio, or AWS App Mesh for smoother migrations.",
+      "",
+      "### Further Reading & Resources",
+      "- [Martin Fowler’s Strangler Fig Pattern](https://martinfowler.com/bliki/StranglerFigApplication.html)",
+      "- [AWS Microservices Best Practices](https://aws.amazon.com/microservices/)",
+      "- [Netflix Tech Blog](https://netflixtechblog.com/)"
     ],
-    tags: ["Portfolio", "MERN Stack", "Real Estate App", "Full-Stack Development"],
-    slug: "real-estate-app-mern",
-    image: "https://github.com/slenderShield.png",
-    excerpt: "A deep dive into how I built a real estate application using the MERN stack—challenges, solutions, and key takeaways.",
-    readTime: "6 min read"
-  },
-  {
-    id: "portfolio-blog002",
-    title: "Mastering Spring Boot for Scalable Backends",
-    author: "Muralidhara Bhat KS",
-    date: "2024-12-15",
-    content: [
-      "Learning Spring Boot opened new doors for me in backend development.",
-      "Here's my experience creating scalable APIs and integrating them with microservices."
+    tags: [
+      "Microservices",
+      "Strangler Fig Pattern",
+      "Legacy Migration",
+      "Architecture"
     ],
-    tags: ["Portfolio", "Spring Boot", "Backend Development"],
-    slug: "mastering-spring-boot",
-    image: "https://github.com/slenderShield.png",
-    excerpt: "My journey of mastering Spring Boot to build scalable backends with microservices architecture.",
-    readTime: "5 min read",
-    featured: true
-  },
-  {
-    id: "portfolio-blog003",
-    title: "Exploring Kafka: Building a Messaging System",
-    author: "Muralidhara Bhat KS",
-    date: "2024-11-30",
-    content: [
-      "Building a messaging system with Kafka was both challenging and rewarding.",
-      "Here's a summary of what I learned about distributed systems and stream processing."
-    ],
-    tags: ["Portfolio", "Kafka", "Distributed Systems", "Messaging"],
-    slug: "exploring-kafka",
-    image: "https://github.com/slenderShield.png",
-    excerpt: "An exploration of building a messaging system using Kafka, focusing on distributed systems and stream processing.",
-    readTime: "7 min read",
-    featured: true
-  },
+    slug: "strangler-fig-pattern-guide",
+    image: STRANGLER_FIG,
+    excerpt:
+      "A comprehensive guide on incrementally modernizing legacy systems using the Strangler Fig Pattern—learn how to migrate from a monolith to microservices safely.",
+    readTime: "8 min read"
+  }
 ];
