@@ -35,9 +35,12 @@ const Home = () => {
             </h2>
             <div className="text-left">
               <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">
-                I&apos;m a skilled Software Engineer from India with over two years of experience in software and web development.
-                Proficient in Java and C++, I have a strong interest in system design and building scalable applications.</p>
-              <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">Passionate about innovation and problem-solving, I continuously explore new technologies to enhance my expertise in the field.
+              I am a skilled Software Engineer from India with over two years of experience in software and web development. 
+              Proficient in Java Spring Boot, JavaScript, React, and the MERN stack, I specialize in building scalable, high-performance applications. 
+              My expertise extends to Git, GitHub, and CI/CD, ensuring efficient development workflows and deployment processes.</p>
+              <p className="text-base md:text-lg max-w-2xl text-center leading-relaxed opacity-80">
+                Passionate about system design and innovation, I continuously explore emerging technologies to enhance my expertise.
+                Actively seeking new opportunities that align with my skills and aspirations.
               </p>
             </div>
             <div className="p-3 px-6 rounded-full  dark:bg-gray-800/40 backdrop-blur-sm border dark:border-gray-700">
