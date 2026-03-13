@@ -53,7 +53,7 @@ export function ContactPage() {
       <main className="container section-block reveal">
         <h1>Contact</h1>
         <p>
-          Share your timeline, goals, and constraints. I can help with freelance engagements, product builds, and full-time opportunities.
+          Share your timeline, goals, and constraints. I am open to software engineering roles, distributed systems projects, and technical collaborations.
         </p>
 
         <section className="contact-layout reveal">
@@ -103,7 +103,7 @@ export function ContactPage() {
                 }
               >
                 <option>Project inquiry</option>
-                <option>Freelance opportunity</option>
+                <option>Contract opportunity</option>
                 <option>Full-time role</option>
                 <option>Collaboration</option>
               </select>

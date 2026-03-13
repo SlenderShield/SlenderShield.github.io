@@ -1,41 +1,41 @@
 [
   {
-    "slug": "how-i-approach-new-projects",
-    "title": "How I Approach New Product Builds",
-    "excerpt": "A practical framework I use to move from idea to reliable production delivery with fewer surprises.",
-    "publishedOn": "2026-03-01",
-    "tags": ["Product", "Engineering"],
-    "readMinutes": 5,
+    "slug": "designing-high-throughput-spring-apis",
+    "title": "Designing High-Throughput Spring APIs for Production",
+    "excerpt": "How I design Java and Spring Boot services for predictable latency under high request volume.",
+    "publishedOn": "2026-03-05",
+    "tags": ["Java", "Spring Boot", "Backend"],
+    "readMinutes": 6,
     "body": [
-      "Most projects fail in the handoff between planning and execution. I start by reducing ambiguity with a lightweight discovery checklist.",
-      "Then I break delivery into vertical slices that can ship independently. This helps me validate quickly and limit rework.",
-      "Finally, I define quality gates early: accessibility checks, performance budgets, and monitoring from day one."
+      "At scale, API performance is mostly about data-access discipline and consistency in service contracts. I focus on reducing expensive query paths before attempting micro-optimizations.",
+      "My approach combines targeted caching, indexing strategy, and API shape simplification so latency remains predictable as request volume grows.",
+      "I treat observability as part of design: every critical endpoint needs metrics, alerts, and dashboards from the first production rollout."
     ]
   },
   {
-    "slug": "maintainable-react-architecture",
-    "title": "A Maintainable React Architecture for Solo Builders",
-    "excerpt": "A simple but scalable folder and data strategy for personal projects that need to grow over time.",
-    "publishedOn": "2026-02-18",
-    "tags": ["React", "Architecture"],
+    "slug": "event-driven-workflows-kafka-rabbitmq",
+    "title": "Event-Driven Workflows with Kafka and RabbitMQ",
+    "excerpt": "Practical lessons from building asynchronous microservice workflows with mixed messaging patterns.",
+    "publishedOn": "2026-02-17",
+    "tags": ["Kafka", "RabbitMQ", "Microservices"],
     "readMinutes": 7,
     "body": [
-      "The key is separating content, UI, and routing from the beginning. It prevents tight coupling and keeps changes local.",
-      "For content-heavy sites, data-driven rendering lets you add sections with minimal code edits and fewer regressions.",
-      "Even on a small project, typed content models save time because they reveal missing fields early."
+      "Kafka works well for high-throughput event streams, while RabbitMQ can simplify routing and task distribution for work queues. The key is using each where it fits best.",
+      "I design events as stable contracts and make consumers idempotent by default. This keeps retries safe and prevents cascading failures.",
+      "For production systems, dead-letter handling and message observability are mandatory, not optional."
     ]
   },
   {
-    "slug": "performance-rules-i-actually-use",
-    "title": "Performance Rules I Actually Use on Real Projects",
-    "excerpt": "A concise checklist for building fast interfaces without over-optimizing too early.",
-    "publishedOn": "2026-01-28",
-    "tags": ["Performance", "Web"],
-    "readMinutes": 4,
+    "slug": "monitoring-microservices-with-prometheus-grafana",
+    "title": "Monitoring Microservices with Prometheus and Grafana",
+    "excerpt": "A lightweight monitoring baseline I use to detect latency regressions and reliability risks early.",
+    "publishedOn": "2026-01-29",
+    "tags": ["Observability", "Prometheus", "Grafana"],
+    "readMinutes": 5,
     "body": [
-      "I begin with image discipline, route-level code splitting, and sensible caching before touching advanced techniques.",
-      "I track core metrics after launch, then optimize based on evidence rather than assumptions.",
-      "Sustainable performance work is iterative and tied to user outcomes, not isolated benchmark numbers."
+      "I start with service-level metrics for latency, throughput, error rate, and resource saturation. Without these, troubleshooting is guesswork.",
+      "Dashboards should map to business-critical workflows, not just infrastructure health, so teams can correlate incidents with customer impact.",
+      "Alert thresholds must be actionable. It is better to have fewer high-signal alerts than many noisy ones that teams ignore."
     ]
   }
 ]
