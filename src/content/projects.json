@@ -1,0 +1,71 @@
+[
+  {
+    "slug": "saas-analytics-dashboard",
+    "title": "SaaS Analytics Dashboard",
+    "description": "Built a modular dashboard with reusable chart components and role-based navigation for operations teams.",
+    "category": "Product",
+    "year": "2026",
+    "outcome": "Reduced reporting time by 38% across internal operations.",
+    "featured": true,
+    "stack": ["React", "TypeScript", "Recharts", "Node.js"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/your-handle/project-analytics"
+  },
+  {
+    "slug": "conversion-landing-system",
+    "title": "Conversion-Focused Landing System",
+    "description": "Designed and implemented a landing page system that improved trial signups through rapid A/B experimentation.",
+    "category": "Growth",
+    "year": "2025",
+    "outcome": "Increased trial conversion by 17% in two release cycles.",
+    "featured": true,
+    "stack": ["Vite", "React", "Tailwind", "Plausible"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/your-handle/project-landing"
+  },
+  {
+    "slug": "developer-portfolio-engine",
+    "title": "Developer Portfolio Engine",
+    "description": "Created a content-driven personal site architecture where projects and blogs are managed from data files.",
+    "category": "Platform",
+    "year": "2026",
+    "outcome": "Cut content update effort from hours to minutes.",
+    "featured": true,
+    "stack": ["React", "TypeScript", "React Router"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/your-handle/project-portfolio"
+  },
+  {
+    "slug": "customer-onboarding-workspace",
+    "title": "Customer Onboarding Workspace",
+    "description": "Shipped a guided onboarding suite with progressive setup, templates, and account health scoring.",
+    "category": "Product",
+    "year": "2025",
+    "outcome": "Improved week-one activation from 41% to 58%.",
+    "stack": ["React", "TypeScript", "Node.js", "PostgreSQL"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/your-handle/project-onboarding"
+  },
+  {
+    "slug": "headless-blog-delivery-pipeline",
+    "title": "Headless Blog Delivery Pipeline",
+    "description": "Built a markdown-to-JSON publishing flow with typed validation and preview routes for editors.",
+    "category": "Content",
+    "year": "2024",
+    "outcome": "Reduced publishing errors by 62% with schema checks.",
+    "stack": ["TypeScript", "Node.js", "Zod", "GitHub Actions"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/your-handle/project-blog-pipeline"
+  },
+  {
+    "slug": "realtime-incident-console",
+    "title": "Realtime Incident Console",
+    "description": "Implemented a realtime monitoring console with alerts, status timelines, and incident ownership workflows.",
+    "category": "Operations",
+    "year": "2024",
+    "outcome": "Cut mean incident acknowledgement time by 29%.",
+    "stack": ["React", "WebSockets", "Node.js", "Redis"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com/your-handle/project-incident-console"
+  }
+]

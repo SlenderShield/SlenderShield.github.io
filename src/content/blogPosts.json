@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "how-i-approach-new-projects",
+    "title": "How I Approach New Product Builds",
+    "excerpt": "A practical framework I use to move from idea to reliable production delivery with fewer surprises.",
+    "publishedOn": "2026-03-01",
+    "tags": ["Product", "Engineering"],
+    "readMinutes": 5,
+    "body": [
+      "Most projects fail in the handoff between planning and execution. I start by reducing ambiguity with a lightweight discovery checklist.",
+      "Then I break delivery into vertical slices that can ship independently. This helps me validate quickly and limit rework.",
+      "Finally, I define quality gates early: accessibility checks, performance budgets, and monitoring from day one."
+    ]
+  },
+  {
+    "slug": "maintainable-react-architecture",
+    "title": "A Maintainable React Architecture for Solo Builders",
+    "excerpt": "A simple but scalable folder and data strategy for personal projects that need to grow over time.",
+    "publishedOn": "2026-02-18",
+    "tags": ["React", "Architecture"],
+    "readMinutes": 7,
+    "body": [
+      "The key is separating content, UI, and routing from the beginning. It prevents tight coupling and keeps changes local.",
+      "For content-heavy sites, data-driven rendering lets you add sections with minimal code edits and fewer regressions.",
+      "Even on a small project, typed content models save time because they reveal missing fields early."
+    ]
+  },
+  {
+    "slug": "performance-rules-i-actually-use",
+    "title": "Performance Rules I Actually Use on Real Projects",
+    "excerpt": "A concise checklist for building fast interfaces without over-optimizing too early.",
+    "publishedOn": "2026-01-28",
+    "tags": ["Performance", "Web"],
+    "readMinutes": 4,
+    "body": [
+      "I begin with image discipline, route-level code splitting, and sensible caching before touching advanced techniques.",
+      "I track core metrics after launch, then optimize based on evidence rather than assumptions.",
+      "Sustainable performance work is iterative and tied to user outcomes, not isolated benchmark numbers."
+    ]
+  }
+]
