@@ -33,6 +33,8 @@ Add, edit, or remove blog posts without touching page components:
 All pages render from this data layer:
 
 - Home: `src/pages/HomePage.tsx`
+- About: `src/pages/AboutPage.tsx`
+- Contact: `src/pages/ContactPage.tsx`
 - Projects index: `src/pages/ProjectsPage.tsx`
 - Project detail: `src/pages/ProjectDetailPage.tsx`
 - Blog index: `src/pages/BlogPage.tsx`
@@ -92,3 +94,5 @@ The Resume button uses `siteContent.resumeUrl`.
 - Routing is handled by React Router.
 - Design uses CSS variables for easy theme changes.
 - Structure is now JSON-backed and CMS-style for content scaling.
+- Theme switch is persisted with local storage (`light`/`dark`).
+- Route transitions use subtle motion with reduced-motion accessibility fallback.
