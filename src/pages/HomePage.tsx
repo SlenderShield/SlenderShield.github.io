@@ -1,5 +1,4 @@
-import { useMemo, useState } from 'react'
-import type { FormEvent } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { SiteFooter } from '../components/SiteFooter'
 import { SiteHeader } from '../components/SiteHeader'
@@ -8,56 +7,19 @@ import { projects } from '../content/projects'
 import { siteContent } from '../content/siteContent'
 import { toReadableDate } from '../utils/date'
 
-type ContactState = {
-  name: string
-  email: string
-  message: string
-}
-
-const initialContactState: ContactState = {
-  name: '',
-  email: '',
-  message: '',
-}
-
 export function HomePage() {
-  const [contact, setContact] = useState<ContactState>(initialContactState)
-  const [error, setError] = useState('')
-  const [sent, setSent] = useState(false)
-
   const featuredPosts = useMemo(() => blogPosts.slice(0, 3), [])
   const featuredProjects = useMemo(
     () => projects.filter((project) => project.featured).slice(0, 3),
     [],
   )
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setError('')
-    setSent(false)
-
-    if (!contact.name || !contact.email || !contact.message) {
-      setError('Please complete all fields before sending.')
-      return
-    }
-
-    const mailto = new URL(`mailto:${siteContent.contactEmail}`)
-    mailto.searchParams.set('subject', `Portfolio inquiry from ${contact.name}`)
-    mailto.searchParams.set(
-      'body',
-      `Name: ${contact.name}\nEmail: ${contact.email}\n\n${contact.message}`,
-    )
-    window.location.href = mailto.toString()
-    setSent(true)
-    setContact(initialContactState)
-  }
-
   return (
     <div className="page-shell">
       <SiteHeader />
 
       <main>
-        <section className="hero-section container">
+        <section className="hero-section container reveal">
           <p className="eyebrow">{siteContent.location}</p>
           <h1>{siteContent.headline}</h1>
           <p className="hero-copy">{siteContent.subheadline}</p>
@@ -79,6 +41,9 @@ export function HomePage() {
           </div>
 
           <div className="hero-actions">
+            <Link className="button ghost" to="/about">
+              About me
+            </Link>
             <Link className="button solid" to="/projects">
               Explore all projects
             </Link>
@@ -88,10 +53,15 @@ export function HomePage() {
           </div>
         </section>
 
-        <section id="focus" className="container section-block split-layout">
+        <section className="container section-block split-layout reveal">
           <div>
-            <h2>Focus</h2>
+            <h2>Focus and Craft</h2>
             <p>{siteContent.about[1]}</p>
+            <div className="hero-actions">
+              <Link className="button ghost" to="/about">
+                Read full story
+              </Link>
+            </div>
           </div>
           <ul className="chip-row">
             {siteContent.skills.slice(0, 8).map((skill) => (
@@ -100,7 +70,7 @@ export function HomePage() {
           </ul>
         </section>
 
-        <section id="featured-projects" className="container section-block">
+        <section className="container section-block reveal">
           <div className="section-head">
             <h2>Featured Work</h2>
             <Link to="/projects">See full archive</Link>
@@ -133,7 +103,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <section id="blog" className="container section-block">
+        <section className="container section-block reveal">
           <div className="section-head">
             <h2>Latest Blog Posts</h2>
             <Link to="/blog">Browse all</Link>
@@ -152,52 +122,14 @@ export function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className="container section-block">
-          <h2>Start a Conversation</h2>
-          <p>
-            For freelance work, full-time roles, or collaborations, share your brief. I usually respond within 24-48 hours.
-          </p>
-
-          <form className="contact-form" onSubmit={onSubmit}>
-            <label>
-              Name
-              <input
-                value={contact.name}
-                onChange={(event) =>
-                  setContact((prev) => ({ ...prev, name: event.target.value }))
-                }
-                placeholder="Your name"
-              />
-            </label>
-            <label>
-              Email
-              <input
-                type="email"
-                value={contact.email}
-                onChange={(event) =>
-                  setContact((prev) => ({ ...prev, email: event.target.value }))
-                }
-                placeholder="your@email.com"
-              />
-            </label>
-            <label>
-              Message
-              <textarea
-                rows={5}
-                value={contact.message}
-                onChange={(event) =>
-                  setContact((prev) => ({ ...prev, message: event.target.value }))
-                }
-                placeholder="How can I help?"
-              />
-            </label>
-            <button className="button solid" type="submit">
-              Send message
-            </button>
-          </form>
-
-          {error ? <p className="form-status error">{error}</p> : null}
-          {sent ? <p className="form-status">Mail app opened with your message draft.</p> : null}
+        <section className="container section-block reveal">
+          <h2>Let&apos;s Build Something</h2>
+          <p>Tell me about your project scope, expected timeline, and goals.</p>
+          <div className="hero-actions">
+            <Link className="button solid" to="/contact">
+              Open contact page
+            </Link>
+          </div>
         </section>
       </main>
 

@@ -8,7 +8,7 @@ export function BlogPage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="container section-block">
+      <main className="container section-block reveal">
         <div className="section-head">
           <h1>Blog</h1>
           <Link to="/">Back home</Link>

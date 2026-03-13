@@ -26,7 +26,7 @@ export function ProjectsPage() {
     <div className="page-shell">
       <SiteHeader />
 
-      <main className="container section-block">
+      <main className="container section-block reveal">
         <div className="section-head">
           <h1>Projects</h1>
           <Link to="/">Back home</Link>

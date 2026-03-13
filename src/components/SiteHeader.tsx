@@ -1,15 +1,16 @@
 import { Link, useLocation } from 'react-router-dom'
 import { siteContent } from '../content/siteContent'
-
-const homeLinks = [
-  { label: 'Focus', href: '#focus' },
-  { label: 'Featured', href: '#featured-projects' },
-  { label: 'Contact', href: '#contact' },
-]
+import { ThemeToggle } from './ThemeToggle'
 
 export function SiteHeader() {
   const location = useLocation()
-  const isHome = location.pathname === '/'
+  const navItems = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'Blog', to: '/blog' },
+    { label: 'Contact', to: '/contact' },
+  ]
 
   return (
     <header className="site-header">
@@ -17,17 +18,20 @@ export function SiteHeader() {
         {siteContent.name}
       </Link>
 
-      <nav className="site-nav" aria-label="Primary">
-        {isHome
-          ? homeLinks.map((link) => (
-              <a key={link.label} href={link.href}>
-                {link.label}
-              </a>
-            ))
-          : null}
-        <Link to="/projects">Projects</Link>
-        <Link to="/blog">Blog</Link>
-      </nav>
+      <div className="header-controls">
+        <nav className="site-nav" aria-label="Primary">
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
+              className={location.pathname === item.to ? 'active' : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <ThemeToggle />
+      </div>
     </header>
   )
 }

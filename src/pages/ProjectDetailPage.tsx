@@ -24,7 +24,7 @@ export function ProjectDetailPage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="container section-block">
+      <main className="container section-block reveal">
         <p className="meta">
           {project.category} • {project.year}
         </p>

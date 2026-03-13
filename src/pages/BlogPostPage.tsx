@@ -29,7 +29,7 @@ export function BlogPostPage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="container section-block">
+      <main className="container section-block reveal">
         <p className="meta">
           {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
         </p>

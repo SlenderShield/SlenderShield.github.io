@@ -1,4 +1,5 @@
 import { siteContent } from '../content/siteContent'
+import { SocialIcon } from './SocialIcon'
 
 export function SiteFooter() {
   return (
@@ -8,8 +9,9 @@ export function SiteFooter() {
       </p>
       <div className="social-inline">
         {siteContent.socialLinks.map((item) => (
-          <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-            {item.label}
+          <a key={item.label} href={item.href} target="_blank" rel="noreferrer" aria-label={item.label}>
+            <SocialIcon label={item.label} />
+            <span>{item.label}</span>
           </a>
         ))}
       </div>
