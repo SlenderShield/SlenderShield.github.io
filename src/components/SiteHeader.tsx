@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { siteContent } from '../content/siteContent'
 import { ThemeToggle } from './ThemeToggle'
 
 export function SiteHeader() {
   const location = useLocation()
+  const [isNavOpen, setIsNavOpen] = useState(false)
   const navItems = [
     { label: 'Home', to: '/' },
     { label: 'About', to: '/about' },
@@ -12,6 +14,10 @@ export function SiteHeader() {
     { label: 'Contact', to: '/contact' },
   ]
 
+  useEffect(() => {
+    setIsNavOpen(false)
+  }, [location.pathname])
+
   return (
     <header className="site-header">
       <Link className="brand" to="/">
@@ -19,7 +25,20 @@ export function SiteHeader() {
       </Link>
 
       <div className="header-controls">
-        <nav className="site-nav" aria-label="Primary">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={isNavOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setIsNavOpen((prev) => !prev)}
+        >
+          <span>{isNavOpen ? 'Close' : 'Menu'}</span>
+        </button>
+        <nav
+          id="primary-navigation"
+          className={`site-nav${isNavOpen ? ' expanded' : ''}`}
+          aria-label="Primary"
+        >
           {navItems.map((item) => (
             <Link
               key={item.label}
