@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "designing-high-throughput-spring-apis",
+    "title": "Designing High-Throughput Spring APIs for Production",
+    "excerpt": "How I design Java and Spring Boot services for predictable latency under high request volume.",
+    "publishedOn": "2026-03-05",
+    "tags": ["Java", "Spring Boot", "Backend"],
+    "readMinutes": 6,
+    "body": [
+      "At scale, API performance is mostly about data-access discipline and consistency in service contracts. I focus on reducing expensive query paths before attempting micro-optimizations.",
+      "My approach combines targeted caching, indexing strategy, and API shape simplification so latency remains predictable as request volume grows.",
+      "I treat observability as part of design: every critical endpoint needs metrics, alerts, and dashboards from the first production rollout."
+    ]
+  },
+  {
+    "slug": "event-driven-workflows-kafka-rabbitmq",
+    "title": "Event-Driven Workflows with Kafka and RabbitMQ",
+    "excerpt": "Practical lessons from building asynchronous microservice workflows with mixed messaging patterns.",
+    "publishedOn": "2026-02-17",
+    "tags": ["Kafka", "RabbitMQ", "Microservices"],
+    "readMinutes": 7,
+    "body": [
+      "Kafka works well for high-throughput event streams, while RabbitMQ can simplify routing and task distribution for work queues. The key is using each where it fits best.",
+      "I design events as stable contracts and make consumers idempotent by default. This keeps retries safe and prevents cascading failures.",
+      "For production systems, dead-letter handling and message observability are mandatory, not optional."
+    ]
+  },
+  {
+    "slug": "monitoring-microservices-with-prometheus-grafana",
+    "title": "Monitoring Microservices with Prometheus and Grafana",
+    "excerpt": "A lightweight monitoring baseline I use to detect latency regressions and reliability risks early.",
+    "publishedOn": "2026-01-29",
+    "tags": ["Observability", "Prometheus", "Grafana"],
+    "readMinutes": 5,
+    "body": [
+      "I start with service-level metrics for latency, throughput, error rate, and resource saturation. Without these, troubleshooting is guesswork.",
+      "Dashboards should map to business-critical workflows, not just infrastructure health, so teams can correlate incidents with customer impact.",
+      "Alert thresholds must be actionable. It is better to have fewer high-signal alerts than many noisy ones that teams ignore."
+    ]
+  }
+]

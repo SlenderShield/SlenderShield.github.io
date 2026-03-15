@@ -1,0 +1,60 @@
+[
+  {
+    "slug": "mediconnect-microservices-platform",
+    "title": "MediConnect Microservices Platform",
+    "description": "Designed and implemented a healthcare microservices platform for authentication, appointments, and notifications using asynchronous event flows.",
+    "category": "Distributed Systems",
+    "year": "2025",
+    "outcome": "Improved service fault tolerance with JWT-based RBAC, circuit breakers, and monitored Kubernetes workloads.",
+    "featured": true,
+    "stack": ["Spring Boot 3", "Kafka", "React", "TypeScript", "Docker", "Kubernetes", "MongoDB", "Prometheus", "Grafana"],
+    "liveUrl": "https://muralidharabhat.in",
+    "repoUrl": "https://github.com/SlenderShield"
+  },
+  {
+    "slug": "cafe-order-management-system",
+    "title": "Cafe Order Management System",
+    "description": "Built an event-driven microservices application for order, payment, and inventory services with real-time frontend updates.",
+    "category": "Event-Driven",
+    "year": "2024",
+    "outcome": "Implemented SAGA-based distributed transaction handling to maintain eventual consistency during service failures.",
+    "featured": true,
+    "stack": ["Spring Boot 3", "Kafka", "React", "Docker", "PostgreSQL", "MySQL"],
+    "liveUrl": "https://muralidharabhat.in",
+    "repoUrl": "https://github.com/SlenderShield"
+  },
+  {
+    "slug": "quotation-search-opensearch-optimization",
+    "title": "Quotation Search API Optimization",
+    "description": "Rebuilt quotation retrieval around OpenSearch to replace expensive PostgreSQL scans in a multi-service quote workflow.",
+    "category": "Backend Performance",
+    "year": "2025",
+    "outcome": "Reduced API latency from 40-60s to 5-6s in production-oriented service flows.",
+    "featured": true,
+    "stack": ["Java", "Spring Boot", "OpenSearch", "PostgreSQL", "REST APIs"],
+    "liveUrl": "https://muralidharabhat.in",
+    "repoUrl": "https://github.com/SlenderShield"
+  },
+  {
+    "slug": "connected-vehicle-telemetry-pipeline",
+    "title": "Connected Vehicle Telemetry Pipeline",
+    "description": "Developed and maintained Spring Boot services for telemetry ingestion and analytics, handling high-volume automotive event traffic.",
+    "category": "Cloud Microservices",
+    "year": "2024",
+    "outcome": "Handled 100K+ daily telemetry requests, improved average latency from 1.5s to 1.3s, and automated 200GB+ weekly archival to AWS S3.",
+    "stack": ["Spring Boot", "Kafka", "MongoDB", "Redis", "AWS ECS Fargate", "S3", "Docker", "Grafana"],
+    "liveUrl": "https://muralidharabhat.in",
+    "repoUrl": "https://github.com/SlenderShield"
+  },
+  {
+    "slug": "resilient-api-gateway-and-cqrs-improvements",
+    "title": "Resilient Gateway and CQRS Improvements",
+    "description": "Enhanced service reliability with Spring Cloud Gateway policies, rate limiting, and Resilience4j while contributing to CQRS-aligned service patterns.",
+    "category": "Reliability",
+    "year": "2024",
+    "outcome": "Improved production stability and reduced bottlenecks through fault isolation and reliability patterns.",
+    "stack": ["Spring Cloud Gateway", "Resilience4j", "CQRS", "Docker", "Kubernetes"],
+    "liveUrl": "https://muralidharabhat.in",
+    "repoUrl": "https://github.com/SlenderShield"
+  }
+]
