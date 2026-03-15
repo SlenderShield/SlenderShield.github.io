@@ -5,15 +5,15 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
 
 export function BlogPage() {
-  useDocumentTitle('Blog')
+  useDocumentTitle('Journal', 'Articles, stories, and photography from work and life by Muralidhara Bhat KS.')
   return (
     <PageLayout>
       <main className="container section-block reveal">
         <div className="section-head">
-          <h1>Blog</h1>
+          <h1>Journal</h1>
           <Link to="/">Back home</Link>
         </div>
-        <p>Articles and notes on product engineering, delivery, and web architecture.</p>
+        <p>Articles, stories, and photography from work and life.</p>
 
         <div className="blog-list">
           {blogPosts.map((post) => (

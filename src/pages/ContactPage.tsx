@@ -20,7 +20,7 @@ const initialContactState: ContactState = {
 }
 
 export function ContactPage() {
-  useDocumentTitle('Contact')
+  useDocumentTitle('Contact', 'Get in touch for software engineering roles, distributed systems projects, and technical collaborations.')
   const [contact, setContact] = useState<ContactState>(initialContactState)
   const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
@@ -56,7 +56,7 @@ export function ContactPage() {
         </p>
 
         <section className="contact-layout reveal">
-          <article className="detail-panel">
+          <article className="clean-panel">
             <h2>Direct Channels</h2>
             <p>Email: {siteContent.contactEmail}</p>
             <div className="social-inline">
@@ -70,7 +70,7 @@ export function ContactPage() {
             <p className="meta">Typical response time: within 24-48 hours.</p>
           </article>
 
-          <form className="contact-form detail-panel" onSubmit={onSubmit}>
+          <form className="contact-form clean-panel" onSubmit={onSubmit}>
             <h2>Send a Brief</h2>
             <label>
               Name
@@ -118,7 +118,7 @@ export function ContactPage() {
                 placeholder="Briefly describe scope, budget range, and timeline."
               />
             </label>
-            <button className="button solid" type="submit">
+            <button className="button solid" style={{ width: 'fit-content' }} type="submit">
               Draft email
             </button>
 

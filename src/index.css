@@ -235,6 +235,7 @@ p {
 :root[data-theme='dark'] .nav-toggle,
 :root[data-theme='dark'] .card,
 :root[data-theme='dark'] .detail-panel,
+:root[data-theme='dark'] .clean-panel,
 :root[data-theme='dark'] .blog-item,
 :root[data-theme='dark'] .hero-kpis article,
 :root[data-theme='dark'] .chip-button,
@@ -521,10 +522,18 @@ p {
   box-shadow: var(--shadow);
 }
 
+.clean-panel {
+  padding: 2rem;
+  background: #fafafa;
+  display: grid;
+  gap: 1rem;
+  border-radius: 4px;
+}
+
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .site-footer {

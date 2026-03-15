@@ -4,7 +4,7 @@
     "title": "Designing High-Throughput Spring APIs for Production",
     "excerpt": "How I design Java and Spring Boot services for predictable latency under high request volume.",
     "publishedOn": "2026-03-05",
-    "tags": ["Java", "Spring Boot", "Backend"],
+    "tags": ["Tech", "Java", "Backend"],
     "readMinutes": 6,
     "body": [
       "At scale, API performance is mostly about data-access discipline and consistency in service contracts. I focus on reducing expensive query paths before attempting micro-optimizations.",
@@ -13,11 +13,24 @@
     ]
   },
   {
+    "slug": "kodagu-cycling-tour",
+    "title": "Touring Kodagu on Two Wheels",
+    "excerpt": "A three-day cycling tour through the misty hills and coffee estates of Kodagu district.",
+    "publishedOn": "2026-02-28",
+    "tags": ["Cycling", "Travel", "Personal"],
+    "readMinutes": 8,
+    "body": [
+      "The terrain of Kodagu challenges every cyclist, but the endless stretches of green coffee plantations make the uphill grinds worth it.",
+      "Over three days, we covered steep inclines, navigated monsoon-washed trails, and found some of the best local filter coffee at small roadside stops.",
+      "If you're planning a cycling trip here, hydration and a solid set of climbing gears are non-negotiable."
+    ]
+  },
+  {
     "slug": "event-driven-workflows-kafka-rabbitmq",
     "title": "Event-Driven Workflows with Kafka and RabbitMQ",
     "excerpt": "Practical lessons from building asynchronous microservice workflows with mixed messaging patterns.",
     "publishedOn": "2026-02-17",
-    "tags": ["Kafka", "RabbitMQ", "Microservices"],
+    "tags": ["Tech", "Kafka", "Microservices"],
     "readMinutes": 7,
     "body": [
       "Kafka works well for high-throughput event streams, while RabbitMQ can simplify routing and task distribution for work queues. The key is using each where it fits best.",
@@ -26,16 +39,16 @@
     ]
   },
   {
-    "slug": "monitoring-microservices-with-prometheus-grafana",
-    "title": "Monitoring Microservices with Prometheus and Grafana",
-    "excerpt": "A lightweight monitoring baseline I use to detect latency regressions and reliability risks early.",
-    "publishedOn": "2026-01-29",
-    "tags": ["Observability", "Prometheus", "Grafana"],
+    "slug": "malnad-monsoon-photography",
+    "title": "Chasing the Monsoon in Malnad",
+    "excerpt": "A photographic exploration of the Western Ghats during the peak monsoon season.",
+    "publishedOn": "2026-01-10",
+    "tags": ["Photography", "Nature"],
     "readMinutes": 5,
     "body": [
-      "I start with service-level metrics for latency, throughput, error rate, and resource saturation. Without these, troubleshooting is guesswork.",
-      "Dashboards should map to business-critical workflows, not just infrastructure health, so teams can correlate incidents with customer impact.",
-      "Alert thresholds must be actionable. It is better to have fewer high-signal alerts than many noisy ones that teams ignore."
+      "Shooting in the rain requires patience, weather-sealing, and an eye for the dramatic shifts in light. The Malnad region transforms completely under heavy rain.",
+      "I focused on macro shots of the local flora and the vast, overcast landscapes that give the hills their characteristic haunting beauty.",
+      "Getting the shot often meant waiting out intense downpours under whatever shelter we could find, but the atmosphere captured in the images is unparalleled."
     ]
   }
 ]
