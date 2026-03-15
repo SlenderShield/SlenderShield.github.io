@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
+import { ContentRenderer } from '../components/ContentRenderer'
 import { projects } from '../content/projects'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -18,23 +19,50 @@ export function ProjectDetailPage() {
         </main>
       </PageLayout>
     )
-  }
+  };
 
   return (
     <PageLayout>
-      <main className="container section-block reveal">
-        <p className="meta">
-          {project.category} • {project.year}
-        </p>
-        <h1>{project.title}</h1>
-        <p>{project.description}</p>
+      <main className={`container section-block reveal template-${project.template || 'default'}`}>
+        <header className="project-header">
+          <p className="meta">
+            {project.category} • {project.year}
+          </p>
+          <h1>{project.title}</h1>
+          <p className="project-desc">{project.description}</p>
+          
+          <div className="row-links">
+            {project.liveUrl !== '#' && (
+              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button solid">
+                View live project
+              </a>
+            )}
+            {project.repoUrl !== '#' && (
+              <a href={project.repoUrl} target="_blank" rel="noreferrer" className="button ghost">
+                View repository
+              </a>
+            )}
+            <Link to="/projects" className="button ghost">Back to all projects</Link>
+          </div>
+        </header>
 
-        <article className="detail-panel">
-          <h2>Outcome</h2>
-          <p>{project.outcome}</p>
-        </article>
+        {project.sections && project.sections.length > 0 ? (
+          <div className={`project-body layout-${project.template || 'default'}`}>
+            {project.sections.map((sec, i) => (
+              <section key={i} className="project-section">
+                {sec.title && <h2>{sec.title}</h2>}
+                <ContentRenderer blocks={sec.blocks} />
+              </section>
+            ))}
+          </div>
+        ) : (
+          <article className="detail-panel">
+            <h2>Outcome</h2>
+            <p>{project.outcome}</p>
+          </article>
+        )}
 
-        <article className="detail-panel">
+        <article className="detail-panel stack-panel">
           <h2>Tech Stack</h2>
           <ul className="chip-row">
             {project.stack.map((item) => (
@@ -43,15 +71,6 @@ export function ProjectDetailPage() {
           </ul>
         </article>
 
-        <div className="row-links">
-          <a href={project.liveUrl} target="_blank" rel="noreferrer">
-            View live project
-          </a>
-          <a href={project.repoUrl} target="_blank" rel="noreferrer">
-            View repository
-          </a>
-          <Link to="/projects">Back to all projects</Link>
-        </div>
       </main>
     </PageLayout>
   )

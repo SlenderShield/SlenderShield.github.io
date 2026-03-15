@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
+import { ContentRenderer } from '../components/ContentRenderer'
 import { blogPosts } from '../content/blogPosts'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
@@ -28,21 +29,33 @@ export function BlogPostPage() {
 
   return (
     <PageLayout>
-      <main className="container section-block reveal">
-        <p className="meta">
-          {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
-        </p>
-        <h1>{post.title}</h1>
-        <div className="chip-row">
-          {post.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
+      <main className={`container section-block reveal template-${post.template || 'minimal'}`}>
+        <header className="blog-header">
+          <p className="meta">
+            {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
+          </p>
+          <h1>{post.title}</h1>
+          <div className="chip-row">
+            {post.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </header>
+
+        {post.coverImage && (
+          <figure className="blog-cover">
+            <img src={post.coverImage} alt="Cover image" loading="lazy" />
+          </figure>
+        )}
 
         <article className="post-content">
-          {post.body.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          {post.blocks && post.blocks.length > 0 ? (
+            <ContentRenderer blocks={post.blocks} />
+          ) : (
+            post.body.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))
+          )}
         </article>
 
         {relatedPosts.length > 0 ? (

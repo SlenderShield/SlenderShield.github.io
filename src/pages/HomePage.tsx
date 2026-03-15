@@ -20,7 +20,7 @@ export function HomePage() {
       <main>
         <section className="hero-spacious container reveal">
           <p className="eyebrow">{siteContent.location}</p>
-          <h1>{siteContent.headline}</h1>
+          <h1>I'm {siteContent.name},<br />{siteContent.headline}</h1>
           <p className="hero-copy">{siteContent.subheadline}</p>
           <p className="hero-intro">{siteContent.about[0]}</p>
 

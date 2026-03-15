@@ -3,6 +3,14 @@ export interface SocialLink {
   href: string
 }
 
+export interface ContentBlock {
+  type: 'text' | 'image' | 'code' | 'youtube' | 'quote' | 'mermaid' | 'link'
+  value: string      // text content, image URL, code snippet, or youtube ID
+  caption?: string   // for images or video
+  language?: string  // for code blocks
+  href?: string      // for external social links
+}
+
 export interface Project {
   slug: string
   title: string
@@ -14,6 +22,8 @@ export interface Project {
   stack: string[]
   liveUrl: string
   repoUrl: string
+  template?: 'case-study' | 'tech-deep-dive' | 'gallery'
+  sections?: { title: string; blocks: ContentBlock[] }[]
 }
 
 export interface ExperienceItem {
@@ -32,6 +42,9 @@ export interface BlogPost {
   tags: string[]
   readMinutes: number
   body: string[]
+  template?: 'story' | 'tech' | 'photo-essay' | 'video-focus' | 'minimal'
+  blocks?: ContentBlock[]
+  coverImage?: string
 }
 
 export interface SiteContent {
