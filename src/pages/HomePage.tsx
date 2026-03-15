@@ -1,30 +1,30 @@
-import { useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import { PageLayout } from '../components/PageLayout'
-import { blogPosts } from '../content/blogPosts'
-import { projects } from '../content/projects'
-import { siteContent } from '../content/siteContent'
-import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { toReadableDate } from '../utils/date'
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
+import { PageLayout } from "../components/PageLayout";
+import { blogPosts } from "../content/blogPosts";
+import { projects } from "../content/projects";
+import { siteContent } from "../content/siteContent";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { toReadableDate } from "../utils/date";
 
 export function HomePage() {
-  useDocumentTitle('Home')
-  const featuredPosts = useMemo(() => blogPosts.slice(0, 3), [])
+  useDocumentTitle("Home");
+  const featuredPosts = useMemo(() => blogPosts.slice(0, 3), []);
   const featuredProjects = useMemo(
     () => projects.filter((project) => project.featured).slice(0, 3),
     [],
-  )
+  );
 
   return (
     <PageLayout>
       <main>
-        <section className="hero-section container reveal">
+        <section className="hero-spacious container reveal">
           <p className="eyebrow">{siteContent.location}</p>
           <h1>{siteContent.headline}</h1>
           <p className="hero-copy">{siteContent.subheadline}</p>
           <p className="hero-intro">{siteContent.about[0]}</p>
 
-          <div className="hero-kpis">
+          <div className="hero-kpis-row">
             <article>
               <p className="meta">Projects</p>
               <strong>{projects.length}+</strong>
@@ -74,9 +74,9 @@ export function HomePage() {
             <h2>Featured Work</h2>
             <Link to="/projects">See full archive</Link>
           </div>
-          <div className="card-grid">
+          <div className="naked-list">
             {featuredProjects.map((project) => (
-              <article className="card" key={project.title}>
+              <article className="naked-item" key={project.title}>
                 <p className="meta">
                   {project.category} • {project.year}
                 </p>
@@ -107,11 +107,12 @@ export function HomePage() {
             <h2>Latest Blog Posts</h2>
             <Link to="/blog">Browse all</Link>
           </div>
-          <div className="card-grid compact">
+          <div className="naked-list">
             {featuredPosts.map((post) => (
-              <article className="card" key={post.slug}>
+              <article className="naked-item" key={post.slug}>
                 <p className="meta">
-                  {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
+                  {toReadableDate(post.publishedOn)} • {post.readMinutes} min
+                  read
                 </p>
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
@@ -132,5 +133,5 @@ export function HomePage() {
         </section>
       </main>
     </PageLayout>
-  )
+  );
 }
