@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { projects } from '../content/projects'
 
 export function ProjectsPage() {
+  useDocumentTitle('Projects')
   const [activeCategory, setActiveCategory] = useState('All')
   const [query, setQuery] = useState('')
 
@@ -23,9 +24,7 @@ export function ProjectsPage() {
   }, [activeCategory, query])
 
   return (
-    <div className="page-shell">
-      <SiteHeader />
-
+    <PageLayout>
       <main className="container section-block reveal">
         <div className="section-head">
           <h1>Projects</h1>
@@ -87,8 +86,6 @@ export function ProjectsPage() {
           ))}
         </div>
       </main>
-
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }

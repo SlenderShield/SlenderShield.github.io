@@ -1,34 +1,33 @@
 import { Link, useParams } from 'react-router-dom'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
 import { blogPosts } from '../content/blogPosts'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
 
 export function BlogPostPage() {
   const { slug } = useParams()
   const post = blogPosts.find((item) => item.slug === slug)
-  const relatedPosts = blogPosts
-    .filter((item) => item.slug !== slug)
-    .filter((item) => item.tags.some((tag) => post?.tags.includes(tag)))
-    .slice(0, 3)
+  useDocumentTitle(post ? post.title : 'Post Not Found')
 
   if (!post) {
     return (
-      <div className="page-shell">
-        <SiteHeader />
+      <PageLayout>
         <main className="container section-block">
           <h1>Post not found</h1>
           <p>This article does not exist yet. Please check the blog index.</p>
           <Link to="/blog">Go to blog</Link>
         </main>
-        <SiteFooter />
-      </div>
+      </PageLayout>
     )
   }
 
+  const relatedPosts = blogPosts
+    .filter((item) => item.slug !== slug)
+    .filter((item) => item.tags.some((tag) => post.tags.includes(tag)))
+    .slice(0, 3)
+
   return (
-    <div className="page-shell">
-      <SiteHeader />
+    <PageLayout>
       <main className="container section-block reveal">
         <p className="meta">
           {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
@@ -41,8 +40,8 @@ export function BlogPostPage() {
         </div>
 
         <article className="post-content">
-          {post.body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+          {post.body.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
           ))}
         </article>
 
@@ -66,7 +65,6 @@ export function BlogPostPage() {
 
         <Link to="/blog">Back to all posts</Link>
       </main>
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }

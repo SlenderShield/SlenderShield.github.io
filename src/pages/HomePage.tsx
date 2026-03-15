@@ -1,13 +1,14 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
 import { blogPosts } from '../content/blogPosts'
 import { projects } from '../content/projects'
 import { siteContent } from '../content/siteContent'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
 
 export function HomePage() {
+  useDocumentTitle('Home')
   const featuredPosts = useMemo(() => blogPosts.slice(0, 3), [])
   const featuredProjects = useMemo(
     () => projects.filter((project) => project.featured).slice(0, 3),
@@ -15,9 +16,7 @@ export function HomePage() {
   )
 
   return (
-    <div className="page-shell">
-      <SiteHeader />
-
+    <PageLayout>
       <main>
         <section className="hero-section container reveal">
           <p className="eyebrow">{siteContent.location}</p>
@@ -132,8 +131,6 @@ export function HomePage() {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }

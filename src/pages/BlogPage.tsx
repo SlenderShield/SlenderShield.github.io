@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
 import { blogPosts } from '../content/blogPosts'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
 
 export function BlogPage() {
+  useDocumentTitle('Blog')
   return (
-    <div className="page-shell">
-      <SiteHeader />
+    <PageLayout>
       <main className="container section-block reveal">
         <div className="section-head">
           <h1>Blog</h1>
@@ -33,7 +33,6 @@ export function BlogPage() {
           ))}
         </div>
       </main>
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }

@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
 import { siteContent } from '../content/siteContent'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 export function AboutPage() {
+  useDocumentTitle('About')
   return (
-    <div className="page-shell">
-      <SiteHeader />
-
+    <PageLayout>
       <main className="container section-block reveal">
         <div className="section-head">
           <h1>About</h1>
@@ -41,8 +40,6 @@ export function AboutPage() {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }

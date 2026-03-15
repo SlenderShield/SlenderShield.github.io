@@ -12,6 +12,11 @@
   --shadow: 0 10px 25px rgba(16, 24, 40, 0.08);
   --font-body: 'Manrope', 'Segoe UI', sans-serif;
   --font-heading: 'Source Serif 4', Georgia, serif;
+  
+  --bg-grad-1: #d8f7ef;
+  --bg-grad-2: #e9eeff;
+  --bg-grad-3: #f7f8fa;
+  --bg-grad-4: #f2f4f7;
 }
 
 :root[data-theme='dark'] {
@@ -24,6 +29,11 @@
   --brand-soft: #12343a;
   --danger: #fb7185;
   --shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  
+  --bg-grad-1: #112a23;
+  --bg-grad-2: #1a2035;
+  --bg-grad-3: #0f1723;
+  --bg-grad-4: #111b2a;
 }
 
 * {
@@ -41,9 +51,9 @@ body {
   font-family: var(--font-body);
   color: var(--text);
   background:
-    radial-gradient(circle at 10% 10%, #d8f7ef 0, transparent 34%),
-    radial-gradient(circle at 85% 8%, #e9eeff 0, transparent 36%),
-    linear-gradient(180deg, #f7f8fa 0%, #f2f4f7 100%),
+    radial-gradient(circle at 10% 10%, var(--bg-grad-1) 0, transparent 34%),
+    radial-gradient(circle at 85% 8%, var(--bg-grad-2) 0, transparent 36%),
+    linear-gradient(180deg, var(--bg-grad-3) 0%, var(--bg-grad-4) 100%),
     var(--bg);
   line-height: 1.6;
 }
@@ -496,6 +506,10 @@ p {
   font: inherit;
   cursor: pointer;
   color: var(--text-soft);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chip-button.active {

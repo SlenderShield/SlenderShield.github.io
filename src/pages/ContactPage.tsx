@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
 import { SocialIcon } from '../components/SocialIcon'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { siteContent } from '../content/siteContent'
 
 type ContactState = {
@@ -20,6 +20,7 @@ const initialContactState: ContactState = {
 }
 
 export function ContactPage() {
+  useDocumentTitle('Contact')
   const [contact, setContact] = useState<ContactState>(initialContactState)
   const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
@@ -47,9 +48,7 @@ export function ContactPage() {
   }
 
   return (
-    <div className="page-shell">
-      <SiteHeader />
-
+    <PageLayout>
       <main className="container section-block reveal">
         <h1>Contact</h1>
         <p>
@@ -128,8 +127,6 @@ export function ContactPage() {
           </form>
         </section>
       </main>
-
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }

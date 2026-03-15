@@ -3,16 +3,17 @@ import { Link, useLocation } from 'react-router-dom'
 import { siteContent } from '../content/siteContent'
 import { ThemeToggle } from './ThemeToggle'
 
+const navItems = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Contact', to: '/contact' },
+] as const
+
 export function SiteHeader() {
   const location = useLocation()
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const navItems = [
-    { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
-    { label: 'Projects', to: '/projects' },
-    { label: 'Blog', to: '/blog' },
-    { label: 'Contact', to: '/contact' },
-  ]
 
   useEffect(() => {
     setIsNavOpen(false)

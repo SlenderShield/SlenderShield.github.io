@@ -1,29 +1,27 @@
 import { Link, useParams } from 'react-router-dom'
-import { SiteFooter } from '../components/SiteFooter'
-import { SiteHeader } from '../components/SiteHeader'
+import { PageLayout } from '../components/PageLayout'
 import { projects } from '../content/projects'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 export function ProjectDetailPage() {
   const { slug } = useParams()
   const project = projects.find((item) => item.slug === slug)
+  useDocumentTitle(project ? project.title : 'Project Not Found')
 
   if (!project) {
     return (
-      <div className="page-shell">
-        <SiteHeader />
+      <PageLayout>
         <main className="container section-block">
           <h1>Project not found</h1>
           <p>This case study does not exist yet. Please check the projects page.</p>
           <Link to="/projects">Go to projects</Link>
         </main>
-        <SiteFooter />
-      </div>
+      </PageLayout>
     )
   }
 
   return (
-    <div className="page-shell">
-      <SiteHeader />
+    <PageLayout>
       <main className="container section-block reveal">
         <p className="meta">
           {project.category} • {project.year}
@@ -55,7 +53,6 @@ export function ProjectDetailPage() {
           <Link to="/projects">Back to all projects</Link>
         </div>
       </main>
-      <SiteFooter />
-    </div>
+    </PageLayout>
   )
 }
