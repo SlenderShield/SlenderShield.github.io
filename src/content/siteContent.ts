@@ -46,15 +46,29 @@ export const siteContent: SiteContent = {
       role: 'Software Engineer',
       company: 'Netcracker Technologies',
       period: 'Jun 2025 - Present',
-      summary:
-        'Delivered scalable backend features across cloud environments using Spring Boot and Quarkus. Built Kafka/REST-based service workflows, implemented RabbitMQ producer-consumer pipelines, and reduced quotation API latency from 40-60s to 5-6s via OpenSearch.',
+      summary: [
+        'Delivered scalable backend features across cloud environments using Spring Boot and Quarkus.',
+        'Built Kafka/REST-based service workflows and implemented RabbitMQ producer-consumer pipelines.',
+        'Reduced quotation API latency from 40-60s to 5-6s via OpenSearch integration.'
+      ],
+      tech: ['Java 17', 'Spring Boot 3', 'Quarkus', 'Kafka', 'RabbitMQ', 'OpenSearch'],
     },
     {
       role: 'Software Engineer',
       company: 'Bosch Global Software Technologies',
       period: 'Jan 2023 - May 2025',
-      summary:
-        'Built and maintained Spring Boot APIs handling 100K+ daily telemetry requests for connected vehicle analytics. Improved response latency, implemented Kafka event-driven processing and AWS S3 archival, optimized MongoDB performance, and strengthened reliability with Resilience4j and gateway controls.',
+      summary: [
+        'Built and maintained Spring Boot APIs handling 100K+ daily telemetry requests for connected vehicle analytics.',
+        'Improved response latency, implemented Kafka event-driven processing and AWS S3 archival.',
+        'Optimized MongoDB performance and strengthened reliability with Resilience4j and gateway controls.'
+      ],
+      tech: ['Java 11/17', 'Spring Boot 2', 'Kafka', 'MongoDB', 'AWS S3', 'Resilience4j'],
     },
+  ],
+  fastFacts: [
+    'Coffee enthusiast and amateur barista',
+    'Open source contributor to Java ecosystem',
+    'Avid reader of sci-fi and tech blogs',
+    'Regularly writes technical articles on backend systems',
   ],
 }

@@ -793,3 +793,147 @@ p {
     gap: 0.55rem;
   }
 }
+
+/* About Page Specific Styles */
+.about-hero {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-paragraph {
+  font-size: 1.1rem;
+}
+
+.about-actions {
+  margin-top: 1rem;
+}
+
+.about-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.about-image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: var(--border-width) solid var(--shadow-color);
+  transform: translate(12px, 12px);
+  z-index: -1;
+  background: var(--brand-soft);
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: var(--border-width) solid var(--shadow-color);
+  background: #ffffff;
+}
+
+.about-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  grid-template-columns: 1fr;
+}
+
+.fast-facts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fast-facts-list .fact-item {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.fast-facts-list .fact-item::before {
+  content: '→';
+  color: var(--brand);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Block Timeline variants (for Experience) */
+.block-timeline {
+  position: relative;
+  border-left: none; /* Override old border */
+  padding-left: 0;
+}
+
+.experience-list {
+  padding-left: 1.25rem;
+  margin: 1rem 0;
+  list-style-type: square;
+  color: var(--color-foreground-muted);
+}
+
+.experience-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+.experience-list li::marker {
+  color: var(--color-primary);
+}
+
+.block-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 16px;
+  width: var(--border-width);
+  background: var(--line);
+  z-index: 1;
+}
+
+.block-timeline .timeline-item {
+  position: relative;
+  border-left: none;
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+}
+
+/* Instead of circle, geometric square dot */
+.block-timeline .timeline-dot {
+  position: absolute;
+  left: 8px;
+  top: 24px;
+  width: 20px;
+  height: 20px;
+  background: var(--brand);
+  border: var(--border-width) solid var(--bg);
+  border-radius: 0;
+  z-index: 2;
+  box-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+:root[data-theme='dark'] .block-timeline .timeline-dot {
+  border-color: var(--bg);
+}
+
+@media (min-width: 768px) {
+  .about-hero {
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

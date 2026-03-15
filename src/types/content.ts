@@ -20,7 +20,8 @@ export interface ExperienceItem {
   role: string
   company: string
   period: string
-  summary: string
+  summary: string[]
+  tech: string[]
 }
 
 export interface BlogPost {
@@ -45,4 +46,5 @@ export interface SiteContent {
   about: string[]
   skills: string[]
   experience: ExperienceItem[]
+  fastFacts: string[]
 }
