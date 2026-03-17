@@ -2,17 +2,18 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { projects } from '../content/projects'
+import { useProjects } from '../hooks/useApi'
 
 export function ProjectsPage() {
   useDocumentTitle('Projects')
   const [activeCategory, setActiveCategory] = useState('All')
   const [query, setQuery] = useState('')
+  const { data: projects, loading } = useProjects()
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(projects.map((project) => project.category)))
     return ['All', ...unique]
-  }, [])
+  }, [projects])
 
   const visibleProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -21,7 +22,17 @@ export function ProjectsPage() {
       const matchesSearch = normalized.includes(query.toLowerCase().trim())
       return inCategory && matchesSearch
     })
-  }, [activeCategory, query])
+  }, [activeCategory, query, projects])
+
+  if (loading) {
+    return (
+      <PageLayout>
+        <main className="container section-block reveal">
+          <p>Loading...</p>
+        </main>
+      </PageLayout>
+    )
+  }
 
   return (
     <PageLayout>

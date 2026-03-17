@@ -1,14 +1,26 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
 import { ContentRenderer } from '../components/ContentRenderer'
-import { blogPosts } from '../content/blogPosts'
+import { useBlogPost, useBlogPosts } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
 
 export function BlogPostPage() {
   const { slug } = useParams()
-  const post = blogPosts.find((item) => item.slug === slug)
+  const { data: post, loading: postLoading } = useBlogPost(slug || '')
+  const { data: allPosts, loading: postsLoading } = useBlogPosts()
+  
   useDocumentTitle(post ? post.title : 'Post Not Found')
+
+  if (postLoading || postsLoading) {
+    return (
+      <PageLayout>
+        <main className="container section-block">
+          <p>Loading post...</p>
+        </main>
+      </PageLayout>
+    )
+  }
 
   if (!post) {
     return (
@@ -22,7 +34,7 @@ export function BlogPostPage() {
     )
   }
 
-  const relatedPosts = blogPosts
+  const relatedPosts = allPosts
     .filter((item) => item.slug !== slug)
     .filter((item) => item.tags.some((tag) => post.tags.includes(tag)))
     .slice(0, 3)

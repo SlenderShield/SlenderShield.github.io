@@ -1,13 +1,24 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
 import { ContentRenderer } from '../components/ContentRenderer'
-import { projects } from '../content/projects'
+import { useProject } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 export function ProjectDetailPage() {
   const { slug } = useParams()
-  const project = projects.find((item) => item.slug === slug)
+  const { data: project, loading } = useProject(slug || '')
+  
   useDocumentTitle(project ? project.title : 'Project Not Found')
+
+  if (loading) {
+    return (
+      <PageLayout>
+        <main className="container section-block">
+          <p>Loading project...</p>
+        </main>
+      </PageLayout>
+    )
+  }
 
   if (!project) {
     return (
@@ -19,7 +30,7 @@ export function ProjectDetailPage() {
         </main>
       </PageLayout>
     )
-  };
+  }
 
   return (
     <PageLayout>

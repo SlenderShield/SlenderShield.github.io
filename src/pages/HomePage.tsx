@@ -1,19 +1,33 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { PageLayout } from "../components/PageLayout";
-import { blogPosts } from "../content/blogPosts";
-import { projects } from "../content/projects";
+import { useProjects, useBlogPosts } from "../hooks/useApi";
 import { siteContent } from "../content/siteContent";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { toReadableDate } from "../utils/date";
 
 export function HomePage() {
   useDocumentTitle("Home");
-  const featuredPosts = useMemo(() => blogPosts.slice(0, 3), []);
+  const { data: projects, loading: projectsLoading } = useProjects();
+  const { data: blogPosts, loading: postsLoading } = useBlogPosts();
+
+  const featuredPosts = useMemo(() => blogPosts.slice(0, 3), [blogPosts]);
   const featuredProjects = useMemo(
     () => projects.filter((project) => project.featured).slice(0, 3),
-    [],
+    [projects],
   );
+
+  if (projectsLoading || postsLoading) {
+    return (
+      <PageLayout>
+        <main>
+          <section className="container section-block reveal">
+            <p>Loading...</p>
+          </section>
+        </main>
+      </PageLayout>
+    );
+  }
 
   return (
     <PageLayout>

@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
-import { blogPosts } from '../content/blogPosts'
+import { useBlogPosts } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { toReadableDate } from '../utils/date'
 
 export function BlogPage() {
   useDocumentTitle('Journal', 'Articles, stories, and photography from work and life by Muralidhara Bhat KS.')
+  const { data: blogPosts, loading } = useBlogPosts()
+
+  if (loading) {
+    return (
+      <PageLayout>
+        <main className="container section-block reveal">
+          <p>Loading journal...</p>
+        </main>
+      </PageLayout>
+    )
+  }
+
   return (
     <PageLayout>
       <main className="container section-block reveal">
