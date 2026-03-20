@@ -1,12 +1,45 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
-import { projects } from '../content/projects'
+import { ContentRenderer } from '../components/ContentRenderer'
+import { useProject } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { SITE_NAME, SITE_URL } from '../config/site'
 
 export function ProjectDetailPage() {
   const { slug } = useParams()
-  const project = projects.find((item) => item.slug === slug)
-  useDocumentTitle(project ? project.title : 'Project Not Found')
+  const { data: project, loading } = useProject(slug || '')
+
+  useDocumentTitle(project ? project.title : 'Project Not Found', {
+    path: slug ? `/projects/${slug}` : '/projects',
+    description: project?.description,
+    noIndex: !project,
+    structuredData: project
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: project.title,
+          description: project.description,
+          creator: {
+            '@type': 'Person',
+            name: SITE_NAME,
+          },
+          datePublished: /^\d{4}$/.test(project.year) ? `${project.year}-01-01` : undefined,
+          url: `${SITE_URL}/projects/${project.slug}`,
+          keywords: project.stack.join(', '),
+          genre: project.category,
+        }
+      : null,
+  })
+
+  if (loading) {
+    return (
+      <PageLayout>
+        <main className="container section-block">
+          <p>Loading project...</p>
+        </main>
+      </PageLayout>
+    )
+  }
 
   if (!project) {
     return (
@@ -22,19 +55,46 @@ export function ProjectDetailPage() {
 
   return (
     <PageLayout>
-      <main className="container section-block reveal">
-        <p className="meta">
-          {project.category} • {project.year}
-        </p>
-        <h1>{project.title}</h1>
-        <p>{project.description}</p>
+      <main className={`container section-block reveal template-${project.template || 'default'}`}>
+        <header className="project-header">
+          <p className="meta">
+            {project.category} • {project.year}
+          </p>
+          <h1>{project.title}</h1>
+          <p className="project-desc">{project.description}</p>
+          
+          <div className="row-links">
+            {project.liveUrl !== '#' && (
+              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button solid">
+                View live project
+              </a>
+            )}
+            {project.repoUrl !== '#' && (
+              <a href={project.repoUrl} target="_blank" rel="noreferrer" className="button ghost">
+                View repository
+              </a>
+            )}
+            <Link to="/projects" className="button ghost">Back to all projects</Link>
+          </div>
+        </header>
 
-        <article className="detail-panel">
-          <h2>Outcome</h2>
-          <p>{project.outcome}</p>
-        </article>
+        {project.sections && project.sections.length > 0 ? (
+          <div className={`project-body layout-${project.template || 'default'}`}>
+            {project.sections.map((sec, i) => (
+              <section key={i} className="project-section">
+                {sec.title && <h2>{sec.title}</h2>}
+                <ContentRenderer blocks={sec.blocks} />
+              </section>
+            ))}
+          </div>
+        ) : (
+          <article className="detail-panel">
+            <h2>Outcome</h2>
+            <p>{project.outcome}</p>
+          </article>
+        )}
 
-        <article className="detail-panel">
+        <article className="detail-panel stack-panel">
           <h2>Tech Stack</h2>
           <ul className="chip-row">
             {project.stack.map((item) => (
@@ -43,15 +103,6 @@ export function ProjectDetailPage() {
           </ul>
         </article>
 
-        <div className="row-links">
-          <a href={project.liveUrl} target="_blank" rel="noreferrer">
-            View live project
-          </a>
-          <a href={project.repoUrl} target="_blank" rel="noreferrer">
-            View repository
-          </a>
-          <Link to="/projects">Back to all projects</Link>
-        </div>
       </main>
     </PageLayout>
   )

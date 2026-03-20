@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { siteContent } from '../content/siteContent'
 import { ThemeToggle } from './ThemeToggle'
@@ -14,10 +14,6 @@ const navItems = [
 export function SiteHeader() {
   const location = useLocation()
   const [isNavOpen, setIsNavOpen] = useState(false)
-
-  useEffect(() => {
-    setIsNavOpen(false)
-  }, [location.pathname])
 
   return (
     <header className="site-header">
@@ -45,6 +41,7 @@ export function SiteHeader() {
               key={item.label}
               to={item.to}
               className={location.pathname === item.to ? 'active' : undefined}
+              onClick={() => setIsNavOpen(false)}
             >
               {item.label}
             </Link>

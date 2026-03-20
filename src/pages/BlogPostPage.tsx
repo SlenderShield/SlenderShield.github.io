@@ -1,13 +1,53 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
-import { blogPosts } from '../content/blogPosts'
+import { ContentRenderer } from '../components/ContentRenderer'
+import { useBlogPost, useBlogPosts } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { SITE_NAME, SITE_URL } from '../config/site'
 import { toReadableDate } from '../utils/date'
+import { renderMarkdownToHtml, sanitizeHtml } from '../utils/sanitize'
 
 export function BlogPostPage() {
   const { slug } = useParams()
-  const post = blogPosts.find((item) => item.slug === slug)
-  useDocumentTitle(post ? post.title : 'Post Not Found')
+  const { data: post, loading: postLoading } = useBlogPost(slug || '')
+  const { data: allPosts, loading: postsLoading } = useBlogPosts()
+
+  useDocumentTitle(post ? post.title : 'Post Not Found', {
+    path: slug ? `/blog/${slug}` : '/blog',
+    description: post?.excerpt,
+    noIndex: !post,
+    structuredData: post
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.publishedOn,
+          dateModified: post.publishedOn,
+          author: {
+            '@type': 'Person',
+            name: SITE_NAME,
+          },
+          publisher: {
+            '@type': 'Person',
+            name: SITE_NAME,
+          },
+          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+          keywords: post.tags.join(', '),
+          image: post.coverImage ? [post.coverImage] : undefined,
+        }
+      : null,
+  })
+
+  if (postLoading || postsLoading) {
+    return (
+      <PageLayout>
+        <main className="container section-block">
+          <p>Loading post...</p>
+        </main>
+      </PageLayout>
+    )
+  }
 
   if (!post) {
     return (
@@ -21,28 +61,41 @@ export function BlogPostPage() {
     )
   }
 
-  const relatedPosts = blogPosts
+  const relatedPosts = allPosts
     .filter((item) => item.slug !== slug)
     .filter((item) => item.tags.some((tag) => post.tags.includes(tag)))
     .slice(0, 3)
 
+  const markdownSource = post.content || post.body.join('\n\n')
+  const markdownHtml = sanitizeHtml(renderMarkdownToHtml(markdownSource))
+
   return (
     <PageLayout>
-      <main className="container section-block reveal">
-        <p className="meta">
-          {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
-        </p>
-        <h1>{post.title}</h1>
-        <div className="chip-row">
-          {post.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
-        </div>
+      <main className={`container section-block reveal template-${post.template || 'minimal'}`}>
+        <header className="blog-header">
+          <p className="meta">
+            {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
+          </p>
+          <h1>{post.title}</h1>
+          <div className="chip-row">
+            {post.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </header>
+
+        {post.coverImage && (
+          <figure className="blog-cover">
+            <img src={post.coverImage} alt={`${post.title} cover image`} loading="lazy" />
+          </figure>
+        )}
 
         <article className="post-content">
-          {post.body.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          {post.blocks && post.blocks.length > 0 ? (
+            <ContentRenderer blocks={post.blocks} />
+          ) : (
+            <div className="markdown-content" dangerouslySetInnerHTML={{ __html: markdownHtml }} />
+          )}
         </article>
 
         {relatedPosts.length > 0 ? (

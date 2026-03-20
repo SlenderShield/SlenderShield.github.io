@@ -9,7 +9,43 @@
     "featured": true,
     "stack": ["Spring Boot 3", "Kafka", "React", "TypeScript", "Docker", "Kubernetes", "MongoDB", "Prometheus", "Grafana"],
     "liveUrl": "https://muralidharabhat.in",
-    "repoUrl": "https://github.com/SlenderShield"
+    "repoUrl": "https://github.com/SlenderShield",
+    "template": "case-study",
+    "sections": [
+      {
+        "title": "The Challenge",
+        "blocks": [
+          {
+            "type": "text",
+            "value": "Healthcare platforms require high availability and strict security. Scaling a monolithic architecture was no longer feasible."
+          }
+        ]
+      },
+      {
+        "title": "Architecture design",
+        "blocks": [
+          {
+            "type": "mermaid",
+            "value": "Client -> API Gateway -> Auth Service -> Event Bus",
+            "caption": "High level microservices communication"
+          },
+          {
+            "type": "text",
+            "value": "By decoupling the services, we achieved independent scaling and isolated failure domains."
+          }
+        ]
+      },
+      {
+        "title": "Authentication Flow",
+        "blocks": [
+          {
+            "type": "code",
+            "language": "java",
+            "value": "@RestController\n@RequestMapping(\"/api/v1/auth\")\npublic class AuthController {\n    \n    private final AuthService authService;\n    private final JwtTokenProvider tokenProvider;\n\n    @PostMapping(\"/login\")\n    public ResponseEntity<JwtAuthResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {\n        Authentication authentication = authenticationManager.authenticate(\n                new UsernamePasswordAuthenticationToken(\n                        loginRequest.getUsernameOrEmail(),\n                        loginRequest.getPassword()\n                )\n        );\n\n        SecurityContextHolder.getContext().setAuthentication(authentication);\n\n        String jwt = tokenProvider.generateToken(authentication);\n        return ResponseEntity.ok(new JwtAuthResponse(jwt));\n    }\n}\n"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "cafe-order-management-system",
@@ -21,7 +57,24 @@
     "featured": true,
     "stack": ["Spring Boot 3", "Kafka", "React", "Docker", "PostgreSQL", "MySQL"],
     "liveUrl": "https://muralidharabhat.in",
-    "repoUrl": "https://github.com/SlenderShield"
+    "repoUrl": "https://github.com/SlenderShield",
+    "template": "tech-deep-dive",
+    "sections": [
+      {
+        "title": "Deep Dive",
+        "blocks": [
+          {
+            "type": "text",
+            "value": "A deep dive into managing distributed transactions using the SAGA pattern."
+          },
+          {
+            "type": "quote",
+            "value": "Eventual consistency is the pragmatic choice for microservices.",
+            "caption": "Architecture Principle"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "quotation-search-opensearch-optimization",
@@ -44,7 +97,30 @@
     "outcome": "Handled 100K+ daily telemetry requests, improved average latency from 1.5s to 1.3s, and automated 200GB+ weekly archival to AWS S3.",
     "stack": ["Spring Boot", "Kafka", "MongoDB", "Redis", "AWS ECS Fargate", "S3", "Docker", "Grafana"],
     "liveUrl": "https://muralidharabhat.in",
-    "repoUrl": "https://github.com/SlenderShield"
+    "repoUrl": "https://github.com/SlenderShield",
+    "template": "gallery",
+    "sections": [
+      {
+        "title": "Architectural Designs",
+        "blocks": [
+          {
+            "type": "image",
+            "value": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+            "caption": "Dashboard View"
+          },
+          {
+            "type": "image",
+            "value": "https://images.unsplash.com/photo-1543286386-2e659306cd6c?auto=format&fit=crop&q=80&w=800",
+            "caption": "Telemetry Analytics"
+          },
+          {
+            "type": "image",
+            "value": "https://images.unsplash.com/photo-1555949963-aa79dcee57d5?auto=format&fit=crop&q=80&w=800",
+            "caption": "Ingestion Pipeline Diagram"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "resilient-api-gateway-and-cqrs-improvements",
