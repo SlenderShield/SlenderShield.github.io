@@ -1,5 +1,7 @@
 # Personal Portfolio (React + Vite + TypeScript)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/52ed2d42-b1ee-4ea3-b8c5-6d4f2fbd8bda/deploy-status)](https://app.netlify.com/projects/muralidharabhat/deploys)
+
 Dynamic portfolio scaffold with data-driven sections and blog-ready routing.
 
 ## Run Locally
