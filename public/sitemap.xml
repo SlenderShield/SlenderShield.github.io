@@ -56,27 +56,45 @@
     <lastmod>2024-01-01</lastmod>
   </url>
   <url>
-    <loc>https://muralidharabhat.in/blog/designing-high-throughput-spring-apis</loc>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-01-brief-architecture</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-03-05</lastmod>
+    <lastmod>2026-03-20</lastmod>
   </url>
   <url>
-    <loc>https://muralidharabhat.in/blog/kodagu-cycling-tour</loc>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-02-vite-react-foundation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-03-19</lastmod>
   </url>
   <url>
-    <loc>https://muralidharabhat.in/blog/event-driven-workflows-kafka-rabbitmq</loc>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-03-content-model-routing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
   </url>
   <url>
-    <loc>https://muralidharabhat.in/blog/malnad-monsoon-photography</loc>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-04-design-system-motion</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-05-blog-engine-renderer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-06-admin-auth-supabase</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-03-15</lastmod>
+  </url>
+  <url>
+    <loc>https://muralidharabhat.in/blog/portfolio-build-series-07-deploy-seo-iterations</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-03-14</lastmod>
   </url>
 </urlset>

@@ -468,6 +468,35 @@ p {
   gap: 1rem;
 }
 
+.blog-list-grid {
+  grid-template-columns: 1fr;
+}
+
+.blog-toolbar {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr;
+}
+
+.blog-filter-field {
+  min-width: 0;
+}
+
+.blog-filter-field select {
+  font: inherit;
+  padding: 0.8rem;
+  border: var(--border-width) solid var(--shadow-color);
+  background: var(--bg-deep);
+  box-shadow: inset 2px 2px 0px color-mix(in oklab, var(--text), transparent 94%);
+}
+
+.blog-filter-field select:focus {
+  outline: none;
+  box-shadow:
+    inset 4px 4px 0px color-mix(in oklab, var(--text), transparent 94%),
+    0 0 0 2px var(--brand);
+}
+
 .blog-item {
   container-type: inline-size;
   border: var(--border-width) solid var(--shadow-color);
@@ -483,6 +512,26 @@ p {
 .blog-item:hover {
   transform: translate(-3px, -3px);
   box-shadow: var(--shadow-hover);
+}
+
+.blog-item-cover-link {
+  display: block;
+  border: var(--border-width) solid var(--shadow-color);
+  box-shadow: 2px 2px 0px var(--shadow-color);
+  overflow: hidden;
+}
+
+.blog-item-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.001);
+  transition: transform 0.25s ease;
+}
+
+.blog-item:hover .blog-item-cover {
+  transform: scale(1.03);
 }
 
 .contact-form {
@@ -574,6 +623,51 @@ p {
 .post-content pre code {
   word-break: normal;
   overflow-wrap: normal;
+}
+
+.markdown-content {
+  display: grid;
+  gap: 1rem;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.markdown-content blockquote {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--brand);
+  background: color-mix(in oklab, var(--bg-deep), var(--brand) 8%);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.markdown-content img {
+  width: 100%;
+  height: auto;
+  border: var(--border-width) solid var(--shadow-color);
+  box-shadow: var(--shadow);
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid var(--line);
+  padding: 0.5rem;
 }
 
 .detail-panel {
@@ -770,6 +864,10 @@ p {
   .social-inline a span {
     display: inline;
   }
+
+  .blog-toolbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 768px) {
@@ -822,6 +920,10 @@ p {
   }
 
   .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blog-list-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

@@ -5,6 +5,7 @@ import { useBlogPost, useBlogPosts } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { SITE_NAME, SITE_URL } from '../config/site'
 import { toReadableDate } from '../utils/date'
+import { renderMarkdownToHtml, sanitizeHtml } from '../utils/sanitize'
 
 export function BlogPostPage() {
   const { slug } = useParams()
@@ -65,6 +66,9 @@ export function BlogPostPage() {
     .filter((item) => item.tags.some((tag) => post.tags.includes(tag)))
     .slice(0, 3)
 
+  const markdownSource = post.content || post.body.join('\n\n')
+  const markdownHtml = sanitizeHtml(renderMarkdownToHtml(markdownSource))
+
   return (
     <PageLayout>
       <main className={`container section-block reveal template-${post.template || 'minimal'}`}>
@@ -90,9 +94,7 @@ export function BlogPostPage() {
           {post.blocks && post.blocks.length > 0 ? (
             <ContentRenderer blocks={post.blocks} />
           ) : (
-            post.body.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))
+            <div className="markdown-content" dangerouslySetInnerHTML={{ __html: markdownHtml }} />
           )}
         </article>
 
