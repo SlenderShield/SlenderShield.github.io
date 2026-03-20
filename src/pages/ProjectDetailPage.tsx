@@ -7,8 +7,28 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle'
 export function ProjectDetailPage() {
   const { slug } = useParams()
   const { data: project, loading } = useProject(slug || '')
-  
-  useDocumentTitle(project ? project.title : 'Project Not Found')
+
+  useDocumentTitle(project ? project.title : 'Project Not Found', {
+    path: slug ? `/projects/${slug}` : '/projects',
+    description: project?.description,
+    noIndex: !project,
+    structuredData: project
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: project.title,
+          description: project.description,
+          creator: {
+            '@type': 'Person',
+            name: 'Muralidhara Bhat KS',
+          },
+          datePublished: /^\d{4}$/.test(project.year) ? `${project.year}-01-01` : undefined,
+          url: `https://slendershield.github.io/projects/${project.slug}`,
+          keywords: project.stack.join(', '),
+          genre: project.category,
+        }
+      : null,
+  })
 
   if (loading) {
     return (

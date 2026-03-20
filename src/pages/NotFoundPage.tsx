@@ -3,7 +3,7 @@ import { PageLayout } from '../components/PageLayout'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 export function NotFoundPage() {
-  useDocumentTitle('Page Not Found')
+  useDocumentTitle('Page Not Found', { noIndex: true, path: '/404' })
   return (
     <PageLayout>
       <main className="container section-block reveal">

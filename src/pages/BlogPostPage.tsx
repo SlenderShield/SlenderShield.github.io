@@ -9,8 +9,33 @@ export function BlogPostPage() {
   const { slug } = useParams()
   const { data: post, loading: postLoading } = useBlogPost(slug || '')
   const { data: allPosts, loading: postsLoading } = useBlogPosts()
-  
-  useDocumentTitle(post ? post.title : 'Post Not Found')
+
+  useDocumentTitle(post ? post.title : 'Post Not Found', {
+    path: slug ? `/blog/${slug}` : '/blog',
+    description: post?.excerpt,
+    noIndex: !post,
+    structuredData: post
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.publishedOn,
+          dateModified: post.publishedOn,
+          author: {
+            '@type': 'Person',
+            name: 'Muralidhara Bhat KS',
+          },
+          publisher: {
+            '@type': 'Person',
+            name: 'Muralidhara Bhat KS',
+          },
+          mainEntityOfPage: `https://slendershield.github.io/blog/${post.slug}`,
+          keywords: post.tags.join(', '),
+          image: post.coverImage ? [post.coverImage] : undefined,
+        }
+      : null,
+  })
 
   if (postLoading || postsLoading) {
     return (
@@ -56,7 +81,7 @@ export function BlogPostPage() {
 
         {post.coverImage && (
           <figure className="blog-cover">
-            <img src={post.coverImage} alt="Cover image" loading="lazy" />
+            <img src={post.coverImage} alt={`${post.title} cover image`} loading="lazy" />
           </figure>
         )}
 
