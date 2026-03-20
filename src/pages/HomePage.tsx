@@ -1,13 +1,30 @@
-import { useMemo } from "react";
-import { Link } from "react-router-dom";
-import { PageLayout } from "../components/PageLayout";
-import { useProjects, useBlogPosts } from "../hooks/useApi";
-import { siteContent } from "../content/siteContent";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { toReadableDate } from "../utils/date";
+import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { PageLayout } from '../components/PageLayout';
+import { useProjects, useBlogPosts } from '../hooks/useApi';
+import { siteContent } from '../content/siteContent';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { toReadableDate } from '../utils/date';
 
 export function HomePage() {
-  useDocumentTitle("Home");
+  useDocumentTitle('Home', {
+    description:
+      'Muralidhara Bhat KS — software engineer specializing in high-throughput distributed systems, Java microservices, and event-driven architectures. 3.5+ years at Bosch and Netcracker.',
+    path: '/',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: siteContent.name,
+      jobTitle: 'Software Engineer',
+      url: 'https://slendershield.github.io/',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: siteContent.location,
+      },
+      sameAs: siteContent.socialLinks.map((item) => item.href),
+    },
+  });
+
   const { data: projects, loading: projectsLoading } = useProjects();
   const { data: blogPosts, loading: postsLoading } = useBlogPosts();
 
@@ -33,24 +50,40 @@ export function HomePage() {
     <PageLayout>
       <main>
         <section className="hero-spacious container reveal">
-          <p className="eyebrow">{siteContent.location}</p>
-          <h1>I'm {siteContent.name},<br />{siteContent.headline}</h1>
-          <p className="hero-copy">{siteContent.subheadline}</p>
-          <p className="hero-intro">{siteContent.about[0]}</p>
+          <div className="hero-bento-layout">
+            <div className="hero-intro-block">
+              <p className="eyebrow">{siteContent.location}</p>
+              <h1>
+                I'm {siteContent.name},<br />
+                {siteContent.headline}
+              </h1>
+              <p className="hero-copy">{siteContent.subheadline}</p>
+              <p className="hero-intro">{siteContent.about[0]}</p>
+            </div>
 
-          <div className="hero-kpis-row">
-            <article>
-              <p className="meta">Projects</p>
-              <strong>{projects.length}+</strong>
-            </article>
-            <article>
-              <p className="meta">Articles</p>
-              <strong>{blogPosts.length}</strong>
-            </article>
-            <article>
-              <p className="meta">Core Stack</p>
-              <strong>{siteContent.skills.length}</strong>
-            </article>
+            <div className="hero-kpis-row">
+              <article>
+                <p className="meta">Projects</p>
+                <strong>{projects.length}+</strong>
+              </article>
+              <article>
+                <p className="meta">Articles</p>
+                <strong>{blogPosts.length}</strong>
+              </article>
+              <article>
+                <p className="meta">Core Stack</p>
+                <strong>{siteContent.skills.length}</strong>
+              </article>
+            </div>
+
+            <aside className="hero-highlight">
+              <p className="meta">Current Priority</p>
+              <h2>Distributed platform reliability and API-first delivery.</h2>
+              <p>
+                Shipping systems that hold up under traffic, observability
+                pressure, and evolving product requirements.
+              </p>
+            </aside>
           </div>
 
           <div className="hero-actions">

@@ -5,7 +5,7 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useProjects } from '../hooks/useApi'
 
 export function ProjectsPage() {
-  useDocumentTitle('Projects')
+  useDocumentTitle('Projects', 'Projects by Muralidhara Bhat KS — backend systems, telemetry pipelines, microservices, and full-stack engineering work from Bosch and Netcracker.')
   const [activeCategory, setActiveCategory] = useState('All')
   const [query, setQuery] = useState('')
   const { data: projects, loading } = useProjects()

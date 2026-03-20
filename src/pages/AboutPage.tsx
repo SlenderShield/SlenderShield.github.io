@@ -4,7 +4,7 @@ import { siteContent } from '../content/siteContent'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 export function AboutPage() {
-  useDocumentTitle('About')
+  useDocumentTitle('About', 'About Muralidhara Bhat KS — software engineer specializing in distributed systems, Spring Boot, Kafka, and cloud-native Java backends. Based in Bengaluru, India.')
   return (
     <PageLayout>
       <main className="container section-block reveal">
@@ -18,14 +18,14 @@ export function AboutPage() {
             {siteContent.about.map((paragraph, idx) => (
               <p key={idx} className="about-paragraph">{paragraph}</p>
             ))}
-            
+
             <div className="about-actions chip-row">
               {siteContent.socialLinks.map((link) => (
-                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="button ghost" style={{ padding: '0.4rem 0.8rem', fontSize: '1rem' }}>
+                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="button ghost">
                   {link.label}
                 </a>
               ))}
-              <a href={siteContent.resumeUrl} target="_blank" rel="noopener noreferrer" className="button solid" style={{ padding: '0.4rem 0.8rem', fontSize: '1rem' }}>
+              <a href={siteContent.resumeUrl} target="_blank" rel="noopener noreferrer" className="button solid">
                 Download Resume
               </a>
             </div>
@@ -55,7 +55,7 @@ export function AboutPage() {
           </section>
         </div>
 
-        <section className="detail-panel reveal" style={{ marginTop: 'var(--spacing-xxl)' }}>
+        <section className="detail-panel reveal about-section-gap">
           <h2>Experience Snapshot</h2>
           <div className="timeline block-timeline">
             {siteContent.experience.map((item) => (
@@ -64,14 +64,14 @@ export function AboutPage() {
                 <div className="timeline-content">
                   <p className="meta">{item.period}</p>
                   <h3 className="timeline-title">
-                    {item.role} <span style={{ color: 'var(--color-primary)' }}>•</span> {item.company}
+                    {item.role} <span className="brand-accent">•</span> {item.company}
                   </h3>
                   <ul className="experience-list">
                     {item.summary.map((point, idx) => (
                       <li key={idx}>{point}</li>
                     ))}
                   </ul>
-                  <ul className="chip-row" style={{ marginTop: '1.25rem' }}>
+                  <ul className="chip-row about-links-gap">
                     {item.tech?.map((techItem) => (
                       <li key={techItem} className="tech-chip">{techItem}</li>
                     ))}
