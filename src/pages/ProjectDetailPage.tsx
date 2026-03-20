@@ -3,6 +3,7 @@ import { PageLayout } from '../components/PageLayout'
 import { ContentRenderer } from '../components/ContentRenderer'
 import { useProject } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { SITE_NAME, SITE_URL } from '../config/site'
 
 export function ProjectDetailPage() {
   const { slug } = useParams()
@@ -20,10 +21,10 @@ export function ProjectDetailPage() {
           description: project.description,
           creator: {
             '@type': 'Person',
-            name: 'Muralidhara Bhat KS',
+            name: SITE_NAME,
           },
           datePublished: /^\d{4}$/.test(project.year) ? `${project.year}-01-01` : undefined,
-          url: `https://slendershield.github.io/projects/${project.slug}`,
+          url: `${SITE_URL}/projects/${project.slug}`,
           keywords: project.stack.join(', '),
           genre: project.category,
         }

@@ -4,6 +4,7 @@ import { PageLayout } from '../components/PageLayout';
 import { useProjects, useBlogPosts } from '../hooks/useApi';
 import { siteContent } from '../content/siteContent';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { SITE_URL } from '../config/site';
 import { toReadableDate } from '../utils/date';
 
 export function HomePage() {
@@ -16,7 +17,7 @@ export function HomePage() {
       '@type': 'Person',
       name: siteContent.name,
       jobTitle: 'Software Engineer',
-      url: 'https://slendershield.github.io/',
+      url: `${SITE_URL}/`,
       address: {
         '@type': 'PostalAddress',
         addressLocality: siteContent.location,

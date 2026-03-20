@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
+import { SITE_NAME, SITE_URL } from '../config/site'
 
-const siteBase = 'https://slendershield.github.io'
-const siteName = 'Muralidhara Bhat KS'
+const siteBase = SITE_URL
+const siteName = SITE_NAME
 
 function upsertMeta(selector: string, attrs: Record<string, string>) {
   const existing = document.querySelector(selector)

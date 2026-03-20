@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://slendershield.github.io/sitemap.xml
+Sitemap: https://muralidharabhat.in/sitemap.xml

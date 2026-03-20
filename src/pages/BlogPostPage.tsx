@@ -3,6 +3,7 @@ import { PageLayout } from '../components/PageLayout'
 import { ContentRenderer } from '../components/ContentRenderer'
 import { useBlogPost, useBlogPosts } from '../hooks/useApi'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { SITE_NAME, SITE_URL } from '../config/site'
 import { toReadableDate } from '../utils/date'
 
 export function BlogPostPage() {
@@ -24,13 +25,13 @@ export function BlogPostPage() {
           dateModified: post.publishedOn,
           author: {
             '@type': 'Person',
-            name: 'Muralidhara Bhat KS',
+            name: SITE_NAME,
           },
           publisher: {
             '@type': 'Person',
-            name: 'Muralidhara Bhat KS',
+            name: SITE_NAME,
           },
-          mainEntityOfPage: `https://slendershield.github.io/blog/${post.slug}`,
+          mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
           keywords: post.tags.join(', '),
           image: post.coverImage ? [post.coverImage] : undefined,
         }

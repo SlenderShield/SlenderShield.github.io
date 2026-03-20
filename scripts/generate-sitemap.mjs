@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
-const siteUrl = 'https://slendershield.github.io'
+const siteUrl = process.env.SITE_URL || 'https://muralidharabhat.in'
 
 const staticRoutes = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
