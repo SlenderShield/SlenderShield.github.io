@@ -328,5 +328,89 @@
         "href": "/blog"
       }
     ]
+  },
+  {
+    "slug": "motorcycles-and-code",
+    "title": "Motorcycles and Code: Why I Ride",
+    "excerpt": "Reflections on the parallels between riding a motorcycle and building resilient systems. Both require focus, precision, and respect for the unexpected.",
+    "publishedOn": "2026-02-20",
+    "tags": ["Lifestyle", "Riding"],
+    "readMinutes": 6,
+    "body": [],
+    "template": "story",
+    "coverImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1400",
+    "blocks": [
+      {
+        "type": "text",
+        "value": "I bought my first motorcycle three years ago as an antidote to spending too much time in front of screens. What started as weekend rides has become a meditation practice."
+      },
+      {
+        "type": "quote",
+        "value": "On a bike, you can't think about yesterday or tomorrow. You are only in this moment.",
+        "caption": "Riding principle"
+      },
+      {
+        "type": "text",
+        "value": "The parallels to backend systems are obvious: you need situational awareness, you can't ignore warning signs, and planning ahead keeps you alive. Same lessons, different context."
+      },
+      {
+        "type": "text",
+        "value": "I've learned as much about system reliability from riding in traffic as from any architecture textbook. Both demand humility."
+      }
+    ]
+  },
+  {
+    "slug": "bangalore-riding-guide",
+    "title": "A Rider's Guide to Bangalore Traffic",
+    "excerpt": "Notes from my commute: how to stay safe, sane, and on schedule in one of India's busiest cities.",
+    "publishedOn": "2026-01-15",
+    "tags": ["Riding", "Lifestyle", "Bangalore"],
+    "readMinutes": 8,
+    "body": [],
+    "template": "story",
+    "coverImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1400",
+    "blocks": [
+      {
+        "type": "text",
+        "value": "Bangalore traffic is often described as chaotic. It's not—it's simply different from Western traffic models. Once you understand the patterns, it's navigable."
+      },
+      {
+        "type": "quote",
+        "value": "The key is maintaining awareness, not speed."
+      },
+      {
+        "type": "text",
+        "value": "Over the last two years, I've distilled a few rules: Assume invisible. Use mirror discipline. Find your steady pace. The commute should not define your day—it should clear your head."
+      },
+      {
+        "type": "text",
+        "value": "Best riding happens early morning or late evening when the city breathes slower. Take a detour. The destination matters less than the ride."
+      }
+    ]
+  },
+  {
+    "slug": "balancing-code-and-caffeine",
+    "title": "On Coffee, Focus, and Sustainable Pace",
+    "excerpt": "A short essay on the engineer's eternal struggle: how to maintain energy and clarity without burning out.",
+    "publishedOn": "2025-12-10",
+    "tags": ["Lifestyle"],
+    "readMinutes": 5,
+    "body": [],
+    "template": "minimal",
+    "coverImage": "https://images.unsplash.com/photo-1559056199-641a0ac8b3f7?auto=format&fit=crop&q=80&w=1400",
+    "blocks": [
+      {
+        "type": "text",
+        "value": "I've tried timers, sprints, and scheduled breaks. Nothing beats knowing your energy curve and protecting the hours when your mind is clearest."
+      },
+      {
+        "type": "quote",
+        "value": "Consistency beats intensity."
+      },
+      {
+        "type": "text",
+        "value": "A sustainable pace looks ordinary. No all-nighters. No heroic sprints. Just steady, intentional work every day. The best engineers I know optimize for longevity, not for impressiveness."
+      }
+    ]
   }
 ]

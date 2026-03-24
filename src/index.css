@@ -111,6 +111,10 @@ a {
   color: inherit;
 }
 
+img {
+  aspect-ratio: auto;
+}
+
 h1,
 h2,
 h3 {
@@ -1312,7 +1316,9 @@ figure.media-block {
 figure.media-block img {
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
   display: block;
+  object-fit: cover;
 }
 figcaption {
   margin-top: 0.75rem;
@@ -1398,6 +1404,120 @@ blockquote.quote-block {
 }
 
 /* ── Accessibility ── */
+/* Modal Styles for Resume Preview */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+  overflow-y: auto;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background: var(--bg-deep);
+  border: var(--border-width) solid var(--shadow-color);
+  box-shadow: 6px 6px 0px var(--shadow-color);
+  max-width: 900px;
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--text);
+  gap: 1rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  background: var(--bg-deep);
+  border: var(--border-width) solid var(--shadow-color);
+  padding: 0.5rem 0.75rem;
+  font: 1.2rem sans-serif;
+  cursor: pointer;
+  color: var(--text);
+  line-height: 1;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+.modal-close:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--brand);
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: color-mix(in oklab, var(--bg), var(--bg-deep) 50%);
+}
+
+.modal-body embed {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: 1px solid var(--line);
+}
+
+.resume-modal .modal-body {
+  min-height: 600px;
+}
+
+.modal-footer {
+  padding: 1.5rem;
+  border-top: 2px solid var(--text);
+  display: flex;
+  gap: 0.8rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+  .modal-content {
+    max-height: 95vh;
+    border-bottom: none;
+  }
+
+  .modal-body {
+    min-height: 400px;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modal-header h2 {
+    flex: 1;
+  }
+
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 2px;
@@ -1673,5 +1793,280 @@ blockquote.quote-block {
 
   .admin-grid.cols-2 {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============== PHASE 5: UX/ACCESSIBILITY ENHANCEMENTS ============== */
+
+/* Enhanced Focus Visibility for Keyboard Navigation */
+*:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Improved Touch Target Sizes for Mobile */
+@media (max-width: 640px) {
+  button,
+  a[href],
+  .button,
+  .chip-button,
+  input[type='checkbox'],
+  input[type='radio'] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .button,
+  .chip-button {
+    padding: 0.6rem 1rem;
+  }
+
+  /* Responsive text sizing on small screens */
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 3.6rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 2.1rem);
+  }
+
+  p {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  }
+
+  /* Better modal sizing on mobile */
+  .modal-content {
+    max-height: 95vh;
+    width: min(95vw, 600px);
+  }
+
+  .modal-body {
+    max-height: calc(95vh - 140px);
+  }
+
+  /* Enhanced text zoom support */
+  @supports (font-size: clamp(1rem, 1.5vw, 2rem)) {
+    html {
+      font-size: clamp(14px, 2.5vw, 16px);
+    }
+  }
+}
+
+/* Text Zoom Support - Ensure readability at 200% zoom */
+@media (min-width: 320px) and (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    width: min(900px, calc(100% - 1rem));
+  }
+
+  .chip-row {
+    gap: 0.4rem;
+  }
+
+  .chip-row li,
+  .chip-row span {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Portrait Mode Optimizations */
+@media (orientation: portrait) and (max-width: 640px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-overlay {
+    padding: 0.5rem;
+    align-items: center;
+  }
+
+  .modal-content {
+    width: min(100%, calc(100vw - 1rem));
+    max-height: min(90vh, 800px);
+  }
+}
+
+/* Landscape Mode Optimizations */
+@media (orientation: landscape) and (max-height: 500px) {
+  .site-header {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .modal-body {
+    max-height: calc(80vh - 120px);
+  }
+
+  .hero-spacious {
+    padding: 2rem 0 1.5rem;
+  }
+}
+
+/* Scroll Reveal Animation - Will be used with useInView hook */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal.in-view {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Enhanced Contrast for Better Readability */
+@media (prefers-contrast: more) {
+  :root {
+    --text: oklch(0.15 0.03 258);
+    --text-soft: oklch(0.35 0.03 257);
+  }
+
+  :root[data-theme='dark'] {
+    --text: oklch(0.99 0.01 256);
+    --text-soft: oklch(0.85 0.03 256);
+  }
+
+  button,
+  .button,
+  .chip-button {
+    border-width: 3px;
+  }
+}
+
+/* Modal Improvements for Accessibility */
+.modal-overlay {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-deep);
+  border: var(--border-width) solid var(--shadow-color);
+  box-shadow: var(--shadow);
+  max-width: 600px;
+  width: min(90vw, 600px);
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 4px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  gap: 1rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: var(--border-width) solid var(--shadow-color);
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--text);
+  box-shadow: 2px 2px 0px var(--shadow-color);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--brand);
+}
+
+.modal-close:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Resume Modal Specific */
+.resume-modal {
+  max-width: 700px;
+}
+
+.resume-modal .modal-body embed {
+  width: 100%;
+  min-height: 500px;
+  border: none;
+}
+
+/* Very Small Screens (< 320px) */
+@media (max-width: 320px) {
+  h1 {
+    font-size: clamp(1.25rem, 4vw, 3.6rem);
+  }
+
+  h2 {
+    font-size: clamp(1rem, 3vw, 2.1rem);
+  }
+
+  .button,
+  .chip-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .container {
+    width: min(900px, calc(100% - 0.75rem));
   }
 }

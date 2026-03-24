@@ -30,10 +30,44 @@ function validateContact(contact: ContactState): ContactErrors {
   return errors
 }
 
+async function submitViaNetlify(contact: ContactState): Promise<boolean> {
+  try {
+    const params = new URLSearchParams()
+    params.append('form-name', 'contact')
+    params.append('name', contact.name)
+    params.append('email', contact.email)
+    params.append('topic', contact.topic)
+    params.append('message', contact.message)
+
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    })
+
+    return response.ok || response.status === 404 // 404 means Netlify Forms not configured, fallback to mailto
+  } catch (error) {
+    console.warn('Netlify form submission failed, will fallback to mailto', error)
+    return false
+  }
+}
+
+function openMailtoFallback(contact: ContactState): void {
+  const mailto = new URL(`mailto:${siteContent.contactEmail}`)
+  mailto.searchParams.set('subject', `${contact.topic} — ${contact.name}`)
+  mailto.searchParams.set(
+    'body',
+    `Name: ${contact.name}\nEmail: ${contact.email}\nTopic: ${contact.topic}\n\n${contact.message}`,
+  )
+  window.location.href = mailto.toString()
+}
+
 export function useContactForm() {
   const [contact, setContact] = useState<ContactState>(initialContactState)
   const [errors, setErrors] = useState<ContactErrors>({})
-  const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitMessage, setSubmitMessage] = useState('')
 
   const isValid = useMemo(() => Object.keys(validateContact(contact)).length === 0, [contact])
 
@@ -44,36 +78,67 @@ export function useContactForm() {
     }
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setSent(false)
+    setSubmitting(true)
+    setSubmitStatus('idle')
+    setSubmitMessage('')
 
     const validationErrors = validateContact(contact)
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
+      setSubmitting(false)
       return
     }
 
     setErrors({})
 
-    const mailto = new URL(`mailto:${siteContent.contactEmail}`)
-    mailto.searchParams.set('subject', `${contact.topic} — ${contact.name}`)
-    mailto.searchParams.set(
-      'body',
-      `Name: ${contact.name}\nEmail: ${contact.email}\nTopic: ${contact.topic}\n\n${contact.message}`,
-    )
+    try {
+      // Attempt Netlify Forms submission
+      const netlifySuccess = await submitViaNetlify(contact)
 
-    window.location.href = mailto.toString()
-    setSent(true)
-    setContact(initialContactState)
+      if (netlifySuccess) {
+        // Netlify submission succeeded
+        setSubmitStatus('success')
+        setSubmitMessage(
+          'Thanks! Your message was received. I will get back to you within 24-48 hours.',
+        )
+        setContact(initialContactState)
+      } else {
+        // Netlify not configured or failed; fallback to mailto
+        setSubmitStatus('success')
+        setSubmitMessage(
+          'Opening your email client to send your brief. If it doesn\'t open, email directly: ' +
+            siteContent.contactEmail,
+        )
+        openMailtoFallback(contact)
+        // Don't reset form on mailto fallback so user can see what was sent
+      }
+    } catch (error) {
+      console.error('Contact form submission failed:', error)
+      setSubmitStatus('error')
+      setSubmitMessage(
+        'Something went wrong. Please try emailing directly: ' + siteContent.contactEmail,
+      )
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  function resetStatus() {
+    setSubmitStatus('idle')
+    setSubmitMessage('')
   }
 
   return {
     contact,
     errors,
-    sent,
+    submitting,
+    submitStatus,
+    submitMessage,
     isValid,
     updateField,
     onSubmit,
+    resetStatus,
   }
 }

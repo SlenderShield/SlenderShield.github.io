@@ -7,6 +7,20 @@ function useAsyncResource<T>(loader: () => Promise<T>, initialData: T) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  const refetch = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await loader();
+      setData(res);
+      setError(null);
+    } catch (err) {
+      const errorObj = err instanceof Error ? err : new Error('Unknown error');
+      setError(errorObj);
+    } finally {
+      setLoading(false);
+    }
+  }, [loader]);
+
   useEffect(() => {
     let mounted = true;
 
@@ -31,7 +45,7 @@ function useAsyncResource<T>(loader: () => Promise<T>, initialData: T) {
     };
   }, [loader]);
 
-  return { data, loading, error };
+  return { data, loading, error, refetch };
 }
 
 export function useProjects() {

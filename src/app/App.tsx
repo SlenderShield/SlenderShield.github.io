@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from '../hooks/useAuth'
+import { usePageTracking } from '../hooks/usePageTracking'
 
 const HomePage = lazy(() => import('../pages/HomePage').then((m) => ({ default: m.HomePage })))
 const AboutPage = lazy(() => import('../pages/AboutPage').then((m) => ({ default: m.AboutPage })))
@@ -22,6 +23,9 @@ const ManagePosts = lazy(() => import('../pages/admin/ManagePosts').then((m) => 
 const ProtectedRoute = lazy(() => import('../components/ProtectedRoute').then((m) => ({ default: m.ProtectedRoute })))
 
 export function App() {
+  // Track page views on route changes
+  usePageTracking()
+
   return (
     <AuthProvider>
       <Suspense fallback={<div className="page-shell app-suspense-fallback" />}>

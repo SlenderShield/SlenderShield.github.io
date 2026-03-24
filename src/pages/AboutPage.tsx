@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
+import { ResumePreview } from '../components/ResumePreview'
 import { siteContent } from '../content/siteContent'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -25,6 +26,9 @@ export function AboutPage() {
                   {link.label}
                 </a>
               ))}
+              <ResumePreview resumeUrl={siteContent.resumeUrl}>
+                Preview Resume
+              </ResumePreview>
               <a href={siteContent.resumeUrl} target="_blank" rel="noopener noreferrer" className="button solid">
                 Download Resume
               </a>

@@ -97,4 +97,22 @@
     <priority>0.7</priority>
     <lastmod>2026-03-14</lastmod>
   </url>
+  <url>
+    <loc>https://muralidharabhat.in/blog/motorcycles-and-code</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-02-20</lastmod>
+  </url>
+  <url>
+    <loc>https://muralidharabhat.in/blog/bangalore-riding-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://muralidharabhat.in/blog/balancing-code-and-caffeine</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-12-10</lastmod>
+  </url>
 </urlset>
