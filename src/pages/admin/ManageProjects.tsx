@@ -8,7 +8,7 @@ import {
 import type { Project } from '../../types/content';
 
 export function ManageProjects() {
-  const { data: projects, loading, error } = useProjects();
+  const { data: projects, loading, error, refetch } = useProjects();
   const { mutate: createProject, loading: creating } = useCreateProject();
   const { mutate: updateProject, loading: updating } = useUpdateProject();
   const { mutate: deleteProject, loading: deleting } = useDeleteProject();
@@ -17,6 +17,13 @@ export function ManageProjects() {
   const [editingProject, setEditingProject] = useState<Project | null>(null);
 
   const [formData, setFormData] = useState<Partial<Project>>({});
+  const [mutationStatus, setMutationStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [mutationMessage, setMutationMessage] = useState('');
+
+  const resetMutationStatus = () => {
+    setMutationStatus('idle');
+    setMutationMessage('');
+  };
 
   if (loading) {
     return (
@@ -55,19 +62,44 @@ export function ManageProjects() {
 
   const handleDelete = async (slug: string) => {
     if (confirm('Are you sure you want to delete this project?')) {
-      await deleteProject(slug);
-      window.location.reload();
+      try {
+        await deleteProject(slug);
+        setMutationStatus('success');
+        setMutationMessage('Project deleted successfully');
+        await refetch();
+        setTimeout(() => {
+          resetMutationStatus();
+        }, 2000);
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Failed to delete project';
+        setMutationStatus('error');
+        setMutationMessage(msg);
+      }
     }
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (mode === 'create') {
-      await createProject(formData as Project);
-    } else if (mode === 'edit' && editingProject) {
-      await updateProject(editingProject.slug, formData);
+    try {
+      if (mode === 'create') {
+        await createProject(formData as Project);
+        setMutationStatus('success');
+        setMutationMessage('Project created successfully');
+      } else if (mode === 'edit' && editingProject) {
+        await updateProject(editingProject.slug, formData);
+        setMutationStatus('success');
+        setMutationMessage('Project updated successfully');
+      }
+      await refetch();
+      setTimeout(() => {
+        resetMutationStatus();
+        setMode('list');
+      }, 1500);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to save project';
+      setMutationStatus('error');
+      setMutationMessage(msg);
     }
-    window.location.reload();
   };
 
   if (mode !== 'list') {
@@ -81,6 +113,15 @@ export function ManageProjects() {
             Cancel
           </button>
         </div>
+
+        {mutationStatus !== 'idle' && (
+          <div
+            className={`admin-panel admin-status ${mutationStatus}`}
+            role={mutationStatus === 'error' ? 'alert' : 'status'}
+          >
+            {mutationMessage}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="admin-panel admin-form">
           <div className="admin-grid cols-2">
@@ -240,6 +281,15 @@ export function ManageProjects() {
           <span>+</span> New Project
         </button>
       </div>
+
+      {mutationStatus !== 'idle' && (
+        <div
+          className={`admin-panel admin-status ${mutationStatus}`}
+          role={mutationStatus === 'error' ? 'alert' : 'status'}
+        >
+          {mutationMessage}
+        </div>
+      )}
 
       <div className="admin-table-wrap">
         <table className="admin-table">

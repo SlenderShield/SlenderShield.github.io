@@ -8,7 +8,7 @@ import {
 import type { BlogPost } from '../../types/content';
 
 export function ManagePosts() {
-  const { data: posts, loading, error } = useBlogPosts();
+  const { data: posts, loading, error, refetch } = useBlogPosts();
   const { mutate: createPost, loading: creating } = useCreateBlogPost();
   const { mutate: updatePost, loading: updating } = useUpdateBlogPost();
   const { mutate: deletePost, loading: deleting } = useDeleteBlogPost();
@@ -17,6 +17,13 @@ export function ManagePosts() {
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
 
   const [formData, setFormData] = useState<Partial<BlogPost>>({});
+  const [mutationStatus, setMutationStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [mutationMessage, setMutationMessage] = useState('');
+
+  const resetMutationStatus = () => {
+    setMutationStatus('idle');
+    setMutationMessage('');
+  };
 
   if (loading) {
     return (
@@ -51,8 +58,19 @@ export function ManagePosts() {
 
   const handleDelete = async (slug: string) => {
     if (confirm('Are you sure you want to delete this post?')) {
-      await deletePost(slug);
-      window.location.reload();
+      try {
+        await deletePost(slug);
+        setMutationStatus('success');
+        setMutationMessage('Post deleted successfully');
+        await refetch();
+        setTimeout(() => {
+          resetMutationStatus();
+        }, 2000);
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Failed to delete post';
+        setMutationStatus('error');
+        setMutationMessage(msg);
+      }
     }
   };
 
@@ -70,12 +88,26 @@ export function ManagePosts() {
     };
     delete (toSubmit as Record<string, unknown>)._bodyText;
 
-    if (mode === 'create') {
-      await createPost(toSubmit as BlogPost);
-    } else if (mode === 'edit' && editingPost) {
-      await updatePost(editingPost.slug, toSubmit);
+    try {
+      if (mode === 'create') {
+        await createPost(toSubmit as BlogPost);
+        setMutationStatus('success');
+        setMutationMessage('Post created successfully');
+      } else if (mode === 'edit' && editingPost) {
+        await updatePost(editingPost.slug, toSubmit);
+        setMutationStatus('success');
+        setMutationMessage('Post updated successfully');
+      }
+      await refetch();
+      setTimeout(() => {
+        resetMutationStatus();
+        setMode('list');
+      }, 1500);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to save post';
+      setMutationStatus('error');
+      setMutationMessage(msg);
     }
-    window.location.reload();
   };
 
   if (mode !== 'list') {
@@ -95,6 +127,15 @@ export function ManagePosts() {
             Cancel
           </button>
         </div>
+
+        {mutationStatus !== 'idle' && (
+          <div
+            className={`admin-panel admin-status ${mutationStatus}`}
+            role={mutationStatus === 'error' ? 'alert' : 'status'}
+          >
+            {mutationMessage}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="admin-panel admin-form">
           <div className="admin-grid cols-2">
@@ -228,6 +269,15 @@ export function ManagePosts() {
           <span>+</span> New Post
         </button>
       </div>
+
+      {mutationStatus !== 'idle' && (
+        <div
+          className={`admin-panel admin-status ${mutationStatus}`}
+          role={mutationStatus === 'error' ? 'alert' : 'status'}
+        >
+          {mutationMessage}
+        </div>
+      )}
 
       <div className="admin-table-wrap">
         <table className="admin-table">
