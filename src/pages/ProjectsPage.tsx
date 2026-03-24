@@ -7,6 +7,7 @@ import { useProjects } from '../hooks/useApi'
 export function ProjectsPage() {
   useDocumentTitle('Projects', 'Projects by Muralidhara Bhat KS — backend systems, telemetry pipelines, microservices, and full-stack engineering work from Bosch and Netcracker.')
   const [activeCategory, setActiveCategory] = useState('All')
+  const [activeStack, setActiveStack] = useState('All')
   const [query, setQuery] = useState('')
   const { data: projects, loading } = useProjects()
 
@@ -15,14 +16,23 @@ export function ProjectsPage() {
     return ['All', ...unique]
   }, [projects])
 
+  const stacks = useMemo(() => {
+    const unique = new Set<string>()
+    projects.forEach((project) => {
+      project.stack.forEach((tech) => unique.add(tech))
+    })
+    return ['All', ...Array.from(unique).sort()]
+  }, [projects])
+
   const visibleProjects = useMemo(() => {
     return projects.filter((project) => {
       const inCategory = activeCategory === 'All' || project.category === activeCategory
+      const inStack = activeStack === 'All' || project.stack.includes(activeStack)
       const normalized = `${project.title} ${project.description} ${project.stack.join(' ')}`.toLowerCase()
       const matchesSearch = normalized.includes(query.toLowerCase().trim())
-      return inCategory && matchesSearch
+      return inCategory && inStack && matchesSearch
     })
-  }, [activeCategory, query, projects])
+  }, [activeCategory, activeStack, query, projects])
 
   if (loading) {
     return (
@@ -47,17 +57,36 @@ export function ProjectsPage() {
         </p>
 
         <div className="projects-toolbar">
-          <div className="chip-row">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`chip-button ${category === activeCategory ? 'active' : ''}`}
-                type="button"
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
+          <div>
+            <p className="meta">Category</p>
+            <div className="chip-row">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  className={`chip-button ${category === activeCategory ? 'active' : ''}`}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="meta">Tech Stack</p>
+            <div className="chip-row">
+              {stacks.map((stack) => (
+                <button
+                  key={stack}
+                  className={`chip-button ${stack === activeStack ? 'active' : ''}`}
+                  type="button"
+                  onClick={() => setActiveStack(stack)}
+                >
+                  {stack}
+                </button>
+              ))}
+            </div>
           </div>
 
           <label className="search-field">
