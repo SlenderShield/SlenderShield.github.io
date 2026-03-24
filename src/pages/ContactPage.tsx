@@ -10,7 +10,7 @@ export function ContactPage() {
     'Contact',
     'Get in touch for software engineering roles, distributed systems projects, and technical collaborations.',
   );
-  const { contact, errors, sent, isValid, updateField, onSubmit } =
+  const { contact, errors, submitting, submitStatus, submitMessage, isValid, updateField, onSubmit } =
     useContactForm();
 
   return (
@@ -52,7 +52,9 @@ export function ContactPage() {
           <ContactBriefForm
             contact={contact}
             errors={errors}
-            sent={sent}
+            submitting={submitting}
+            submitStatus={submitStatus}
+            submitMessage={submitMessage}
             isValid={isValid}
             onSubmit={onSubmit}
             onFieldChange={updateField}

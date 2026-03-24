@@ -1,17 +1,19 @@
-import type { FormEvent } from 'react';
-import type { ContactState } from '../hooks/useContactForm';
+import type { FormEvent } from 'react'
+import type { ContactState } from '../hooks/useContactForm'
 
 type ContactBriefFormProps = {
-  contact: ContactState;
-  errors: Partial<ContactState>;
-  sent: boolean;
-  isValid: boolean;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  contact: ContactState
+  errors: Partial<ContactState>
+  submitting: boolean
+  submitStatus: 'idle' | 'success' | 'error'
+  submitMessage: string
+  isValid: boolean
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void
   onFieldChange: <K extends keyof ContactState>(
     key: K,
     value: ContactState[K],
-  ) => void;
-};
+  ) => void
+}
 
 const contactTopics = [
   'Project inquiry',
@@ -23,7 +25,9 @@ const contactTopics = [
 export function ContactBriefForm({
   contact,
   errors,
-  sent,
+  submitting,
+  submitStatus,
+  submitMessage,
   isValid,
   onSubmit,
   onFieldChange,
@@ -126,20 +130,26 @@ export function ContactBriefForm({
       <button
         className="button solid button-fit"
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || submitting}
+        aria-busy={submitting}
       >
-        Prepare Email Brief
+        {submitting ? 'Sending...' : 'Prepare Email Brief'}
       </button>
       <p className="meta">
-        Your details are only used to pre-fill your email app. Nothing is
-        stored.
+        Your details are only used to send your brief. Nothing is stored.
       </p>
 
-      {sent ? (
+      {submitStatus === 'success' && (
         <p className="form-status" role="status">
-          Mail app opened with your prepared brief.
+          ✓ {submitMessage}
         </p>
-      ) : null}
+      )}
+
+      {submitStatus === 'error' && (
+        <p className="form-status error" role="alert">
+          ✗ {submitMessage}
+        </p>
+      )}
     </form>
   );
 }

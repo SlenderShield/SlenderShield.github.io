@@ -10,3 +10,17 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Netlify Forms configuration
+[[forms]]
+  name = "contact"
+  method = "POST"
+  fields = [
+    { name = "form-name", type = "hidden" },
+    { name = "name" },
+    { name = "email" },
+    { name = "topic" },
+    { name = "message" }
+  ]
+  # Optional: configure where submissions go
+  # notifications are sent to your Netlify email by default
