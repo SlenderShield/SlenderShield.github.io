@@ -26,10 +26,19 @@ export function ContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
           case 'image': {
             const imageSrc = sanitizeUrl(block.value);
             if (!imageSrc) return null;
+            
+            // Add responsive srcset for Unsplash images
+            let srcSet = ''
+            if (imageSrc.includes('unsplash.com')) {
+              srcSet = `${imageSrc}?w=400 400w, ${imageSrc}?w=800 800w, ${imageSrc}?w=1200 1200w`
+            }
+            
             return (
               <figure key={index} className="media-block">
                 <img
                   src={imageSrc}
+                  srcSet={srcSet}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 100vw"
                   alt={block.caption || 'Project asset'}
                   loading="lazy"
                 />

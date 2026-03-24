@@ -1,0 +1,36 @@
+/*
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/index.html
+  Cache-Control: public, max-age=300, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+/assets/*
+  Cache-Control: public, max-age=86400, immutable, smax-age=86400
+
+/Muralidhara_Bhat_Resume.pdf
+  Cache-Control: public, max-age=86400
+  Content-Type: application/pdf
+  Content-Disposition: inline
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+  Content-Type: application/xml
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain
+
+/*.svg
+  Cache-Control: public, max-age=86400, immutable
+  Content-Type: image/svg+xml
+
+/*.png
+  Cache-Control: public, max-age=86400, immutable
+  Content-Type: image/png
