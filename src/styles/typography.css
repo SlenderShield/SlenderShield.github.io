@@ -1,0 +1,44 @@
+/* Responsive typography tokens and utilities */
+:root {
+  /* Type scale */
+  --type-hero: clamp(2.5rem, 8vw, 5rem); /* large hero */
+  --type-h1: clamp(2rem, 6vw, 3.6rem);
+  --type-h2: clamp(1.5rem, 4.2vw, 2.25rem);
+  --type-h3: clamp(1.25rem, 3vw, 1.5rem);
+  --type-h4: 1.125rem;
+  --type-body: 1rem;
+  --type-lead: clamp(1.05rem, 2.6vw, 1.25rem);
+  --type-sm: 0.875rem;
+  --type-xs: 0.75rem;
+
+  /* Font weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Letter-spacing tokens */
+  --track-tight: -0.02em;
+  --track-normal: 0em;
+}
+
+/* Semantic utility classes */
+.prose {
+  max-width: 65ch;
+  font-size: var(--type-body);
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.lead {
+  font-size: var(--type-lead);
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-medium);
+}
+
+.muted { color: var(--text-soft); }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-weight: var(--fw-bold); font-size: var(--type-sm); color: var(--text-soft) }
+
+/* Small fine-tuning for code blocks */
+pre, code { font-family: var(--font-mono); font-size: 0.95rem }
