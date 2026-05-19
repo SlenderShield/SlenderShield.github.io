@@ -5,10 +5,6 @@ import { useBlogPosts } from '../hooks/useApi';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { toReadableDate } from '../utils/date';
 
-function isSeriesPost(tags: string[]) {
-  return tags.some((tag) => /\bseries\b/i.test(tag));
-}
-
 function getYear(dateString: string) {
   return new Date(dateString).getFullYear().toString();
 }
@@ -20,7 +16,6 @@ export function BlogPage() {
   );
   const { data: blogPosts, loading } = useBlogPosts();
   const [selectedTopic, setSelectedTopic] = useState('all');
-  const [selectedSeries, setSelectedSeries] = useState('all');
   const [selectedYear, setSelectedYear] = useState('all');
 
   const topicOptions = useMemo(() => {
@@ -28,16 +23,6 @@ export function BlogPage() {
     blogPosts.forEach((post) => {
       post.tags
         .filter((tag) => !/\bseries\b/i.test(tag))
-        .forEach((tag) => set.add(tag));
-    });
-    return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [blogPosts]);
-
-  const seriesOptions = useMemo(() => {
-    const set = new Set<string>();
-    blogPosts.forEach((post) => {
-      post.tags
-        .filter((tag) => /\bseries\b/i.test(tag))
         .forEach((tag) => set.add(tag));
     });
     return Array.from(set).sort((a, b) => a.localeCompare(b));
@@ -55,22 +40,32 @@ export function BlogPage() {
     return blogPosts.filter((post) => {
       const topicMatches =
         selectedTopic === 'all' || post.tags.includes(selectedTopic);
-      const seriesMatches =
-        selectedSeries === 'all' ||
-        (selectedSeries === 'any' && isSeriesPost(post.tags)) ||
-        post.tags.includes(selectedSeries);
       const yearMatches =
         selectedYear === 'all' || getYear(post.publishedOn) === selectedYear;
 
-      return topicMatches && seriesMatches && yearMatches;
+      return topicMatches && yearMatches;
     });
-  }, [blogPosts, selectedSeries, selectedTopic, selectedYear]);
+  }, [blogPosts, selectedTopic, selectedYear]);
+
+  const hasFilters = selectedTopic !== 'all' || selectedYear !== 'all';
+  const activeFilters = [
+    selectedTopic !== 'all' ? `Topic: ${selectedTopic}` : null,
+    selectedYear !== 'all' ? `Year: ${selectedYear}` : null,
+  ].filter(Boolean) as string[];
 
   if (loading) {
     return (
       <PageLayout>
         <main className="container section-block reveal">
-          <p>Loading journal...</p>
+          <section className="page-loading-panel" aria-busy="true" aria-live="polite">
+            <div className="loading-line loading-line-lg" />
+            <div className="loading-line loading-line-md" />
+            <div className="loading-grid">
+              <div className="loading-card" />
+              <div className="loading-card" />
+              <div className="loading-card" />
+            </div>
+          </section>
         </main>
       </PageLayout>
     );
@@ -83,54 +78,80 @@ export function BlogPage() {
           <h1>Journal</h1>
           <Link to="/">Back home</Link>
         </div>
-        <p>Articles, stories, and photography from work and life.</p>
+        <p>Short, readable posts grouped by topic and year.</p>
 
         <div className="blog-toolbar" aria-label="Blog filters">
-          <label className="search-field blog-filter-field">
-            <span>Topic</span>
-            <select
-              value={selectedTopic}
-              onChange={(event) => setSelectedTopic(event.target.value)}
-            >
-              <option value="all">All topics</option>
-              {topicOptions.map((topic) => (
-                <option key={topic} value={topic}>
-                  {topic}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="listing-summary">
+            <p className="meta">Browse posts</p>
+            <p>{visiblePosts.length} result{visiblePosts.length === 1 ? '' : 's'} visible</p>
+          </div>
 
-          <label className="search-field blog-filter-field">
-            <span>Series</span>
-            <select
-              value={selectedSeries}
-              onChange={(event) => setSelectedSeries(event.target.value)}
-            >
-              <option value="all">All posts</option>
-              <option value="any">Any series</option>
-              {seriesOptions.map((series) => (
-                <option key={series} value={series}>
-                  {series}
-                </option>
-              ))}
-            </select>
-          </label>
+          {activeFilters.length > 0 ? (
+            <div className="active-filter-row" aria-label="Active blog filters">
+              <span className="meta">Active filters</span>
+              <div className="chip-row active-filter-chips">
+                {activeFilters.map((filter) => (
+                  <button
+                    key={filter}
+                    type="button"
+                    className="filter-pill"
+                    onClick={() => {
+                      setSelectedTopic('all')
+                      setSelectedYear('all')
+                    }}
+                  >
+                    {filter}
+                    <span aria-hidden="true">×</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
-          <label className="search-field blog-filter-field">
-            <span>Date</span>
-            <select
-              value={selectedYear}
-              onChange={(event) => setSelectedYear(event.target.value)}
+          <div className="blog-filters">
+            <label className="search-field blog-filter-field">
+              <span>Topic</span>
+              <select
+                value={selectedTopic}
+                onChange={(event) => setSelectedTopic(event.target.value)}
+              >
+                <option value="all">All topics</option>
+                {topicOptions.map((topic) => (
+                  <option key={topic} value={topic}>
+                    {topic}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="search-field blog-filter-field">
+              <span>Year</span>
+              <select
+                value={selectedYear}
+                onChange={(event) => setSelectedYear(event.target.value)}
+              >
+                <option value="all">All years</option>
+                {yearOptions.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          {hasFilters ? (
+            <button
+              type="button"
+              className="button ghost blog-clear"
+              onClick={() => {
+                setSelectedTopic('all');
+                setSelectedYear('all');
+              }}
             >
-              <option value="all">All years</option>
-              {yearOptions.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-          </label>
+              Clear filters
+            </button>
+          ) : null}
         </div>
 
         <div className="blog-list blog-list-grid">
@@ -150,17 +171,21 @@ export function BlogPage() {
                   />
                 </Link>
               ) : null}
-              <p className="meta">
-                {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
-              </p>
-              <h2>{post.title}</h2>
+              <header className="blog-card-header">
+                <p className="meta">
+                  {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
+                </p>
+                <h2>{post.title}</h2>
+              </header>
               <p>{post.excerpt}</p>
               <div className="chip-row">
                 {post.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <Link to={`/blog/${post.slug}`}>Read full post</Link>
+              <div className="blog-card-actions">
+                <Link to={`/blog/${post.slug}`}>Read full post</Link>
+              </div>
             </article>
           ))}
         </div>

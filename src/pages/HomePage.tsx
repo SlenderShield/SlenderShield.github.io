@@ -38,9 +38,15 @@ export function HomePage() {
   if (projectsLoading || postsLoading) {
     return (
       <PageLayout>
-        <main>
-          <section className="container section-block reveal">
-            <p>Loading...</p>
+        <main className="container section-block reveal">
+          <section className="page-loading-panel" aria-busy="true" aria-live="polite">
+            <div className="loading-line loading-line-lg" />
+            <div className="loading-line loading-line-md" />
+            <div className="loading-grid">
+              <div className="loading-card" />
+              <div className="loading-card" />
+              <div className="loading-card" />
+            </div>
           </section>
         </main>
       </PageLayout>

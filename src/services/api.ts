@@ -1,10 +1,13 @@
 import { hasSupabaseEnv, supabase } from './supabase';
-import { projects as staticProjects } from '../content/projects';
-import { blogPosts as staticBlogPosts } from '../content/blogPosts';
+import projectsData from '../content/projects.json';
+import blogPostsData from '../content/blogPosts.json';
 import type { Project, BlogPost } from '../types/content';
 
 let projectsCache: Project[] | null = null
 let blogPostsCache: BlogPost[] | null = null
+
+const staticProjects: Project[] = projectsData as Project[]
+const staticBlogPosts: BlogPost[] = blogPostsData as BlogPost[]
 
 // ============== TRANSFORM HELPERS ==============
 // Supabase uses snake_case columns; our TS types use camelCase

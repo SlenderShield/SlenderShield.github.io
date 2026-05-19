@@ -1,5 +1,10 @@
 import type { FormEvent } from 'react'
 import type { ContactState } from '../hooks/useContactForm'
+import { Button } from './ui/Button'
+import { Input } from './ui/Input'
+import { Textarea } from './ui/Textarea'
+import { Select } from './ui/Select'
+import { Alert } from './ui/Alert'
 
 type ContactBriefFormProps = {
   contact: ContactState
@@ -16,11 +21,11 @@ type ContactBriefFormProps = {
 }
 
 const contactTopics = [
-  'Project inquiry',
-  'Contract opportunity',
-  'Full-time role',
-  'Collaboration',
-] as const;
+  { value: 'project-inquiry', label: 'Project inquiry' },
+  { value: 'contract-opportunity', label: 'Contract opportunity' },
+  { value: 'full-time-role', label: 'Full-time role' },
+  { value: 'collaboration', label: 'Collaboration' },
+]
 
 export function ContactBriefForm({
   contact,
@@ -34,122 +39,93 @@ export function ContactBriefForm({
 }: ContactBriefFormProps) {
   return (
     <form className="contact-form clean-panel" onSubmit={onSubmit} noValidate>
-      <h2>Send a Brief</h2>
-      <p className="meta">
-        Three required fields only. Keep it short and outcome-focused.
-      </p>
-
-      <label htmlFor="contact-name">
-        Name{' '}
-        <span className="required-indicator" aria-hidden="true">
-          *
-        </span>
-      </label>
-      <input
-        id="contact-name"
-        type="text"
-        name="name"
-        autoComplete="name"
-        required
-        aria-required="true"
-        aria-describedby={errors.name ? 'error-name' : undefined}
-        aria-invalid={!!errors.name}
-        value={contact.name}
-        onChange={(event) => onFieldChange('name', event.target.value)}
-        placeholder="Your name"
-      />
-      {errors.name && (
-        <p id="error-name" className="field-error" role="alert">
-          {errors.name}
+      <div className="form-intro">
+        <h2>Send a Brief</h2>
+        <p className="meta">
+          Three required fields only. Keep it short, outcome-focused, and easy to reply to.
         </p>
-      )}
+      </div>
 
-      <label htmlFor="contact-email">
-        Email{' '}
-        <span className="required-indicator" aria-hidden="true">
-          *
-        </span>
-      </label>
-      <input
-        id="contact-email"
-        type="email"
-        name="email"
-        autoComplete="email"
-        required
-        aria-required="true"
-        aria-describedby={errors.email ? 'error-email' : undefined}
-        aria-invalid={!!errors.email}
-        value={contact.email}
-        onChange={(event) => onFieldChange('email', event.target.value)}
-        placeholder="your@email.com"
-      />
-      {errors.email && (
-        <p id="error-email" className="field-error" role="alert">
-          {errors.email}
-        </p>
-      )}
+      <div className="form-status-banner" aria-live="polite">
+        <p className="meta">✓ Typical response time: 24–48 hours.</p>
+        <p className="meta">✓ Nothing is stored beyond the message you send.</p>
+      </div>
 
-      <label htmlFor="contact-topic">Topic</label>
-      <select
-        id="contact-topic"
-        name="topic"
-        value={contact.topic}
-        onChange={(event) => onFieldChange('topic', event.target.value)}
-      >
-        {contactTopics.map((topic) => (
-          <option key={topic} value={topic}>
-            {topic}
-          </option>
-        ))}
-      </select>
+      <div className="form-grid">
+        <Input
+          label="Name"
+          id="contact-name"
+          type="text"
+          autoComplete="name"
+          required
+          placeholder="Your name"
+          isRequired
+          value={contact.name}
+          onChange={(event) => onFieldChange('name', event.target.value)}
+          error={errors.name}
+          helperText="Use the name you want replied to."
+        />
 
-      <label htmlFor="contact-message">
-        Message{' '}
-        <span className="required-indicator" aria-hidden="true">
-          *
-        </span>
-      </label>
-      <textarea
-        id="contact-message"
-        name="message"
-        rows={6}
-        required
-        aria-required="true"
-        aria-describedby={errors.message ? 'error-message' : undefined}
-        aria-invalid={!!errors.message}
-        value={contact.message}
-        onChange={(event) => onFieldChange('message', event.target.value)}
-        placeholder="Briefly describe scope, budget range, and timeline."
-      />
-      {errors.message && (
-        <p id="error-message" className="field-error" role="alert">
-          {errors.message}
-        </p>
-      )}
+        <Input
+          label="Email"
+          id="contact-email"
+          type="email"
+          autoComplete="email"
+          required
+          placeholder="your@email.com"
+          isRequired
+          value={contact.email}
+          onChange={(event) => onFieldChange('email', event.target.value)}
+          error={errors.email}
+          helperText="I'll reply to this address."
+        />
 
-      <button
-        className="button solid button-fit"
-        type="submit"
-        disabled={!isValid || submitting}
-        aria-busy={submitting}
-      >
-        {submitting ? 'Sending...' : 'Prepare Email Brief'}
-      </button>
-      <p className="meta">
-        Your details are only used to send your brief. Nothing is stored.
-      </p>
+        <Select
+          label="Topic"
+          id="contact-topic"
+          required
+          isRequired
+          value={contact.topic}
+          onChange={(event) => onFieldChange('topic', event.target.value)}
+          options={contactTopics}
+          error={errors.topic}
+        />
+
+        <Textarea
+          label="Message"
+          id="contact-message"
+          required
+          isRequired
+          placeholder="Your message..."
+          value={contact.message}
+          onChange={(event) => onFieldChange('message', event.target.value)}
+          error={errors.message}
+          helperText="Be specific about what you're looking for."
+          rows={5}
+        />
+      </div>
 
       {submitStatus === 'success' && (
-        <p className="form-status" role="status">
-          ✓ {submitMessage}
-        </p>
+        <Alert type="success" title="Message sent!">
+          {submitMessage || 'Thanks for reaching out. I\'ll get back to you soon.'}
+        </Alert>
       )}
 
       {submitStatus === 'error' && (
-        <p className="form-status error" role="alert">
-          ✗ {submitMessage}
-        </p>
+        <Alert type="error" title="Oops, something went wrong">
+          {submitMessage || 'Failed to send message. Please try again.'}
+        </Alert>
       )}
+
+      <Button
+        type="submit"
+        variant="solid"
+        isLoading={submitting}
+        disabled={!isValid || submitting}
+        fullWidth
+      >
+        {submitting ? 'Sending...' : 'Send message'}
+      </Button>
     </form>
-  );
+  )
 }

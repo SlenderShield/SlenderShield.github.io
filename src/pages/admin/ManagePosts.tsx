@@ -27,14 +27,14 @@ export function ManagePosts() {
 
   if (loading) {
     return (
-      <div className="admin-actions">
+      <div className="admin-state-panel">
         <div className="loading-indicator" />
         <p className="admin-status">Loading posts...</p>
       </div>
     );
   }
 
-  if (error) return <p className="admin-status error">Failed to load posts.</p>;
+  if (error) return <div className="admin-state-panel admin-status error">Failed to load posts.</div>;
 
   const handleEdit = (post: BlogPost) => {
     setEditingPost(post);
@@ -119,10 +119,15 @@ export function ManagePosts() {
 
     return (
       <div className="admin-grid">
-        <div className="admin-actions">
+        <header className="page-intro">
+          <p className="eyebrow">Blog posts</p>
           <h1 className="admin-heading">
-            {mode === 'create' ? 'Create Post' : 'Edit Post'}
+            {mode === 'create' ? 'Create post' : 'Edit post'}
           </h1>
+          <p className="admin-status">Keep the body plain and readable. Paragraphs are separated by blank lines.</p>
+        </header>
+
+        <div className="admin-actions">
           <button onClick={() => setMode('list')} className="admin-button">
             Cancel
           </button>
@@ -263,8 +268,13 @@ export function ManagePosts() {
 
   return (
     <div className="admin-grid">
+      <header className="page-intro">
+        <p className="eyebrow">Blog posts</p>
+        <h1 className="admin-heading">Manage blog posts</h1>
+        <p className="admin-status">Use the list for quick edits and the form for focused writing updates.</p>
+      </header>
+
       <div className="admin-actions">
-        <h1 className="admin-heading">Manage Blog Posts</h1>
         <button onClick={handleCreate} className="admin-button primary">
           <span>+</span> New Post
         </button>
@@ -319,8 +329,8 @@ export function ManagePosts() {
             ))}
             {(!posts || posts.length === 0) && (
               <tr>
-                <td colSpan={4} className="admin-status">
-                  No posts found. Create one to get started!
+                <td colSpan={4} className="admin-state-panel admin-status">
+                  No posts found. Create one to get started.
                 </td>
               </tr>
             )}

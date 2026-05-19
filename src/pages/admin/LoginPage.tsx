@@ -11,7 +11,7 @@ export function LoginPage() {
 
   if (loading) {
     return (
-      <div className="admin-loading">
+      <div className="admin-loading admin-loading-panel">
         <div className="loading-indicator" />
       </div>
     );
@@ -29,11 +29,14 @@ export function LoginPage() {
   };
 
   return (
-    <div className="admin-loading">
+    <div className="admin-loading admin-login-screen">
       <div className="admin-panel admin-login-card">
         <div className="admin-grid">
-          <h1 className="admin-heading">Admin Login</h1>
-          <p className="admin-status">Sign in to manage your portfolio.</p>
+          <div className="page-intro">
+            <p className="eyebrow">Admin</p>
+            <h1 className="admin-heading">Sign in</h1>
+            <p className="admin-status">Sign in to manage your portfolio.</p>
+          </div>
           {error && (
             <div className="admin-status error" role="alert">
               {error}

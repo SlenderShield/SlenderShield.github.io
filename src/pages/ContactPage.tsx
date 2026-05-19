@@ -15,13 +15,15 @@ export function ContactPage() {
 
   return (
     <PageLayout>
-      <main className="container section-block reveal">
-        <h1>Contact</h1>
-        <p>
-          Share your timeline, goals, and constraints. I am open to software
-          engineering roles, distributed systems projects, and technical
-          collaborations.
-        </p>
+      <main className="container section-block reveal contact-page">
+        <header className="page-intro">
+          <p className="eyebrow">Let&apos;s talk</p>
+          <h1>Contact</h1>
+          <p>
+            Share your timeline, goals, and constraints. I am open to software engineering
+            roles, distributed systems projects, and technical collaborations.
+          </p>
+        </header>
 
         <section className="contact-layout reveal">
           <article className="clean-panel">
@@ -46,7 +48,10 @@ export function ContactPage() {
                 </a>
               ))}
             </div>
-            <p className="meta">Typical response time: within 24–48 hours.</p>
+            <div className="contact-note">
+              <p className="meta">Typical response time: within 24–48 hours.</p>
+              <p className="meta">For urgent work, email is the fastest path.</p>
+            </div>
           </article>
 
           <ContactBriefForm

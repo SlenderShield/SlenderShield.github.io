@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { PageLayout } from '../components/PageLayout'
-import { ResumePreview } from '../components/ResumePreview'
 import { siteContent } from '../content/siteContent'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -9,10 +8,14 @@ export function AboutPage() {
   return (
     <PageLayout>
       <main className="container section-block reveal">
-        <div className="section-head">
-          <h1>About Me</h1>
-          <Link to="/contact" className="button ghost">Let's Connect</Link>
-        </div>
+        <header className="page-intro">
+          <p className="eyebrow">About</p>
+          <h1>About me</h1>
+          <p>
+            I design and build distributed systems, backend platforms, and practical frontend experiences with a focus on clarity and reliability.
+          </p>
+          <Link to="/contact" className="button ghost button-fit">Let&apos;s connect</Link>
+        </header>
 
         <div className="about-hero">
           <div className="about-content">
@@ -26,11 +29,8 @@ export function AboutPage() {
                   {link.label}
                 </a>
               ))}
-              <ResumePreview resumeUrl={siteContent.resumeUrl}>
-                Preview Resume
-              </ResumePreview>
               <a href={siteContent.resumeUrl} target="_blank" rel="noopener noreferrer" className="button solid">
-                Download Resume
+                View / Download Resume
               </a>
             </div>
           </div>

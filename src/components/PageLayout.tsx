@@ -9,8 +9,15 @@ type PageLayoutProps = {
 export function PageLayout({ children }: PageLayoutProps) {
   return (
     <div className="page-shell">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <SiteHeader />
-      {children}
+
+      <main id="main-content" className="page-main">
+        {children}
+      </main>
+
       <SiteFooter />
     </div>
   )

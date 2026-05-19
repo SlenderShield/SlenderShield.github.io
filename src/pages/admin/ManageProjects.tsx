@@ -27,7 +27,7 @@ export function ManageProjects() {
 
   if (loading) {
     return (
-      <div className="admin-actions">
+      <div className="admin-state-panel">
         <div className="loading-indicator" />
         <p className="admin-status">Loading projects...</p>
       </div>
@@ -35,7 +35,7 @@ export function ManageProjects() {
   }
 
   if (error)
-    return <p className="admin-status error">Failed to load projects.</p>;
+    return <div className="admin-state-panel admin-status error">Failed to load projects.</div>;
 
   const handleEdit = (project: Project) => {
     setEditingProject(project);
@@ -105,10 +105,15 @@ export function ManageProjects() {
   if (mode !== 'list') {
     return (
       <div className="admin-grid">
-        <div className="admin-actions">
+        <header className="page-intro">
+          <p className="eyebrow">Projects</p>
           <h1 className="admin-heading">
-            {mode === 'create' ? 'Create Project' : 'Edit Project'}
+            {mode === 'create' ? 'Create project' : 'Edit project'}
           </h1>
+          <p className="admin-status">Keep the form focused on the content that matters: title, outcome, and stack.</p>
+        </header>
+
+        <div className="admin-actions">
           <button onClick={() => setMode('list')} className="admin-button">
             Cancel
           </button>
@@ -275,8 +280,13 @@ export function ManageProjects() {
 
   return (
     <div className="admin-grid">
+      <header className="page-intro">
+        <p className="eyebrow">Projects</p>
+        <h1 className="admin-heading">Manage projects</h1>
+        <p className="admin-status">Use one clear list, then edit or create a project in a focused form.</p>
+      </header>
+
       <div className="admin-actions">
-        <h1 className="admin-heading">Manage Projects</h1>
         <button onClick={handleCreate} className="admin-button primary">
           <span>+</span> New Project
         </button>
@@ -339,8 +349,8 @@ export function ManageProjects() {
             ))}
             {(!projects || projects.length === 0) && (
               <tr>
-                <td colSpan={5} className="admin-status">
-                  No projects found. Create one to get started!
+                <td colSpan={5} className="admin-state-panel admin-status">
+                  No projects found. Create one to get started.
                 </td>
               </tr>
             )}

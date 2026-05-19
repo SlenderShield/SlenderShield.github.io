@@ -3,18 +3,21 @@ import { SocialIcon } from './SocialIcon'
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" role="contentinfo">
       <p>
         {siteContent.name} • {new Date().getFullYear()}
       </p>
-      <div className="social-inline">
+
+      <ul className="social-inline" aria-label="Social links">
         {siteContent.socialLinks.map((item) => (
-          <a key={item.label} href={item.href} target="_blank" rel="noreferrer" aria-label={item.label}>
-            <SocialIcon label={item.label} />
-            <span>{item.label}</span>
-          </a>
+          <li key={item.label}>
+            <a href={item.href} target="_blank" rel="noreferrer" aria-label={item.label}>
+              <SocialIcon label={item.label} />
+              <span>{item.label}</span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </footer>
   )
 }

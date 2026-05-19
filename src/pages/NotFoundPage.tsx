@@ -7,10 +7,13 @@ export function NotFoundPage() {
   return (
     <PageLayout>
       <main className="container section-block reveal">
-        <h1>404 — Page Not Found</h1>
-        <p>
-          The page you are looking for does not exist or has been moved. Use the navigation above or head back home.
-        </p>
+        <section className="page-intro error-page-card">
+          <p className="eyebrow">404</p>
+          <h1>Page not found</h1>
+          <p>
+            The page you are looking for does not exist or has been moved. Use the navigation above or head back home.
+          </p>
+        </section>
         <div className="hero-actions">
           <Link className="button solid" to="/">
             Back to home

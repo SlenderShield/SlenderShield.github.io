@@ -43,7 +43,11 @@ export function BlogPostPage() {
     return (
       <PageLayout>
         <main className="container section-block">
-          <p>Loading post...</p>
+          <section className="page-loading-panel" aria-busy="true" aria-live="polite">
+            <div className="loading-line loading-line-lg" />
+            <div className="loading-line loading-line-md" />
+            <div className="loading-card" />
+          </section>
         </main>
       </PageLayout>
     )
@@ -52,10 +56,20 @@ export function BlogPostPage() {
   if (!post) {
     return (
       <PageLayout>
-        <main className="container section-block">
-          <h1>Post not found</h1>
-          <p>This article does not exist yet. Please check the blog index.</p>
-          <Link to="/blog">Go to blog</Link>
+        <main className="container section-block reveal">
+          <div className="page-intro">
+            <p className="eyebrow">Blog</p>
+            <h1>Post not found</h1>
+            <p>This article does not exist yet. Please check the blog index.</p>
+          </div>
+          <div className="hero-actions">
+            <Link to="/blog" className="button solid">
+              Go to blog
+            </Link>
+            <Link to="/" className="button ghost">
+              Back home
+            </Link>
+          </div>
         </main>
       </PageLayout>
     )
@@ -71,26 +85,44 @@ export function BlogPostPage() {
 
   return (
     <PageLayout>
-      <main className={`container section-block reveal template-${post.template || 'minimal'}`}>
-        <header className="blog-header">
-          <p className="meta">
+      <main className={`container section-block reveal blog-post template-${post.template || 'minimal'}`}>
+        <header className="page-intro blog-hero">
+          <p className="eyebrow">
             {toReadableDate(post.publishedOn)} • {post.readMinutes} min read
           </p>
           <h1>{post.title}</h1>
-          <div className="chip-row">
-            {post.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
+          <p>{post.excerpt}</p>
+          <div className="hero-actions">
+            <Link to="/blog" className="button ghost">
+              Back to all posts
+            </Link>
+            <Link to="/" className="button solid">
+              Back home
+            </Link>
           </div>
         </header>
 
-        {post.coverImage && (
-          <figure className="blog-cover">
-            <img src={post.coverImage} alt={`${post.title} cover image`} loading="lazy" />
-          </figure>
-        )}
+        <section className="blog-summary-grid">
+          <article className="detail-panel blog-summary-card">
+            <h2>Topics</h2>
+            <div className="chip-row">
+              {post.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </article>
 
-        <article className="post-content">
+          {post.coverImage && (
+            <article className="detail-panel blog-summary-card">
+              <h2>Cover</h2>
+              <figure className="blog-cover">
+                <img src={post.coverImage} alt={`${post.title} cover image`} loading="lazy" />
+              </figure>
+            </article>
+          )}
+        </section>
+
+        <article className="post-content detail-panel">
           {post.blocks && post.blocks.length > 0 ? (
             <ContentRenderer blocks={post.blocks} />
           ) : (
@@ -99,11 +131,14 @@ export function BlogPostPage() {
         </article>
 
         {relatedPosts.length > 0 ? (
-          <section className="detail-panel">
-            <h2>Related posts</h2>
-            <div className="blog-list">
+          <section className="detail-panel related-section">
+            <div className="section-head compact">
+              <h2>Related posts</h2>
+              <Link to="/blog">Browse archive</Link>
+            </div>
+            <div className="blog-list related-list">
               {relatedPosts.map((item) => (
-                <article key={item.slug} className="blog-item">
+                <article key={item.slug} className="blog-item related-card">
                   <p className="meta">
                     {toReadableDate(item.publishedOn)} • {item.readMinutes} min read
                   </p>
@@ -115,8 +150,6 @@ export function BlogPostPage() {
             </div>
           </section>
         ) : null}
-
-        <Link to="/blog">Back to all posts</Link>
       </main>
     </PageLayout>
   )

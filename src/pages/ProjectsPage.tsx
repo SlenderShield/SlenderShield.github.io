@@ -7,7 +7,6 @@ import { useProjects } from '../hooks/useApi'
 export function ProjectsPage() {
   useDocumentTitle('Projects', 'Projects by Muralidhara Bhat KS — backend systems, telemetry pipelines, microservices, and full-stack engineering work from Bosch and Netcracker.')
   const [activeCategory, setActiveCategory] = useState('All')
-  const [activeStack, setActiveStack] = useState('All')
   const [query, setQuery] = useState('')
   const { data: projects, loading } = useProjects()
 
@@ -16,29 +15,36 @@ export function ProjectsPage() {
     return ['All', ...unique]
   }, [projects])
 
-  const stacks = useMemo(() => {
-    const unique = new Set<string>()
-    projects.forEach((project) => {
-      project.stack.forEach((tech) => unique.add(tech))
-    })
-    return ['All', ...Array.from(unique).sort()]
-  }, [projects])
-
   const visibleProjects = useMemo(() => {
     return projects.filter((project) => {
       const inCategory = activeCategory === 'All' || project.category === activeCategory
-      const inStack = activeStack === 'All' || project.stack.includes(activeStack)
       const normalized = `${project.title} ${project.description} ${project.stack.join(' ')}`.toLowerCase()
       const matchesSearch = normalized.includes(query.toLowerCase().trim())
-      return inCategory && inStack && matchesSearch
+      return inCategory && matchesSearch
     })
-  }, [activeCategory, activeStack, query, projects])
+  }, [activeCategory, query, projects])
+
+  const hasFilters = activeCategory !== 'All' || query.trim().length > 0
+  const activeFilterLabel =
+    activeCategory !== 'All'
+      ? activeCategory
+      : query.trim().length > 0
+        ? `Search: ${query.trim()}`
+        : null
 
   if (loading) {
     return (
       <PageLayout>
         <main className="container section-block reveal">
-          <p>Loading...</p>
+          <section className="page-loading-panel" aria-busy="true" aria-live="polite">
+            <div className="loading-line loading-line-lg" />
+            <div className="loading-line loading-line-md" />
+            <div className="loading-grid">
+              <div className="loading-card" />
+              <div className="loading-card" />
+              <div className="loading-card" />
+            </div>
+          </section>
         </main>
       </PageLayout>
     )
@@ -52,60 +58,83 @@ export function ProjectsPage() {
           <Link to="/">Back home</Link>
         </div>
 
-        <p>
-          A growing project library designed to scale. Use category filters and search to quickly explore relevant work.
-        </p>
+        <p>Selected work across backend systems, full-stack delivery, and performance-focused engineering.</p>
 
         <div className="projects-toolbar">
-          <div>
-            <p className="meta">Category</p>
-            <div className="chip-row">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={`chip-button ${category === activeCategory ? 'active' : ''}`}
-                  type="button"
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+          <div className="listing-summary">
+            <p className="meta">Explore projects</p>
+            <p>{visibleProjects.length} result{visibleProjects.length === 1 ? '' : 's'} visible</p>
           </div>
 
-          <div>
-            <p className="meta">Tech Stack</p>
-            <div className="chip-row">
-              {stacks.map((stack) => (
-                <button
-                  key={stack}
-                  className={`chip-button ${stack === activeStack ? 'active' : ''}`}
-                  type="button"
-                  onClick={() => setActiveStack(stack)}
-                >
-                  {stack}
-                </button>
-              ))}
+          {activeFilterLabel ? (
+            <div className="active-filter-row" aria-label="Active project filters">
+              <span className="meta">Active filter</span>
+              <button
+                type="button"
+                className="filter-pill"
+                onClick={() => {
+                  setActiveCategory('All')
+                  setQuery('')
+                }}
+                title={activeFilterLabel}
+              >
+                {activeFilterLabel}
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
+          ) : null}
+
+          <div className="projects-filters">
+            <div>
+              <p className="meta">Category</p>
+              <div className="chip-row">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    className={`chip-button ${category === activeCategory ? 'active' : ''}`}
+                    type="button"
+                    onClick={() => setActiveCategory(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <label className="search-field">
+              Search
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search title, summary, or stack"
+                aria-label="Search projects"
+              />
+            </label>
           </div>
 
-          <label className="search-field">
-            Search
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="React, analytics, dashboard..."
-            />
-          </label>
+          {hasFilters ? (
+            <button
+              type="button"
+              className="button ghost projects-clear"
+              onClick={() => {
+                setActiveCategory('All')
+                setQuery('')
+              }}
+            >
+              Clear filters
+            </button>
+          ) : null}
         </div>
 
         <div className="card-grid projects-grid">
           {visibleProjects.map((project) => (
             <article className="card" key={project.title}>
-              <p className="meta">
-                {project.category} • {project.year}
-              </p>
-              <h2>{project.title}</h2>
+              <header className="project-card-header">
+                <p className="meta">
+                  {project.category} • {project.year}
+                </p>
+                <h2>{project.title}</h2>
+              </header>
               <p>{project.description}</p>
               <p className="outcome">{project.outcome}</p>
               <ul className="chip-row">
@@ -113,7 +142,7 @@ export function ProjectsPage() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-              <div className="row-links">
+              <div className="row-links project-card-actions">
                 <Link to={`/projects/${project.slug}`}>Case study</Link>
                 <a href={project.liveUrl} target="_blank" rel="noreferrer">
                   Live
@@ -125,6 +154,10 @@ export function ProjectsPage() {
             </article>
           ))}
         </div>
+
+        {visibleProjects.length === 0 ? (
+          <p>No projects match the current filters yet.</p>
+        ) : null}
       </main>
     </PageLayout>
   )
